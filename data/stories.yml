@@ -1,0 +1,16 @@
+version: "0.0.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: inform_name
+    entities:
+      - name: Ridwan
+  - action: utter_ask_help
+  - intent: consult
+  - action: utter_ask_problem
+  - intent: mood_sad
+  - action: utter_ask_duration

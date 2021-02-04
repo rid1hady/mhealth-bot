@@ -1,0 +1,35 @@
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+slots:
+  name:
+    type: text
+
+intents:
+  - greet:
+      use_entities:
+        - name
+  - goodbye
+  - consult
+  - affirm
+  - deny
+  - mood_happy
+  - mood_sad
+  - inform_name
+
+entities:
+  - name
+
+responses:
+  utter_greet:
+    - text: "Halo! perkenalkan aku adalah MantapBot, nama kamu siapa?"
+  utter_ask_help:
+    - text: "Halo {name}. Ada yang bisa saya bantu?"
+  utter_ask_problem:
+    - text: "Ada masalah apa?"
+  utter_ask_duration:
+    - text: "Sudah berapa lama?"
+  utter_goodbye:
+    - text: "Sampai jumpa kembali"
+

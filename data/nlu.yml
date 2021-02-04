@@ -1,0 +1,91 @@
+version: "0.0.1"
+# This the very first version yet to released
+
+nlu:
+# TODO: Add more intent and examples for each one of them
+- intent: greet
+  examples: |
+    - assalamu'alaikum
+    - p
+    - hi
+    - halo
+    - hai
+    - selamat pagi
+    - selamat siang
+    - selamat sore
+    - selamat malam
+    - pagi
+    - siang
+    - sore
+    - malam
+
+- intent: goodbye
+  examples: |
+    - sampai jumpa
+    - dah
+    - bye
+    - goodbye
+    - bye bye
+
+- intent: consult
+  examples: |
+    - saya ingin bercerita
+    - saya ingin curhat
+    - saya memiliki masalah
+
+- intent: affirm
+  examples: |
+    - iya
+    - ya
+    - tentu
+    - ada
+    - benar
+    - yes
+    - y
+
+- intent: deny
+  examples: |
+    - tidak
+    - tdk
+    - engga
+    - ga
+    - tidak ada
+    - ngga ada
+    - nggak
+    - enggak
+    - bukan
+    - no
+    - n
+
+- intent: mood_happy
+  examples: |
+    - senang
+    - bahagia
+    - luar biasa
+    - saya senang
+    - aku bahagia
+    - saya merasa senang
+    - sangat senang
+    - sempurna
+
+- intent: mood_sad
+  examples: |
+    - saya merasa sedih
+    - saya sedih
+    - aku sedih
+    - aku merasa sedih
+    - sangat sedih
+    - sedih
+    - tidak bahagia
+    - kurang baik
+    - sed
+    - sad
+    - saya ingin menangis
+    - saya sering menangis
+    - saya terus terusan menangis
+
+- intent: inform_name
+  examples: |
+    - nama saya [Ridwan](name)
+    - saya [Hady](name)
+    - [Ridwan Hady](name)

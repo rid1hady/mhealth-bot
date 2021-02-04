@@ -1,0 +1,90 @@
+A : Silahkan masuk, silahkan duduk
+A : Perkenalkan saya ... yang bertugas hari ini. Namanya Siapa?
+B : [Nama]
+A : Baik [Nama], usia berapa
+B : [Usia]
+A : Baik, Bekerja?
+B : [Yes/No]
+A : Kegiatan sehari-hari apa?
+B : [Kegiatan]
+A : Alamat rumahnya dimana?
+B : [Alamat]
+A : Apa Keluhan Utamanya bu?
+B : Saya merasa sedih
+A : Sudah berapa lama
+B : Lebih dari 1 bulan
+A : Sampai mau menangis
+B : Saya menangis terus
+A : Tadi merasa sedih, Ada masalah yang disedihkan?
+B : Ada, 
+A : Masalah dengan siapa?
+B : Masalah dengan keluarga
+A : Boleh tahu dengan siapa?
+B : Dengan Suami
+A : [Summary] Semenjak ada masalah dengan suami, jadi merasa sedih sampai menangis ya?
+B : Iya
+A : Apa ada keluhan lain?
+B : Saya kurang bergairah
+A : Maksudnya kurang bergairah dalam melakukan apapun?
+B : Iya saya kurang bergairah dalam melakukan pekerjaan apapun
+A : Ibu alami beberapa hari atau hampir setiap hari
+B : Hampir setiap hari
+A : Tadi ibu ada mengeluhkan sedih sampai menangis, kadang ada nggak perasaan putus asa dan tidak berguna
+B : Ada, saya sering merasa tidak ada gunanya.
+A : Dalam 2 minggu terakhir, dirasakan, dalam beberapa hari atau setiap hari?
+B : Hampir setiap hari
+A : Kalau sulit tidur, Ada ibu alami?
+B : Ada
+A : Jam berapa biasanya Ibu tidur?
+B : Saya sering terbangun malam. Saya tidur jam 11, terus terbangun dan baru tidur lagi hampir subuh
+A : Ibu alami hampir setiap hari, atau beberapa hari terakhir
+B : Beberapa minggu terakhir ini
+A : Kalau merasa mudah lelah, sampai rasanya sering tidak bertenaga atau capek, juga dialami?
+B : Karena saya tidak bergairah, rasanya saya capek saja
+A : Ibu alami beberapa hari atau setiap hari?
+B : Hampir setiap hari
+A : Kalau untuk nafsu makan gimana?
+B : Saya kurang nafsu makan dokter
+A : Tidak mau makan ibu?
+B : Kadang saya setiap hari hanya setengah piring, kadang tidak sama sekali. Kadang hanya minum saja
+A : Dalam dua minggu terakhir, seberapa sering?
+B : Dalam beberapa hari ini
+A : Ibu ada penurunan berat badan
+B : Iya dokter, saya merasa agak kurusan
+A : Apakah ibu rasakan baju baju agak sedikit longgar?
+B : Iya ada
+A : Ibu kan merasa putus asa dan tidak berguna, selain itu ada gak merasa kurang percaya diri?
+B : Iya ada dok, saya merasa malu
+A : Malu ya, apakah ibu menjadi seseorang yang gagal, kecewa dengan diri sendiri itu ada?
+B : Iya bu, ada.
+A : Ini ibu rasakan sudah berapa hari? atau hampir setiap hari?
+B : Beberapa hari
+A : Kalau untuk konsentrasi bagaimana?
+B : Maksudnya gimana?
+A : Misalnya ibu menonton televisi, mengikuti alurnya ceritanya itu sudah tidak biasanya
+B : Kadang-kadang saya bisa menikmati, kadang-kadang karena saya ngelamun, tidak terlalu menikmati
+A : Ada ya berarti kesusahan?
+B : Dalam dua minggu ini, ada berapa kali ibu rasakan?
+A : Sejak saya sedih?
+A : Apakah bicara lebih lambat atau lebih pendiam ibu rasakan?
+B : Saya kurang tahu, kata keluarga saya jadi lebih pendiam
+A : Dulu Ibu orangnya periang?
+B : Iya
+A : Bicara lebih lambat atau pendiam ini udah ibu rasakan bagaimana dalam dua minggu terakhir?
+B : Kurang ingat juga, rasa-rasanya sudah dua minggu ini.
+A : Keluhan ini berarti semakin lama semakin parah
+B : Iya saya rasanya semakin parah, makanya saya ingin tanya kepada ibu dokter.
+A : Baik bu, mungkin saya bantu dengan memberikan beberapa pengobatan
+A : Tadi ibu sampaikan, Putus Asa, tidak berguna, berasa paling gagal, Mohon maaf, ada gak pikiran lebih baik mati saja, atau ingin mengakhiri hidup?
+B : Sebenarnya ada dok, saya rasa ingin mati, tapi saya gak berani melakukannya.
+A : Mungkin hanya ide ide saja, untuk melukai diri ya
+B : Iya, itu hanya ide-ide karena saya takut juga.
+A : Apa yang pernah ibu lakukan?
+B : Dua minggu kemarin saya sudah berencana untuk beli racun. Akhirnya saya beli, tapi saya nggak berani dokter.
+A : Itu ibu alami niat mau bunuh diri ada hampir setiap hari?
+B : Dalam beberapa hari ini saja
+A : Dari keluhan-keluhan yang Ibu rasakan dan ibu jelaskan, masalah-masalah ini menimbulkan kesulitan untuk melakukan pekerjaan atau bergaul dengan orang lain
+B : Saya merasa sulit, saya gak mau keluar rumah, jarang ngobrol dengan teman.
+A : Sangat sulit ya, sampai tidak bisa melakukan pekerjaan rumah tangga lagi ya?
+B : Iya dok, saya sudah tidak nafsu lagi soalnya
+A : dari beberapa pertanyaan tadi, saya melihat ada perubahan prilaku yang ibu alami. Kemungkinan Ibu mengalami gangguan depresi berat. Akan coba saya bantu dengan memberikan obat-obatan. Seminggu lagi kesini lagi ya
