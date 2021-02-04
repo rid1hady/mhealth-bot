@@ -1,5 +1,4 @@
-version: "0.0.1"
-# This the very first version yet to released
+version: "2.0"
 
 nlu:
 # TODO: Add more intent and examples for each one of them
