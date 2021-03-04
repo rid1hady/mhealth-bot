@@ -6,3 +6,13 @@ rules:
   steps:
   - intent: goodbye
   - action: utter_goodbye
+
+- rule: Submit form
+  condition:
+  - active_loop: anamnesis_form
+  steps:
+  - action: restaurant_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_slots_values

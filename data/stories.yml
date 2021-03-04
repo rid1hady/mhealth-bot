@@ -1,16 +1,39 @@
 version: "2.0"
 
 stories:
-
-- story: happy path
+- story: collect data happy path
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: inform_name
-    entities:
-      - name: Ridwan
   - action: utter_ask_help
-  - intent: consult
+  - intent: affirm
   - action: utter_ask_problem
   - intent: mood_sad
-  - action: utter_ask_duration
+  - action: anamnesis_form
+  - active_loop: anamnesis_form
+  - active_loop: null
+  - action: utter_slots_values
+
+- story: collect data sad path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_help
+  - intent: affirm
+  - action: utter_ask_problem
+  - intent: mood_sad
+  - action: anamnesis_form
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: stop
+  - active_loop: anamnesis_form
+  - action: action_deactivate_form
+  - active_loop: null
+
+- story: collect data sad path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_help
+  - intent: deny
+  - action: utter_goodbye

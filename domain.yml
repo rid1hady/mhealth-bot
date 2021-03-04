@@ -1,10 +1,7 @@
+version: '2.0'
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
-
-slots:
-  name:
-    type: text
 
 intents:
   - greet:
@@ -16,20 +13,174 @@ intents:
   - deny
   - mood_happy
   - mood_sad
-  - inform_name
+  - inform
+  - stop
+  - bot_challenge
+
+slots:
+  user_name:
+    type: text
+  # PHQ-9 Start
+  interest_condition:
+    type: any
+  sadness_condition:
+    type: any
+  sleep_condition:
+    type: any
+  diet_condition:
+    type: any
+  energy_condition:
+    type: any
+  optimism_condition:
+    type: any
+  concentration_condition:
+    type: any
+  movement_condition:
+    type: any
+  suicide_thought_condition:
+    type: any
+  # PHQ-9 End
 
 entities:
   - name
 
 responses:
+  utter_iamabot:
+    - text: "Aku adalah MantapBot."
   utter_greet:
-    - text: "Halo! perkenalkan aku adalah MantapBot, nama kamu siapa?"
+    - text: |
+        Halo! perkenalkan aku adalah MantapBot.
+        Fungsi utamaku adalah untuk memberikan asesmen dini terhadap kesehatan mental.
   utter_ask_help:
-    - text: "Halo {name}. Ada yang bisa saya bantu?"
+    - text: "Ada yang bisa saya bantu?"
   utter_ask_problem:
     - text: "Ada masalah apa?"
   utter_ask_duration:
     - text: "Sudah berapa lama?"
   utter_goodbye:
     - text: "Sampai jumpa kembali"
+  # PHQ-9 Start
+  utter_start_ask_condition:
+    - text: |
+        Baik, aku akan coba bantu melihat seperti apa kondisi kesehatan kamu.
+        
+        Silahkan jawab beberapa pertanyaan berikut.
+        Dalam 2 minggu terakhir...
+  utter_ask_user_name:
+    - text: "Nama kamu siapa?"
+  utter_ask_interest_condition:
+    - text: "Apakah kamu merasa kurang berminat atau bergairah dalam melakukan sesuatu?"
+      buttons:
+      - title: "Tidak pernah"
+        payload: '/inform{{"interest_condition": 0}}'
+      - title: "Beberapa hari"
+        payload: '/inform{{"interest_condition": 1}}'
+      - title: "Lebih dari seminggu"
+        payload: '/inform{{"interest_condition": 2}}'
+      - title: "Hampir setiap hari"
+        payload: '/inform{{"interest_condition": 3}}'
+  utter_ask_sadness_condition:
+    - text: "Apakah kamu merasa murung, sedih atau putus asa?"
+      buttons:
+      - title: "Tidak pernah"
+        payload: '/inform{{"sadness_condition": 0}}'
+      - title: "Beberapa hari"
+        payload: '/inform{{"sadness_condition": 1}}'
+      - title: "Lebih dari seminggu"
+        payload: '/inform{{"sadness_condition": 2}}'
+      - title: "Hampir setiap hari"
+        payload: '/inform{{"sadness_condition": 3}}'
+  utter_ask_sleep_condition:
+    - text: "Apakah kondisi tidurmu tidak normal? seperti sangat sulit tidur atau justru terlalu banyak tidur?"
+      buttons:
+      - title: "Tidak pernah"
+        payload: '/inform{{"sleep_condition": 0}}'
+      - title: "Beberapa hari"
+        payload: '/inform{{"sleep_condition": 1}}'
+      - title: "Lebih dari seminggu"
+        payload: '/inform{{"sleep_condition": 2}}'
+      - title: "Hampir setiap hari"
+        payload: '/inform{{"sleep_condition": 3}}'
+  utter_ask_diet_condition:
+    - text: "Apakah kondisi nafsu makanmu tidak normal? seperti kurang nafsu makan atau justru terlalu banyak makan?"
+      buttons:
+      - title: "Tidak pernah"
+        payload: '/inform{{"diet_condition": 0}}'
+      - title: "Beberapa hari"
+        payload: '/inform{{"diet_condition": 1}}'
+      - title: "Lebih dari seminggu"
+        payload: '/inform{{"diet_condition": 2}}'
+      - title: "Hampir setiap hari"
+        payload: '/inform{{"diet_condition": 3}}'
+  utter_ask_energy_condition:
+    - text: "Apa kamu merasa lelah atau kurang bertenaga?"
+      buttons:
+      - title: "Tidak pernah"
+        payload: '/inform{{"energy_condition": 0}}'
+      - title: "Beberapa hari"
+        payload: '/inform{{"energy_condition": 1}}'
+      - title: "Lebih dari seminggu"
+        payload: '/inform{{"energy_condition": 2}}'
+      - title: "Hampir setiap hari"
+        payload: '/inform{{"energy_condition": 3}}'
+  utter_ask_optimism_condition:
+    - text: "Apa kamu merasa kurang pede atau merasa gagal dengan mengecewakan keluarga?"
+      buttons:
+      - title: "Tidak pernah"
+        payload: '/inform{{"optimism_condition": 0}}'
+      - title: "Beberapa hari"
+        payload: '/inform{{"optimism_condition": 1}}'
+      - title: "Lebih dari seminggu"
+        payload: '/inform{{"optimism_condition": 2}}'
+      - title: "Hampir setiap hari"
+        payload: '/inform{{"optimism_condition": 3}}'
+  utter_ask_concentration_condition:
+    - text: "Apa kamu merasa sulit berkonsentrasi dalam melalukan hal apapun?"
+      buttons:
+      - title: "Tidak pernah"
+        payload: '/inform{{"concentration_condition": 0}}'
+      - title: "Beberapa hari"
+        payload: '/inform{{"concentration_condition": 1}}'
+      - title: "Lebih dari seminggu"
+        payload: '/inform{{"concentration_condition": 2}}'
+      - title: "Hampir setiap hari"
+        payload: '/inform{{"concentration_condition": 3}}'
+  utter_ask_movement_condition:
+    - text: "Apa kamu jadi jarang gerak atau makin lambat gerak dan ngomongnya tidak seperti biasa?"
+      buttons:
+      - title: "Tidak pernah"
+        payload: '/inform{{"movement_condition": 0}}'
+      - title: "Beberapa hari"
+        payload: '/inform{{"movement_condition": 1}}'
+      - title: "Lebih dari seminggu"
+        payload: '/inform{{"movement_condition": 2}}'
+      - title: "Hampir setiap hari"
+        payload: '/inform{{"movement_condition": 3}}'
+  utter_ask_suicide_thought_condition:
+    - text: "Mohon maaf sebelumnya untuk pertanyaan terakhir ini. Sempatkah terpikir untuk mengakhiri hidup? atau bunuh diri?"
+      buttons:
+      - title: "Tidak pernah"
+        payload: '/inform{{"suicide_thought_condition": 0}}'
+      - title: "Beberapa hari"
+        payload: '/inform{{"suicide_thought_condition": 1}}'
+      - title: "Lebih dari seminggu"
+        payload: '/inform{{"suicide_thought_condition": 2}}'
+      - title: "Hampir setiap hari"
+        payload: '/inform{{"suicide_thought_condition": 3}}'
+  # PHQ-9 End
+  utter_ask_continue:
+    - text: "Apakah mau lanjut?"
+  utter_slots_values:
+    - text: "You've submitted the following answers:\n
+            - interest {interest_condition}\n,
+            - sadness {sadness_condition}\n,
+            - sleep {sleep_condition}\n,
+            - diet {diet_condition}\n,
+            - energy {energy_condition}\n,
+            - optimism {optimism_condition}\n,
+            - concentration {concentration_condition}\n,
+            - movement {movement_condition}\n,
+            - suicide {suicide_thought_condition}\n"
 
+forms:
+  - anamnesis_form

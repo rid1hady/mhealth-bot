@@ -83,8 +83,27 @@ nlu:
     - saya sering menangis
     - saya terus terusan menangis
 
-- intent: inform_name
+- intent: bot_challenge
   examples: |
-    - nama saya [Ridwan](name)
-    - saya [Hady](name)
-    - [Ridwan Hady](name)
+    - kamu apa?
+    - apakah kamu bot?
+    - apakah kamu manusia?
+    - aku lagi ngobrol sama siapa?
+
+- intent: inform
+  examples: |
+    - nama saya [Ridwan](user_name)
+    - saya [Hady](user_name)
+    - [Ridwan Hady](user_name)
+    - [Rifai](user_name)
+    - [Ilma](user_name)
+
+- intent: stop
+  examples: |
+    - sudah cukup
+    - aku berhenti sampai sini saja
+    - sudah, tidak usah dilanjutkan
+    - stop
+    - berhenti
+    - cukup sampai disini saja
+    - aku ingin keluar
