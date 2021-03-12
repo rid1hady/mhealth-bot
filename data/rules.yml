@@ -1,18 +1,61 @@
 version: "2.0"
 
 rules:
-
 - rule: Say goodbye anytime the user says goodbye
   steps:
   - intent: goodbye
   - action: utter_goodbye
 
-- rule: Submit form
+- rule: Unhappy GHQ test form
   condition:
-  - active_loop: anamnesis_form
+  - active_loop: ghq_form
   steps:
-  - action: restaurant_form
+  - intent: chitchat
+  - action: ghq_form
+  - active_loop: ghq_form
+
+- rule: Unhappy PHQ test form
+  condition:
+  - active_loop: phq_form
+  steps:
+  - intent: chitchat
+  - action: phq_form
+  - active_loop: phq_form
+
+- rule: Submit PHQ form
+  condition:
+  - active_loop: phq_form
+  steps:
+  - action: phq_form
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - action: utter_slots_values
+  - action: action_show_phq_result
+  - action: action_handle_test_result
+  
+- rule: Handle affiliation false
+  condition:
+  - slot_was_set:
+    - check_affiliation: false
+  steps:
+  - action: utter_goodbye
+
+- rule: Handle affiliation true - not itb
+  condition:
+  - slot_was_set:
+    - check_affiliation: true
+  steps:
+  - action: utter_ask_affiliation
+  - intent: deny
+  - action: utter_other_counselling
+  - action: utter_goodbye
+
+- rule: Handle affiliation true - itb
+  condition:
+  - slot_was_set:
+    - check_affiliation: true
+  steps:
+  - action: utter_ask_affiliation
+  - intent: affirm
+  - action: utter_itb_counselling_contact
+  - action: utter_goodbye

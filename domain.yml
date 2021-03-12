@@ -4,9 +4,7 @@ session_config:
   carry_over_slots_to_new_session: true
 
 intents:
-  - greet:
-      use_entities:
-        - name
+  - greet
   - goodbye
   - consult
   - affirm
@@ -16,171 +14,465 @@ intents:
   - inform
   - stop
   - bot_challenge
+  - chitchat
 
 slots:
-  user_name:
+  name:
     type: text
-  # PHQ-9 Start
-  interest_condition:
+  interest:
     type: any
-  sadness_condition:
+  sadness:
     type: any
-  sleep_condition:
+  sleep:
     type: any
-  diet_condition:
+  diet:
     type: any
-  energy_condition:
+  energy:
     type: any
-  optimism_condition:
+  optimism:
     type: any
-  concentration_condition:
+  concentration:
     type: any
-  movement_condition:
+  movement:
     type: any
-  suicide_thought_condition:
+  suicide_thought:
     type: any
-  # PHQ-9 End
+  able_concentrate:
+    type: bool
+  lost_sleep:
+    type: bool
+  feel_useful:
+    type: bool
+  capable_make_decision:
+    type: bool
+  under_stress:
+    type: bool
+  overcome_difficulties:
+    type: bool
+  enjoy_activities:
+    type: bool
+  face_up_problems:
+    type: bool
+  feel_unhappy:
+    type: bool
+  lose_confidence:
+    type: bool
+  think_as_worthless:
+    type: bool
+  feel_happy:
+    type: bool
+  check_affiliation:
+    type: bool
+    influence_conversation: true
 
 entities:
   - name
+  - interest
+  - sadness
+  - sleep
+  - diet
+  - energy
+  - optimism
+  - concentration
+  - movement
+  - suicide_thought
+    # +
+  - able_concentrate
+  - feel_useful
+  - capable_make_decision
+  - enjoy_activities
+  - face_up_problems
+  - feel_happy
+    # -
+  - lost_sleep     
+  - under_stress
+  - overcome_difficulties
+  - feel_unhappy
+  - lose_confidence
+  - think_as_worthless
+  - check_affiliation
 
 responses:
   utter_iamabot:
-    - text: "Aku adalah MantapBot."
-  utter_greet:
+    - text: "Aku adalah MantapBot"
+  utter_introduction:
     - text: |
         Halo! perkenalkan aku adalah MantapBot.
-        Fungsi utamaku adalah untuk memberikan asesmen dini terhadap kesehatan mental.
-  utter_ask_help:
-    - text: "Ada yang bisa saya bantu?"
-  utter_ask_problem:
-    - text: "Ada masalah apa?"
+        Fungsi utamaku adalah untuk memberikan asesmen dini terhadap kesehatan mental secara general.
+        
+        Aku akan memberikan kepastian bahwa percakapan kita aman.
+  utter_ask_name:
+    - text: "Nama kamu siapa?"
+  utter_confirm_name:
+    - text: "Benarkah nama kamu {name}?"
+  utter_nice_to_meet_you:
+    - text: "Senang berkenalan denganmu {name}."
+    - text: "Salam kenal {name}."
+    - text: "Wow, {name} nama yang keren."
+  utter_how_you_feel:
+    - text: "Btw, bagaimana perasaanmu sekarang?"
+  utter_glad:
+    - text: "Wow! Luar biasa. Aku ikut senang mendengarnya 👏"
+  utter_test_permission:
+    - text: "Sepertinnya ada sesuatu yang menganggu pikiran kamu. Apakah kamu mau melakukan test kecil-kecilan untuk mengecek kondisi mental kamu secara umum?"
+  utter_start_general_test:
+    - text: |
+        Hi! Aku punya beberapa pertanyaan buat {name}.
+        Pertanyaan ini akan membantu aku untuk membantu menentukan kondisi kesehatan mental kamu secara umum
+        Dan aku berharap info tersebut bisa membantu kamu lebih mengenali kondisi kamu.
+        Tolong jawab antara iya dan tidak.
+        Dalam dua minggu terakhir...
+  utter_ask_able_concentrate:
+    - text: "Apa kamu tetap dapat konsentrasi terhadap hal yang kamu perlu kerjakan?"
+      buttons:
+        - title: "Tidak"
+          payload: '/affirm'
+        - title: "Iya"
+          payload: '/deny'
+  utter_ask_lost_sleep:
+    - text: "Apa kamu jadi kurang tidur karena overthinking?"
+      buttons:
+        - title: "Tidak"
+          payload: '/affirm'
+        - title: "Iya"
+          payload: '/deny'
+  utter_ask_feel_useful:
+    - text: "Apa kamu merasa memainkan peran yang penting atau berguna untuk orang lain akhir-akhir ini?"
+      buttons:
+        - title: "Tidak"
+          payload: '/affirm'
+        - title: "Iya"
+          payload: '/deny'
+  utter_ask_capable_making_decision:
+    - text: "Apa kamu merasa telah membuat keputusan yang bagus akhir-akhir ini?"
+      buttons:
+        - title: "Tidak"
+          payload: '/affirm'
+        - title: "Iya"
+          payload: '/deny'
+  utter_ask_under_stress:
+    - text: "Apa kamu merasa tertekan atau stress?"
+      buttons:
+        - title: "Tidak"
+          payload: '/affirm'
+        - title: "Iya"
+          payload: '/deny'
+  utter_ask_overcome_difficulties:
+    - text: "Apa kamu merasa tidak bisa mengatasi kesulitan?"
+      buttons:
+        - title: "Tidak"
+          payload: '/affirm'
+        - title: "Iya"
+          payload: '/deny'
+  utter_ask_enjoy_activities:
+    - text: "Apa kamu menikmati keseharianmu?"
+      buttons:
+        - title: "Tidak"
+          payload: '/affirm'
+        - title: "Iya"
+          payload: '/deny'
+  utter_ask_face_up_problems:
+    - text: "Apa kamu dapat menghadapi masalah dengan baik?"
+      buttons:
+        - title: "Tidak"
+          payload: '/affirm'
+        - title: "Iya"
+          payload: '/deny'
+  utter_ask_feel_unhappy:
+    - text: "Apa kamu merasa depresi atau tidak bahagia?"
+      buttons:
+        - title: "Tidak"
+          payload: '/affirm'
+        - title: "Iya"
+          payload: '/deny'
+  utter_ask_lose_confidence:
+    - text: "Apa kamu merasa tidak pede sama diri sendiri?"
+      buttons:
+        - title: "Tidak"
+          payload: '/affirm'
+        - title: "Iya"
+          payload: '/deny'
+  utter_ask_think_as_worthless:
+    - text: "Apa kamu merasa tidak berguna?"
+      buttons:
+        - title: "Tidak"
+          payload: '/affirm'
+        - title: "Iya"
+          payload: '/deny'
+  utter_ask_feel_happy:
+    - text: "Apa kamu merasa cukup bahagia, dengan mempertimbangkan semua yang kamu miliki atau terjadi saat ini"
+      buttons:
+        - title: "Tidak"
+          payload: '/affirm'
+        - title: "Iya"
+          payload: '/deny'
   utter_ask_duration:
     - text: "Sudah berapa lama?"
-  utter_goodbye:
-    - text: "Sampai jumpa kembali"
-  # PHQ-9 Start
+  utter_further_test:
+    - text: "Supaya hasilnya lebih detail, apakah kamu mau menjalankan test lanjutan?"
+  utter_start_phq_test:
+    - text: |
+        Baiklah, untuk yang kali ini, ada sekitar 9 pertanyaan.
+        Silahkan jawab dengan sesuai. Dalam dua minggu terakhir...
   utter_start_ask_condition:
     - text: |
         Baik, aku akan coba bantu melihat seperti apa kondisi kesehatan kamu.
         
         Silahkan jawab beberapa pertanyaan berikut.
         Dalam 2 minggu terakhir...
-  utter_ask_user_name:
-    - text: "Nama kamu siapa?"
-  utter_ask_interest_condition:
+  utter_ask_interest:
     - text: "Apakah kamu merasa kurang berminat atau bergairah dalam melakukan sesuatu?"
       buttons:
       - title: "Tidak pernah"
-        payload: '/inform{{"interest_condition": 0}}'
+        payload: '/inform{{"interest": 0}}'
       - title: "Beberapa hari"
-        payload: '/inform{{"interest_condition": 1}}'
+        payload: '/inform{{"interest": 1}}'
       - title: "Lebih dari seminggu"
-        payload: '/inform{{"interest_condition": 2}}'
+        payload: '/inform{{"interest": 2}}'
       - title: "Hampir setiap hari"
-        payload: '/inform{{"interest_condition": 3}}'
-  utter_ask_sadness_condition:
+        payload: '/inform{{"interest": 3}}'
+  utter_ask_sadness:
     - text: "Apakah kamu merasa murung, sedih atau putus asa?"
       buttons:
       - title: "Tidak pernah"
-        payload: '/inform{{"sadness_condition": 0}}'
+        payload: '/inform{{"sadness": 0}}'
       - title: "Beberapa hari"
-        payload: '/inform{{"sadness_condition": 1}}'
+        payload: '/inform{{"sadness": 1}}'
       - title: "Lebih dari seminggu"
-        payload: '/inform{{"sadness_condition": 2}}'
+        payload: '/inform{{"sadness": 2}}'
       - title: "Hampir setiap hari"
-        payload: '/inform{{"sadness_condition": 3}}'
-  utter_ask_sleep_condition:
+        payload: '/inform{{"sadness": 3}}'
+  utter_ask_sleep:
     - text: "Apakah kondisi tidurmu tidak normal? seperti sangat sulit tidur atau justru terlalu banyak tidur?"
       buttons:
       - title: "Tidak pernah"
-        payload: '/inform{{"sleep_condition": 0}}'
+        payload: '/inform{{"sleep": 0}}'
       - title: "Beberapa hari"
-        payload: '/inform{{"sleep_condition": 1}}'
+        payload: '/inform{{"sleep": 1}}'
       - title: "Lebih dari seminggu"
-        payload: '/inform{{"sleep_condition": 2}}'
+        payload: '/inform{{"sleep": 2}}'
       - title: "Hampir setiap hari"
-        payload: '/inform{{"sleep_condition": 3}}'
-  utter_ask_diet_condition:
+        payload: '/inform{{"sleep": 3}}'
+  utter_ask_diet:
     - text: "Apakah kondisi nafsu makanmu tidak normal? seperti kurang nafsu makan atau justru terlalu banyak makan?"
       buttons:
       - title: "Tidak pernah"
-        payload: '/inform{{"diet_condition": 0}}'
+        payload: '/inform{{"diet": 0}}'
       - title: "Beberapa hari"
-        payload: '/inform{{"diet_condition": 1}}'
+        payload: '/inform{{"diet": 1}}'
       - title: "Lebih dari seminggu"
-        payload: '/inform{{"diet_condition": 2}}'
+        payload: '/inform{{"diet": 2}}'
       - title: "Hampir setiap hari"
-        payload: '/inform{{"diet_condition": 3}}'
-  utter_ask_energy_condition:
+        payload: '/inform{{"diet": 3}}'
+  utter_ask_energy:
     - text: "Apa kamu merasa lelah atau kurang bertenaga?"
       buttons:
       - title: "Tidak pernah"
-        payload: '/inform{{"energy_condition": 0}}'
+        payload: '/inform{{"energy": 0}}'
       - title: "Beberapa hari"
-        payload: '/inform{{"energy_condition": 1}}'
+        payload: '/inform{{"energy": 1}}'
       - title: "Lebih dari seminggu"
-        payload: '/inform{{"energy_condition": 2}}'
+        payload: '/inform{{"energy": 2}}'
       - title: "Hampir setiap hari"
-        payload: '/inform{{"energy_condition": 3}}'
-  utter_ask_optimism_condition:
+        payload: '/inform{{"energy": 3}}'
+  utter_ask_optimism:
     - text: "Apa kamu merasa kurang pede atau merasa gagal dengan mengecewakan keluarga?"
       buttons:
       - title: "Tidak pernah"
-        payload: '/inform{{"optimism_condition": 0}}'
+        payload: '/inform{{"optimism": 0}}'
       - title: "Beberapa hari"
-        payload: '/inform{{"optimism_condition": 1}}'
+        payload: '/inform{{"optimism": 1}}'
       - title: "Lebih dari seminggu"
-        payload: '/inform{{"optimism_condition": 2}}'
+        payload: '/inform{{"optimism": 2}}'
       - title: "Hampir setiap hari"
-        payload: '/inform{{"optimism_condition": 3}}'
-  utter_ask_concentration_condition:
+        payload: '/inform{{"optimism": 3}}'
+  utter_ask_concentration:
     - text: "Apa kamu merasa sulit berkonsentrasi dalam melalukan hal apapun?"
       buttons:
       - title: "Tidak pernah"
-        payload: '/inform{{"concentration_condition": 0}}'
+        payload: '/inform{{"concentration": 0}}'
       - title: "Beberapa hari"
-        payload: '/inform{{"concentration_condition": 1}}'
+        payload: '/inform{{"concentration": 1}}'
       - title: "Lebih dari seminggu"
-        payload: '/inform{{"concentration_condition": 2}}'
+        payload: '/inform{{"concentration": 2}}'
       - title: "Hampir setiap hari"
-        payload: '/inform{{"concentration_condition": 3}}'
-  utter_ask_movement_condition:
+        payload: '/inform{{"concentration": 3}}'
+  utter_ask_movement:
     - text: "Apa kamu jadi jarang gerak atau makin lambat gerak dan ngomongnya tidak seperti biasa?"
       buttons:
       - title: "Tidak pernah"
-        payload: '/inform{{"movement_condition": 0}}'
+        payload: '/inform{{"movement": 0}}'
       - title: "Beberapa hari"
-        payload: '/inform{{"movement_condition": 1}}'
+        payload: '/inform{{"movement": 1}}'
       - title: "Lebih dari seminggu"
-        payload: '/inform{{"movement_condition": 2}}'
+        payload: '/inform{{"movement": 2}}'
       - title: "Hampir setiap hari"
-        payload: '/inform{{"movement_condition": 3}}'
-  utter_ask_suicide_thought_condition:
+        payload: '/inform{{"movement": 3}}'
+  utter_ask_suicide_thought:
     - text: "Mohon maaf sebelumnya untuk pertanyaan terakhir ini. Sempatkah terpikir untuk mengakhiri hidup? atau bunuh diri?"
       buttons:
       - title: "Tidak pernah"
-        payload: '/inform{{"suicide_thought_condition": 0}}'
+        payload: '/inform{{"suicide_thought": 0}}'
       - title: "Beberapa hari"
-        payload: '/inform{{"suicide_thought_condition": 1}}'
+        payload: '/inform{{"suicide_thought": 1}}'
       - title: "Lebih dari seminggu"
-        payload: '/inform{{"suicide_thought_condition": 2}}'
+        payload: '/inform{{"suicide_thought": 2}}'
       - title: "Hampir setiap hari"
-        payload: '/inform{{"suicide_thought_condition": 3}}'
-  # PHQ-9 End
-  utter_ask_continue:
-    - text: "Apakah mau lanjut?"
-  utter_slots_values:
-    - text: "You've submitted the following answers:\n
-            - interest {interest_condition}\n,
-            - sadness {sadness_condition}\n,
-            - sleep {sleep_condition}\n,
-            - diet {diet_condition}\n,
-            - energy {energy_condition}\n,
-            - optimism {optimism_condition}\n,
-            - concentration {concentration_condition}\n,
-            - movement {movement_condition}\n,
-            - suicide {suicide_thought_condition}\n"
+        payload: '/inform{{"suicide_thought": 3}}'
+  utter_ask_confirm_stop:
+    - text: "Apa kamu yakin ingin mengakhiri test?"
+  utter_confirm_stop_fill:
+    - text: "Apakah kamu yakin ingin berhenti?"
+  utter_ask_suggestion:
+    - text: "Terima kasih, boleh aku tanya kenapa ingin berhenti?"
+  utter_bad_condition:
+    - text: "Sepertinya kondisi mental kamu sedang kurang bagus."
+  utter_ask_affiliation:
+    - text: "Apakah kamu mahasiswa ITB?"
+  utter_itb_counselling_contact:
+    - text: "Berikut adalah kontak yang kamu bisa hubungi untuk konseling dengan BK ITB"
+  utter_other_counselling:
+    - text: "Maaf, untuk tempat lain, aku kurang tahu, tapi kamu bisa periksa kondisimu secara langsung ke psikiater terdekat dari tempatmu dengan Google Maps"
+  utter_self_mental_health_practice:
+    - text: "Kondisi mentalmu sudah cukup bagus, berikut ada beberapa bahan bacaan dan training yang bisa kamu lakukan untuk meningkatkan atau mempertahankannya!"
+  utter_root_for_user:
+    - text: "Kamu luar biasa! Terus pertahankan kondisi mental kamu ya!"
+  utter_no_worries:
+    - text: "Tidak masalah. Semoga harimu menyenangkan!"
+  utter_goodbye:
+    - text: "Sampai jumpa kembali"
+
+actions:
+  - action_handle_test_result
+  - action_show_ghq_result
+  - action_show_phq_result
 
 forms:
-  - anamnesis_form
+  basic_info_form:
+    name:
+      - type: from_entity
+        intent: inform
+        entity: name
+      - type: from_text
+  ghq_form:
+    able_concentrate:
+      - type: from_intent
+        value: true
+        intent: affirm
+      - type: from_intent
+        value: false
+        intent: deny
+    feel_useful:
+      - type: from_intent
+        value: true
+        intent: affirm
+      - type: from_intent
+        value: false
+        intent: deny
+    capable_make_decision:
+      - type: from_intent
+        value: true
+        intent: affirm
+      - type: from_intent
+        value: false
+        intent: deny
+    enjoy_activities:
+      - type: from_intent
+        value: true
+        intent: affirm
+      - type: from_intent
+        value: false
+        intent: deny
+    face_up_problems:
+      - type: from_intent
+        value: true
+        intent: affirm
+      - type: from_intent
+        value: false
+        intent: deny
+    feel_happy:
+      - type: from_intent
+        value: true
+        intent: affirm
+      - type: from_intent
+        value: false
+        intent: deny
+    lost_sleep:
+      - type: from_intent
+        value: false
+        intent: affirm
+      - type: from_intent
+        value: true
+        intent: deny
+    under_stress:
+      - type: from_intent
+        value: false
+        intent: affirm
+      - type: from_intent
+        value: true
+        intent: deny
+    overcome_difficulties:
+      - type: from_intent
+        value: false
+        intent: affirm
+      - type: from_intent
+        value: true
+        intent: deny
+    feel_unhappy:
+      - type: from_intent
+        value: false
+        intent: affirm
+      - type: from_intent
+        value: true
+        intent: deny
+    lose_confidence:
+      - type: from_intent
+        value: false
+        intent: affirm
+      - type: from_intent
+        value: true
+        intent: deny
+    think_as_worthless:
+      - type: from_intent
+        value: false
+        intent: affirm
+      - type: from_intent
+        value: true
+        intent: deny
+  phq_form:
+    interest:
+      - type: from_entity
+        intent: inform
+        entity: interest
+    sadness:
+      - type: from_entity
+        intent: inform
+        entity: sadness
+    sleep:
+      - type: from_entity
+        intent: inform
+        entity: sleep
+    diet:
+      - type: from_entity
+        intent: inform
+        entity: diet
+    energy:
+      - type: from_entity
+        intent: inform
+        entity: energy
+    optimism:
+      - type: from_entity
+        intent: inform
+        entity: optimism
+    concentration:
+      - type: from_entity
+        intent: inform
+        entity: concentration
+    movement:
+      - type: from_entity
+        intent: inform
+        entity: movement
+    suicide_thought:
+      - type: from_entity
+        intent: inform
+        entity: suicide_thought

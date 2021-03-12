@@ -1,7 +1,5 @@
 version: "2.0"
-
 nlu:
-# TODO: Add more intent and examples for each one of them
 - intent: greet
   examples: |
     - assalamu'alaikum
@@ -17,7 +15,7 @@ nlu:
     - siang
     - sore
     - malam
-
+    - Halo
 - intent: goodbye
   examples: |
     - sampai jumpa
@@ -25,13 +23,6 @@ nlu:
     - bye
     - goodbye
     - bye bye
-
-- intent: consult
-  examples: |
-    - saya ingin bercerita
-    - saya ingin curhat
-    - saya memiliki masalah
-
 - intent: affirm
   examples: |
     - iya
@@ -41,7 +32,13 @@ nlu:
     - benar
     - yes
     - y
-
+    - Ok
+    - Oke
+    - Baik
+    - gas
+    - caw
+    - skuy
+    - yuk
 - intent: deny
   examples: |
     - tidak
@@ -55,7 +52,6 @@ nlu:
     - bukan
     - no
     - n
-
 - intent: mood_happy
   examples: |
     - senang
@@ -66,7 +62,6 @@ nlu:
     - saya merasa senang
     - sangat senang
     - sempurna
-
 - intent: mood_sad
   examples: |
     - saya merasa sedih
@@ -82,21 +77,24 @@ nlu:
     - saya ingin menangis
     - saya sering menangis
     - saya terus terusan menangis
-
 - intent: bot_challenge
   examples: |
     - kamu apa?
     - apakah kamu bot?
     - apakah kamu manusia?
     - aku lagi ngobrol sama siapa?
-
 - intent: inform
   examples: |
-    - nama saya [Ridwan](user_name)
-    - saya [Hady](user_name)
-    - [Ridwan Hady](user_name)
-    - [Rifai](user_name)
-    - [Ilma](user_name)
+    - nama saya [Ridwan](name)
+    - saya [Hady](name)
+    - [Ridwan Hady](name)
+    - [Arifin](name)
+    - [Michael](name)
+    - [Jackson](name)
+    - [Soekarno](name)
+    - [Soeharto](name)
+    - [Habibie](name)
+    - temenku manggilnya [Zed](name)
 
 - intent: stop
   examples: |
@@ -107,3 +105,20 @@ nlu:
     - berhenti
     - cukup sampai disini saja
     - aku ingin keluar
+
+- intent: chitchat
+  examples: |
+    - bagaimana cuaca hari ini?
+    - disana hujan?
+    - apakah akan hujan?
+    - apakah hari ini mendung?
+    - cuaca hari ini cerah, bukan?
+    - sepertinya hari ini bakal panas deh
+    - siapa yang bikin kamu?
+    - kamu dibuat oleh siapa?
+    - kapan kamu lahir?
+    - apakah kamu selalu tersedia sepanjang hari
+    - apa yang ingin kamu makan?
+    - apakah kamu tidur?
+    - kenapa nama kamu MantapBot?
+    - apakah kamu mau jadi pacarku?

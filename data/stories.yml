@@ -1,39 +1,126 @@
 version: "2.0"
 
 stories:
-- story: collect data happy path
+- story: Introduction
   steps:
   - intent: greet
-  - action: utter_greet
-  - action: utter_ask_help
-  - intent: affirm
-  - action: utter_ask_problem
-  - intent: mood_sad
-  - action: anamnesis_form
-  - active_loop: anamnesis_form
+  - action: utter_introduction
+  - action: basic_info_form
+  - active_loop: basic_info_form
   - active_loop: null
-  - action: utter_slots_values
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_nice_to_meet_you
+  - action: utter_how_you_feel
+  - checkpoint: check_asked_name
 
-- story: collect data sad path
+- story: No test
   steps:
-  - intent: greet
-  - action: utter_greet
-  - action: utter_ask_help
-  - intent: affirm
-  - action: utter_ask_problem
+  - checkpoint: check_asked_name
+  - intent: mood_happy
+  - action: utter_glad
+
+- story: No test - no permission
+  steps:
+  - checkpoint: check_asked_name
   - intent: mood_sad
-  - action: anamnesis_form
-  - intent: stop
-  - action: utter_ask_continue
-  - intent: stop
-  - active_loop: anamnesis_form
-  - action: action_deactivate_form
-  - active_loop: null
-
-- story: collect data sad path
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - action: utter_ask_help
+  - action: utter_test_permission
   - intent: deny
+  - action: utter_no_worries
+
+- story: General test - happy path
+  steps:
+  - checkpoint: check_asked_name
+  - intent: mood_sad
+  - action: utter_test_permission
+  - intent: affirm
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_show_ghq_result
+  - action: utter_further_test
+  - checkpoint: check_general_test
+
+- story: General test - interrupted stop
+  steps:
+  - checkpoint: check_asked_name
+  - intent: mood_sad
+  - action: utter_test_permission
+  - intent: affirm
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
   - action: utter_goodbye
+
+- story: General test - interrupted continue
+  steps:
+  - checkpoint: check_asked_name
+  - intent: mood_sad
+  - action: utter_test_permission
+  - intent: affirm
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: deny
+  - action: ghq_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_show_ghq_result
+  - action: utter_further_test
+  - checkpoint: check_general_test
+
+- story: Handle further test deny
+  steps:
+  - checkpoint: check_general_test
+  - intent: deny
+  - action: utter_no_worries
+
+- story: Handle further test affirm
+  steps:
+  - checkpoint: check_general_test
+  - intent: affirm
+  - action: utter_start_phq_test
+  - action: phq_form
+  - active_loop: phq_form
+
+- story: Handle further test affirm - interrupted stop
+  steps:
+  - checkpoint: check_general_test
+  - intent: affirm
+  - action: utter_start_phq_test
+  - action: phq_form
+  - active_loop: phq_form
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - action: utter_goodbye
+
+- story: Handle further test affirm - interrupted continue
+  steps:
+  - checkpoint: check_general_test
+  - intent: affirm
+  - action: utter_start_phq_test
+  - action: phq_form
+  - active_loop: phq_form
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: deny
+  - action: phq_form
+
+- story: bot challenge
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot

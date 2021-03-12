@@ -4,7 +4,7 @@ pipeline:
   - name: WhitespaceTokenizer
   - name: LanguageModelFeaturizer
     model_name: bert
-    model_weights: indobenchmark/indobert-large-p1
+    model_weights: indobenchmark/indobert-base-p1
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
   - name: CountVectorsFeaturizer
@@ -22,8 +22,4 @@ pipeline:
 
 policies:
   - name: MemoizationPolicy
-  - name: TEDPolicy
-    max_history: 5
-    epochs: 100
-  - name: MappingPolicy
   - name: RulePolicy
