@@ -114,7 +114,7 @@ responses:
   utter_glad:
     - text: "Wow! Luar biasa. Aku ikut senang mendengarnya 👏"
   utter_test_permission:
-    - text: "Sepertinnya ada sesuatu yang menganggu pikiran kamu. Apakah kamu mau melakukan test kecil-kecilan untuk mengecek kondisi mental kamu secara umum?"
+    - text: "Sepertinya ada sesuatu yang menganggu pikiran kamu. Apakah kamu mau melakukan test kecil-kecilan untuk mengecek kondisi mental kamu secara umum?"
   utter_start_general_test:
     - text: |
         Hi! Aku punya beberapa pertanyaan buat {name}.
@@ -126,86 +126,86 @@ responses:
     - text: "Apa kamu tetap dapat konsentrasi terhadap hal yang kamu perlu kerjakan?"
       buttons:
         - title: "Tidak"
-          payload: '/affirm'
-        - title: "Iya"
           payload: '/deny'
+        - title: "Iya"
+          payload: '/affirm'
   utter_ask_lost_sleep:
     - text: "Apa kamu jadi kurang tidur karena overthinking?"
       buttons:
         - title: "Tidak"
-          payload: '/affirm'
-        - title: "Iya"
           payload: '/deny'
+        - title: "Iya"
+          payload: '/affirm'
   utter_ask_feel_useful:
     - text: "Apa kamu merasa memainkan peran yang penting atau berguna untuk orang lain akhir-akhir ini?"
       buttons:
         - title: "Tidak"
-          payload: '/affirm'
-        - title: "Iya"
           payload: '/deny'
-  utter_ask_capable_making_decision:
+        - title: "Iya"
+          payload: '/affirm'
+  utter_ask_capable_make_decision:
     - text: "Apa kamu merasa telah membuat keputusan yang bagus akhir-akhir ini?"
       buttons:
         - title: "Tidak"
-          payload: '/affirm'
-        - title: "Iya"
           payload: '/deny'
+        - title: "Iya"
+          payload: '/affirm'
   utter_ask_under_stress:
     - text: "Apa kamu merasa tertekan atau stress?"
       buttons:
         - title: "Tidak"
-          payload: '/affirm'
-        - title: "Iya"
           payload: '/deny'
+        - title: "Iya"
+          payload: '/affirm'
   utter_ask_overcome_difficulties:
     - text: "Apa kamu merasa tidak bisa mengatasi kesulitan?"
       buttons:
         - title: "Tidak"
-          payload: '/affirm'
-        - title: "Iya"
           payload: '/deny'
+        - title: "Iya"
+          payload: '/affirm'
   utter_ask_enjoy_activities:
     - text: "Apa kamu menikmati keseharianmu?"
       buttons:
         - title: "Tidak"
-          payload: '/affirm'
-        - title: "Iya"
           payload: '/deny'
+        - title: "Iya"
+          payload: '/affirm'
   utter_ask_face_up_problems:
     - text: "Apa kamu dapat menghadapi masalah dengan baik?"
       buttons:
         - title: "Tidak"
-          payload: '/affirm'
-        - title: "Iya"
           payload: '/deny'
+        - title: "Iya"
+          payload: '/affirm'
   utter_ask_feel_unhappy:
     - text: "Apa kamu merasa depresi atau tidak bahagia?"
       buttons:
         - title: "Tidak"
-          payload: '/affirm'
-        - title: "Iya"
           payload: '/deny'
+        - title: "Iya"
+          payload: '/affirm'
   utter_ask_lose_confidence:
     - text: "Apa kamu merasa tidak pede sama diri sendiri?"
       buttons:
         - title: "Tidak"
-          payload: '/affirm'
-        - title: "Iya"
           payload: '/deny'
+        - title: "Iya"
+          payload: '/affirm'
   utter_ask_think_as_worthless:
     - text: "Apa kamu merasa tidak berguna?"
       buttons:
         - title: "Tidak"
-          payload: '/affirm'
-        - title: "Iya"
           payload: '/deny'
+        - title: "Iya"
+          payload: '/affirm'
   utter_ask_feel_happy:
     - text: "Apa kamu merasa cukup bahagia, dengan mempertimbangkan semua yang kamu miliki atau terjadi saat ini"
       buttons:
         - title: "Tidak"
-          payload: '/affirm'
-        - title: "Iya"
           payload: '/deny'
+        - title: "Iya"
+          payload: '/affirm'
   utter_ask_duration:
     - text: "Sudah berapa lama?"
   utter_further_test:
