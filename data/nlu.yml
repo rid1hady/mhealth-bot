@@ -16,6 +16,8 @@ nlu:
     - sore
     - malam
     - Halo
+    - Hi
+    - Hello
 - intent: goodbye
   examples: |
     - sampai jumpa
@@ -39,6 +41,8 @@ nlu:
     - caw
     - skuy
     - yuk
+    - Iya
+    - Boleh
 - intent: deny
   examples: |
     - tidak
@@ -52,6 +56,7 @@ nlu:
     - bukan
     - no
     - n
+    - Tidak
 - intent: mood_happy
   examples: |
     - senang
@@ -77,6 +82,8 @@ nlu:
     - saya ingin menangis
     - saya sering menangis
     - saya terus terusan menangis
+    - Saya merasa sedih
+    - Saya sedang sedih
 - intent: bot_challenge
   examples: |
     - kamu apa?
@@ -95,7 +102,9 @@ nlu:
     - [Soeharto](name)
     - [Habibie](name)
     - temenku manggilnya [Zed](name)
-
+    - [Ridwan](name)
+    - Samsul
+    - [Ridwan](name)
 - intent: stop
   examples: |
     - sudah cukup
@@ -105,7 +114,7 @@ nlu:
     - berhenti
     - cukup sampai disini saja
     - aku ingin keluar
-
+    - Stop
 - intent: chitchat
   examples: |
     - bagaimana cuaca hari ini?

@@ -7,9 +7,13 @@ stories:
   - action: utter_introduction
   - action: basic_info_form
   - active_loop: basic_info_form
-  - active_loop: null
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Ridwan
   - slot_was_set:
     - requested_slot: null
+  - active_loop: null
   - action: utter_nice_to_meet_you
   - action: utter_how_you_feel
   - checkpoint: check_asked_name
@@ -37,14 +41,62 @@ stories:
   - action: utter_start_general_test
   - action: ghq_form
   - active_loop: ghq_form
-  - active_loop: null
+  - slot_was_set:
+    - requested_slot: able_concentrate
+  - slot_was_set:
+    - able_concentrate: true
+  - slot_was_set:
+    - requested_slot: feel_useful
+  - slot_was_set:
+    - feel_useful: false
+  - slot_was_set:
+    - requested_slot: capable_make_decision
+  - slot_was_set:
+    - capable_make_decision: true
+  - slot_was_set:
+    - requested_slot: enjoy_activities
+  - slot_was_set:
+    - enjoy_activities: false
+  - slot_was_set:
+    - requested_slot: face_up_problems
+  - slot_was_set:
+    - face_up_problems: true
+  - slot_was_set:
+    - requested_slot: feel_happy
+  - slot_was_set:
+    - feel_happy: true
+  - slot_was_set:
+    - requested_slot: lost_sleep
+  - slot_was_set:
+    - lost_sleep: true
+  - slot_was_set:
+    - requested_slot: under_stress
+  - slot_was_set:
+    - under_stress: false
+  - slot_was_set:
+    - requested_slot: overcome_difficulties
+  - slot_was_set:
+    - overcome_difficulties: true
+  - slot_was_set:
+    - requested_slot: feel_unhappy
+  - slot_was_set:
+    - feel_unhappy: true
+  - slot_was_set:
+    - requested_slot: lose_confidence
+  - slot_was_set:
+    - lose_confidence: true
+  - slot_was_set:
+    - requested_slot: think_as_worthless
+  - slot_was_set:
+    - think_as_worthless: false
   - slot_was_set:
     - requested_slot: null
+  - active_loop: null
   - action: action_show_ghq_result
   - action: utter_further_test
-  - checkpoint: check_general_test
+  - checkpoint: checked_general_test
 
-- story: General test - interrupted stop
+- story: General test - interrupted stop - early
   steps:
   - checkpoint: check_asked_name
   - intent: mood_sad
@@ -53,6 +105,8 @@ stories:
   - action: utter_start_general_test
   - action: ghq_form
   - active_loop: ghq_form
+  - slot_was_set:
+    - requested_slot: able_concentrate
   - intent: stop
   - action: utter_ask_confirm_stop
   - intent: affirm
@@ -60,7 +114,7 @@ stories:
   - active_loop: null
   - action: utter_goodbye
 
-- story: General test - interrupted continue
+- story: General test - interrupted stop - middle
   steps:
   - checkpoint: check_asked_name
   - intent: mood_sad
@@ -69,38 +123,313 @@ stories:
   - action: utter_start_general_test
   - action: ghq_form
   - active_loop: ghq_form
+  - slot_was_set:
+    - requested_slot: able_concentrate
+  - slot_was_set:
+    - able_concentrate: true
+  - slot_was_set:
+    - requested_slot: feel_useful
+  - slot_was_set:
+    - feel_useful: false
+  - slot_was_set:
+    - requested_slot: capable_make_decision
+  - slot_was_set:
+    - capable_make_decision: true
+  - slot_was_set:
+    - requested_slot: enjoy_activities
+  - slot_was_set:
+    - enjoy_activities: false
+  - slot_was_set:
+    - requested_slot: face_up_problems
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - action: utter_goodbye
+
+- story: General test - interrupted continue - early
+  steps:
+  - checkpoint: check_asked_name
+  - intent: mood_sad
+  - action: utter_test_permission
+  - intent: affirm
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - slot_was_set:
+    - requested_slot: able_concentrate
   - intent: stop
   - action: utter_ask_confirm_stop
   - intent: deny
   - action: ghq_form
-  - active_loop: null
+  - slot_was_set:
+    - requested_slot: able_concentrate
+  - slot_was_set:
+    - able_concentrate: true
+  - slot_was_set:
+    - requested_slot: feel_useful
+  - slot_was_set:
+    - feel_useful: false
+  - slot_was_set:
+    - requested_slot: capable_make_decision
+  - slot_was_set:
+    - capable_make_decision: true
+  - slot_was_set:
+    - requested_slot: enjoy_activities
+  - slot_was_set:
+    - enjoy_activities: false
+  - slot_was_set:
+    - requested_slot: face_up_problems
+  - slot_was_set:
+    - face_up_problems: true
+  - slot_was_set:
+    - requested_slot: feel_happy
+  - slot_was_set:
+    - feel_happy: true
+  - slot_was_set:
+    - requested_slot: lost_sleep
+  - slot_was_set:
+    - lost_sleep: true
+  - slot_was_set:
+    - requested_slot: under_stress
+  - slot_was_set:
+    - under_stress: false
+  - slot_was_set:
+    - requested_slot: overcome_difficulties
+  - slot_was_set:
+    - overcome_difficulties: true
+  - slot_was_set:
+    - requested_slot: feel_unhappy
+  - slot_was_set:
+    - feel_unhappy: true
+  - slot_was_set:
+    - requested_slot: lose_confidence
+  - slot_was_set:
+    - lose_confidence: true
+  - slot_was_set:
+    - requested_slot: think_as_worthless
+  - slot_was_set:
+    - think_as_worthless: false
   - slot_was_set:
     - requested_slot: null
+  - active_loop: null
   - action: action_show_ghq_result
   - action: utter_further_test
-  - checkpoint: check_general_test
+  - checkpoint: checked_general_test
+
+- story: General test - interrupted continue - middle 1
+  steps:
+  - checkpoint: check_asked_name
+  - intent: mood_sad
+  - action: utter_test_permission
+  - intent: affirm
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - slot_was_set:
+    - requested_slot: able_concentrate
+  - slot_was_set:
+    - able_concentrate: true
+  - slot_was_set:
+    - requested_slot: feel_useful
+  - slot_was_set:
+    - feel_useful: false
+  - slot_was_set:
+    - requested_slot: capable_make_decision
+  - slot_was_set:
+    - capable_make_decision: true
+  - slot_was_set:
+    - requested_slot: enjoy_activities
+  - slot_was_set:
+    - enjoy_activities: false
+  - slot_was_set:
+    - requested_slot: face_up_problems
+  - slot_was_set:
+    - face_up_problems: true
+  - slot_was_set:
+    - requested_slot: feel_happy
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: deny
+  - action: ghq_form
+  - slot_was_set:
+    - requested_slot: feel_happy
+  - slot_was_set:
+    - feel_happy: true
+  - slot_was_set:
+    - requested_slot: lost_sleep
+  - slot_was_set:
+    - lost_sleep: true
+  - slot_was_set:
+    - requested_slot: under_stress
+  - slot_was_set:
+    - under_stress: false
+  - slot_was_set:
+    - requested_slot: overcome_difficulties
+  - slot_was_set:
+    - overcome_difficulties: true
+  - slot_was_set:
+    - requested_slot: feel_unhappy
+  - slot_was_set:
+    - feel_unhappy: true
+  - slot_was_set:
+    - requested_slot: lose_confidence
+  - slot_was_set:
+    - lose_confidence: true
+  - slot_was_set:
+    - requested_slot: think_as_worthless
+  - slot_was_set:
+    - think_as_worthless: false
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_show_ghq_result
+  - action: utter_further_test
+  - checkpoint: checked_general_test
+
+- story: General test - interrupted continue - middle 2
+  steps:
+  - checkpoint: check_asked_name
+  - intent: mood_sad
+  - action: utter_test_permission
+  - intent: affirm
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - slot_was_set:
+    - requested_slot: able_concentrate
+  - slot_was_set:
+    - able_concentrate: true
+  - slot_was_set:
+    - requested_slot: feel_useful
+  - slot_was_set:
+    - feel_useful: false
+  - slot_was_set:
+    - requested_slot: capable_make_decision
+  - slot_was_set:
+    - capable_make_decision: true
+  - slot_was_set:
+    - requested_slot: enjoy_activities
+  - slot_was_set:
+    - enjoy_activities: false
+  - slot_was_set:
+    - requested_slot: face_up_problems
+  - slot_was_set:
+    - face_up_problems: true
+  - slot_was_set:
+    - requested_slot: feel_happy
+  - slot_was_set:
+    - feel_happy: true
+  - slot_was_set:
+    - requested_slot: lost_sleep
+  - slot_was_set:
+    - lost_sleep: true
+  - slot_was_set:
+    - requested_slot: under_stress
+  - slot_was_set:
+    - under_stress: false
+  - slot_was_set:
+    - requested_slot: overcome_difficulties
+  - slot_was_set:
+    - overcome_difficulties: true
+  - slot_was_set:
+    - requested_slot: feel_unhappy
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: deny
+  - action: ghq_form
+  - slot_was_set:
+    - requested_slot: feel_unhappy
+  - slot_was_set:
+    - feel_unhappy: true
+  - slot_was_set:
+    - requested_slot: lose_confidence
+  - slot_was_set:
+    - lose_confidence: true
+  - slot_was_set:
+    - requested_slot: think_as_worthless
+  - slot_was_set:
+    - think_as_worthless: false
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_show_ghq_result
+  - action: utter_further_test
+  - checkpoint: checked_general_test
 
 - story: Handle further test deny
   steps:
-  - checkpoint: check_general_test
+  - checkpoint: checked_general_test
   - intent: deny
   - action: utter_no_worries
 
-- story: Handle further test affirm
+- story: Handle further test affirm - happy path
   steps:
-  - checkpoint: check_general_test
+  - checkpoint: checked_general_test
   - intent: affirm
   - action: utter_start_phq_test
   - action: phq_form
   - active_loop: phq_form
+  - slot_was_set:
+    - requested_slot: interest
+  - slot_was_set:
+    - interest: 0
+  - slot_was_set:
+    - requested_slot: sadness
+  - slot_was_set:
+    - sadness: 0
+  - slot_was_set:
+    - requested_slot: sleep
+  - slot_was_set:
+    - sleep: 1
+  - slot_was_set:
+    - requested_slot: diet
+  - slot_was_set:
+    - diet: 1
+  - slot_was_set:
+    - requested_slot: energy
+  - slot_was_set:
+    - energy: 2
+  - slot_was_set:
+    - requested_slot: optimism
+  - slot_was_set:
+    - optimism: 2
+  - slot_was_set:
+    - requested_slot: concentration
+  - slot_was_set:
+    - concentration: 3
+  - slot_was_set:
+    - requested_slot: movement
+  - slot_was_set:
+    - movement: 3
+  - slot_was_set:
+    - requested_slot: suicide_thought
+  - slot_was_set:
+    - suicide_thought: 4
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_show_phq_result
+  - action: action_handle_test_result
 
-- story: Handle further test affirm - interrupted stop
+- story: Handle further test affirm - interrupted stop middle
   steps:
-  - checkpoint: check_general_test
+  - checkpoint: checked_general_test
   - intent: affirm
   - action: utter_start_phq_test
   - action: phq_form
   - active_loop: phq_form
+  - slot_was_set:
+    - requested_slot: interest
+  - slot_was_set:
+    - interest: 0
+  - slot_was_set:
+    - requested_slot: sadness
+  - slot_was_set:
+    - sadness: 0
+  - slot_was_set:
+    - requested_slot: sleep
   - intent: stop
   - action: utter_ask_confirm_stop
   - intent: affirm
@@ -108,19 +437,674 @@ stories:
   - active_loop: null
   - action: utter_goodbye
 
-- story: Handle further test affirm - interrupted continue
+- story: Handle further test affirm - interrupted stop early
   steps:
-  - checkpoint: check_general_test
+  - checkpoint: checked_general_test
   - intent: affirm
   - action: utter_start_phq_test
   - action: phq_form
   - active_loop: phq_form
+  - slot_was_set:
+    - requested_slot: interest
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - action: utter_goodbye
+
+- story: Handle further test affirm - interrupted continue - early
+  steps:
+  - checkpoint: checked_general_test
+  - intent: affirm
+  - action: utter_start_phq_test
+  - action: phq_form
+  - active_loop: phq_form
+  - slot_was_set:
+    - requested_slot: interest
   - intent: stop
   - action: utter_ask_confirm_stop
   - intent: deny
   - action: phq_form
+  - slot_was_set:
+    - requested_slot: interest
+  - slot_was_set:
+    - interest: 0
+  - slot_was_set:
+    - requested_slot: sadness
+  - slot_was_set:
+    - sadness: 0
+  - slot_was_set:
+    - requested_slot: sleep
+  - slot_was_set:
+    - sleep: 1
+  - slot_was_set:
+    - requested_slot: diet
+  - slot_was_set:
+    - diet: 1
+  - slot_was_set:
+    - requested_slot: energy
+  - slot_was_set:
+    - energy: 2
+  - slot_was_set:
+    - requested_slot: optimism
+  - slot_was_set:
+    - optimism: 2
+  - slot_was_set:
+    - requested_slot: concentration
+  - slot_was_set:
+    - concentration: 3
+  - slot_was_set:
+    - requested_slot: movement
+  - slot_was_set:
+    - movement: 3
+  - slot_was_set:
+    - requested_slot: suicide_thought
+  - slot_was_set:
+    - suicide_thought: 4
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_show_phq_result
+  - action: action_handle_test_result
+
+- story: Handle further test affirm - interrupted continue - middle 1
+  steps:
+  - checkpoint: checked_general_test
+  - intent: affirm
+  - action: utter_start_phq_test
+  - action: phq_form
+  - active_loop: phq_form
+  - slot_was_set:
+    - requested_slot: interest
+  - slot_was_set:
+    - interest: 0
+  - slot_was_set:
+    - requested_slot: sadness
+  - slot_was_set:
+    - sadness: 0
+  - slot_was_set:
+    - requested_slot: sleep
+  - slot_was_set:
+    - sleep: 1
+  - slot_was_set:
+    - requested_slot: diet
+  - slot_was_set:
+    - diet: 1
+  - slot_was_set:
+    - requested_slot: energy
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: deny
+  - action: phq_form
+  - slot_was_set:
+    - requested_slot: energy
+  - slot_was_set:
+    - energy: 2
+  - slot_was_set:
+    - requested_slot: optimism
+  - slot_was_set:
+    - optimism: 2
+  - slot_was_set:
+    - requested_slot: concentration
+  - slot_was_set:
+    - concentration: 3
+  - slot_was_set:
+    - requested_slot: movement
+  - slot_was_set:
+    - movement: 3
+  - slot_was_set:
+    - requested_slot: suicide_thought
+  - slot_was_set:
+    - suicide_thought: 4
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_show_phq_result
+  - action: action_handle_test_result
+
+- story: Handle further test affirm - interrupted continue - middle 2
+  steps:
+  - checkpoint: checked_general_test
+  - intent: affirm
+  - action: utter_start_phq_test
+  - action: phq_form
+  - active_loop: phq_form
+  - slot_was_set:
+    - requested_slot: interest
+  - slot_was_set:
+    - interest: 0
+  - slot_was_set:
+    - requested_slot: sadness
+  - slot_was_set:
+    - sadness: 0
+  - slot_was_set:
+    - requested_slot: sleep
+  - slot_was_set:
+    - sleep: 1
+  - slot_was_set:
+    - requested_slot: diet
+  - slot_was_set:
+    - diet: 1
+  - slot_was_set:
+    - requested_slot: energy
+  - slot_was_set:
+    - energy: 2
+  - slot_was_set:
+    - requested_slot: optimism
+  - slot_was_set:
+    - optimism: 2
+  - slot_was_set:
+    - requested_slot: concentration
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: deny
+  - action: phq_form
+  - slot_was_set:
+    - requested_slot: concentration
+  - slot_was_set:
+    - concentration: 3
+  - slot_was_set:
+    - requested_slot: movement
+  - slot_was_set:
+    - movement: 3
+  - slot_was_set:
+    - requested_slot: suicide_thought
+  - slot_was_set:
+    - suicide_thought: 4
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_show_phq_result
+  - action: action_handle_test_result
 
 - story: bot challenge
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_introduction
+  - action: basic_info_form
+  - active_loop: basic_info_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Ridwan
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_nice_to_meet_you
+  - action: utter_how_you_feel
+  - intent: mood_sad
+  - action: utter_test_permission
+  - intent: affirm
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - slot_was_set:
+    - requested_slot: able_concentrate
+  - slot_was_set:
+    - able_concentrate: true
+  - slot_was_set:
+    - requested_slot: feel_useful
+  - slot_was_set:
+    - feel_useful: false
+  - slot_was_set:
+    - requested_slot: capable_make_decision
+  - slot_was_set:
+    - capable_make_decision: true
+  - slot_was_set:
+    - requested_slot: enjoy_activities
+  - slot_was_set:
+    - enjoy_activities: false
+  - slot_was_set:
+    - requested_slot: face_up_problems
+  - slot_was_set:
+    - face_up_problems: true
+  - slot_was_set:
+    - requested_slot: feel_happy
+  - slot_was_set:
+    - feel_happy: true
+  - slot_was_set:
+    - requested_slot: lost_sleep
+  - slot_was_set:
+    - lost_sleep: true
+  - slot_was_set:
+    - requested_slot: under_stress
+  - slot_was_set:
+    - under_stress: false
+  - slot_was_set:
+    - requested_slot: overcome_difficulties
+  - slot_was_set:
+    - overcome_difficulties: true
+  - slot_was_set:
+    - requested_slot: feel_unhappy
+  - slot_was_set:
+    - feel_unhappy: true
+  - slot_was_set:
+    - requested_slot: lose_confidence
+  - slot_was_set:
+    - lose_confidence: true
+  - slot_was_set:
+    - requested_slot: think_as_worthless
+  - slot_was_set:
+    - think_as_worthless: false
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_show_ghq_result
+  - action: utter_further_test
+  - intent: deny
+  - action: utter_no_worries
+
+- story: interactive_story_2
+  steps:
+  - intent: greet
+  - action: utter_introduction
+  - action: basic_info_form
+  - active_loop: basic_info_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Ridwan
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_nice_to_meet_you
+  - action: utter_how_you_feel
+  - intent: mood_sad
+  - action: utter_test_permission
+  - intent: affirm
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - slot_was_set:
+    - requested_slot: able_concentrate
+  - slot_was_set:
+    - able_concentrate: true
+  - slot_was_set:
+    - requested_slot: feel_useful
+  - slot_was_set:
+    - feel_useful: false
+  - slot_was_set:
+    - requested_slot: capable_make_decision
+  - slot_was_set:
+    - capable_make_decision: true
+  - slot_was_set:
+    - requested_slot: enjoy_activities
+  - slot_was_set:
+    - enjoy_activities: false
+  - slot_was_set:
+    - requested_slot: face_up_problems
+  - slot_was_set:
+    - face_up_problems: true
+  - slot_was_set:
+    - requested_slot: feel_happy
+  - slot_was_set:
+    - feel_happy: true
+  - slot_was_set:
+    - requested_slot: lost_sleep
+  - slot_was_set:
+    - lost_sleep: true
+  - slot_was_set:
+    - requested_slot: under_stress
+  - slot_was_set:
+    - under_stress: false
+  - slot_was_set:
+    - requested_slot: overcome_difficulties
+  - slot_was_set:
+    - overcome_difficulties: true
+  - slot_was_set:
+    - requested_slot: feel_unhappy
+  - slot_was_set:
+    - feel_unhappy: true
+  - slot_was_set:
+    - requested_slot: lose_confidence
+  - slot_was_set:
+    - lose_confidence: true
+  - slot_was_set:
+    - requested_slot: think_as_worthless
+  - slot_was_set:
+    - think_as_worthless: false
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_show_ghq_result
+  - action: utter_further_test
+  - intent: affirm
+  - action: utter_start_phq_test
+  - action: phq_form
+  - active_loop: phq_form
+  - slot_was_set:
+    - requested_slot: interest
+  - slot_was_set:
+    - interest: 0
+  - slot_was_set:
+    - requested_slot: sadness
+  - slot_was_set:
+    - sadness: 0
+  - slot_was_set:
+    - requested_slot: sleep
+  - slot_was_set:
+    - sleep: 1
+  - slot_was_set:
+    - requested_slot: diet
+  - slot_was_set:
+    - diet: 1
+  - slot_was_set:
+    - requested_slot: energy
+  - slot_was_set:
+    - energy: 2
+  - slot_was_set:
+    - requested_slot: optimism
+  - slot_was_set:
+    - optimism: 2
+  - slot_was_set:
+    - requested_slot: concentration
+  - slot_was_set:
+    - concentration: 3
+  - slot_was_set:
+    - requested_slot: movement
+  - slot_was_set:
+    - movement: 3
+  - slot_was_set:
+    - requested_slot: suicide_thought
+  - slot_was_set:
+    - suicide_thought: 4
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_show_phq_result
+  - action: action_handle_test_result
+
+- story: interactive_story_3
+  steps:
+  - intent: greet
+  - action: utter_introduction
+  - action: basic_info_form
+  - active_loop: basic_info_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Samsul
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_nice_to_meet_you
+  - action: utter_how_you_feel
+  - intent: mood_sad
+  - action: utter_test_permission
+  - intent: affirm
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - slot_was_set:
+    - requested_slot: able_concentrate
+  - slot_was_set:
+    - able_concentrate: false
+  - slot_was_set:
+    - requested_slot: feel_useful
+  - slot_was_set:
+    - feel_useful: true
+  - slot_was_set:
+    - requested_slot: capable_make_decision
+  - slot_was_set:
+    - capable_make_decision: false
+  - slot_was_set:
+    - requested_slot: enjoy_activities
+  - slot_was_set:
+    - enjoy_activities: false
+  - slot_was_set:
+    - requested_slot: face_up_problems
+  - slot_was_set:
+    - face_up_problems: false
+  - slot_was_set:
+    - requested_slot: feel_happy
+  - slot_was_set:
+    - feel_happy: true
+  - slot_was_set:
+    - requested_slot: lost_sleep
+  - slot_was_set:
+    - lost_sleep: false
+  - slot_was_set:
+    - requested_slot: under_stress
+  - slot_was_set:
+    - under_stress: true
+  - slot_was_set:
+    - requested_slot: overcome_difficulties
+  - slot_was_set:
+    - overcome_difficulties: false
+  - slot_was_set:
+    - requested_slot: feel_unhappy
+  - slot_was_set:
+    - feel_unhappy: true
+  - slot_was_set:
+    - requested_slot: lose_confidence
+  - slot_was_set:
+    - lose_confidence: false
+  - slot_was_set:
+    - requested_slot: think_as_worthless
+  - slot_was_set:
+    - think_as_worthless: false
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_show_ghq_result
+  - action: utter_further_test
+  - intent: affirm
+  - action: utter_start_phq_test
+  - action: phq_form
+  - active_loop: phq_form
+  - slot_was_set:
+    - requested_slot: interest
+  - slot_was_set:
+    - interest: 0
+  - slot_was_set:
+    - requested_slot: sadness
+  - slot_was_set:
+    - sadness: 2
+  - slot_was_set:
+    - requested_slot: sleep
+  - slot_was_set:
+    - sleep: 2
+  - slot_was_set:
+    - requested_slot: diet
+  - slot_was_set:
+    - diet: 0
+  - slot_was_set:
+    - requested_slot: energy
+  - slot_was_set:
+    - energy: 2
+  - slot_was_set:
+    - requested_slot: optimism
+  - slot_was_set:
+    - optimism: 3
+  - slot_was_set:
+    - requested_slot: concentration
+  - slot_was_set:
+    - concentration: 3
+  - slot_was_set:
+    - requested_slot: movement
+  - slot_was_set:
+    - movement: 1
+  - slot_was_set:
+    - requested_slot: suicide_thought
+  - slot_was_set:
+    - suicide_thought: 1
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_show_phq_result
+  - action: action_handle_test_result
+
+- story: No need check affiliation
+  steps:
+  - slot_was_set:
+    - check_affiliation: false
+  - action: utter_goodbye
+
+- story: Check affiliation - Not ITB
+  steps:
+  - slot_was_set:
+    - check_affiliation: true
+  - action: utter_ask_affiliation
+  - intent: deny
+  - action: utter_other_counselling
+  - action: utter_goodbye
+
+- story: Check affiliation - ITB
+  steps:
+  - slot_was_set:
+    - check_affiliation: false
+  - action: utter_ask_affiliation
+  - intent: affirm
+  - action: utter_itb_counselling_contact
+  - action: utter_goodbye
+
+- story: interactive_story_4
+  steps:
+  - intent: greet
+  - action: utter_introduction
+  - action: basic_info_form
+  - active_loop: basic_info_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Ridwan
+  - slot_was_set:
+    - name: Ridwan
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_nice_to_meet_you
+  - action: utter_how_you_feel
+  - intent: mood_sad
+  - action: utter_test_permission
+  - intent: affirm
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - slot_was_set:
+    - requested_slot: able_concentrate
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: deny
+  - action: ghq_form
+  - slot_was_set:
+    - able_concentrate: false
+  - slot_was_set:
+    - requested_slot: feel_useful
+  - slot_was_set:
+    - feel_useful: false
+  - slot_was_set:
+    - requested_slot: capable_make_decision
+  - slot_was_set:
+    - capable_make_decision: false
+  - slot_was_set:
+    - requested_slot: enjoy_activities
+  - slot_was_set:
+    - enjoy_activities: false
+  - slot_was_set:
+    - requested_slot: face_up_problems
+  - slot_was_set:
+    - face_up_problems: false
+  - slot_was_set:
+    - requested_slot: feel_happy
+  - slot_was_set:
+    - feel_happy: false
+  - slot_was_set:
+    - requested_slot: lost_sleep
+  - slot_was_set:
+    - lost_sleep: true
+  - slot_was_set:
+    - requested_slot: under_stress
+  - slot_was_set:
+    - under_stress: false
+  - slot_was_set:
+    - requested_slot: overcome_difficulties
+  - slot_was_set:
+    - overcome_difficulties: true
+  - slot_was_set:
+    - requested_slot: feel_unhappy
+  - slot_was_set:
+    - feel_unhappy: false
+  - slot_was_set:
+    - requested_slot: lose_confidence
+  - slot_was_set:
+    - lose_confidence: true
+  - slot_was_set:
+    - requested_slot: think_as_worthless
+  - slot_was_set:
+    - think_as_worthless: false
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_show_ghq_result
+  - action: utter_further_test
+  - intent: affirm
+  - action: utter_start_phq_test
+  - action: phq_form
+  - active_loop: phq_form
+  - slot_was_set:
+    - requested_slot: interest
+  - slot_was_set:
+    - interest: 0
+  - slot_was_set:
+    - interest: 0
+  - slot_was_set:
+    - requested_slot: sadness
+  - slot_was_set:
+    - sadness: 1
+  - slot_was_set:
+    - sadness: 1
+  - slot_was_set:
+    - requested_slot: sleep
+  - slot_was_set:
+    - sleep: 1
+  - slot_was_set:
+    - sleep: 1
+  - slot_was_set:
+    - requested_slot: diet
+  - slot_was_set:
+    - diet: 3
+  - slot_was_set:
+    - diet: 3
+  - slot_was_set:
+    - requested_slot: energy
+  - slot_was_set:
+    - energy: 3
+  - slot_was_set:
+    - energy: 3
+  - slot_was_set:
+    - requested_slot: optimism
+  - slot_was_set:
+    - optimism: 3
+  - slot_was_set:
+    - optimism: 3
+  - slot_was_set:
+    - requested_slot: concentration
+  - slot_was_set:
+    - concentration: 0
+  - slot_was_set:
+    - concentration: 0
+  - slot_was_set:
+    - requested_slot: movement
+  - slot_was_set:
+    - movement: 0
+  - slot_was_set:
+    - movement: 0
+  - slot_was_set:
+    - requested_slot: suicide_thought
+  - slot_was_set:
+    - suicide_thought: 2
+  - slot_was_set:
+    - suicide_thought: 2
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_show_phq_result
+  - action: action_handle_test_result
+

@@ -22,16 +22,38 @@ rules:
   - action: phq_form
   - active_loop: phq_form
 
+- rule: Submit Basic Info form
+  condition:
+  - active_loop: basic_info_form
+  steps:
+  - action: basic_info_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_nice_to_meet_you
+  - action: utter_how_you_feel
+
 - rule: Submit PHQ form
   condition:
   - active_loop: phq_form
   steps:
   - action: phq_form
-  - active_loop: null
   - slot_was_set:
     - requested_slot: null
+  - active_loop: null
   - action: action_show_phq_result
   - action: action_handle_test_result
+
+- rule: Submit GHQ form
+  condition:
+  - active_loop: ghq_form
+  steps:
+  - action: ghq_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_show_ghq_result
+  - action: utter_further_test
   
 - rule: Handle affiliation false
   condition:

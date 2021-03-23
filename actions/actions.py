@@ -88,15 +88,15 @@ class ActionShowPhqResult(Action):
     @staticmethod
     def get_phq_slots():
         return [
-            "interest_condition",
-            "sadness_condition",
-            "sleep_condition",
-            "diet_condition",
-            "energy_condition",
-            "optimism_condition",
-            "concentration_condition",
-            "movement_condition",
-            "suicide_thought_condition"
+            "interest",
+            "sadness",
+            "sleep",
+            "diet",
+            "energy",
+            "optimism",
+            "concentration",
+            "movement",
+            "suicide_thought"
         ]
 
     @staticmethod
@@ -124,9 +124,9 @@ class ActionShowPhqResult(Action):
         return []
 
 
-class HandleFurtherTestResult(Action):
+class HandleTestResult(Action):
     def name(self) -> Text:
-        return "handle_further_test_result"
+        return "action_handle_test_result"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
