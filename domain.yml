@@ -26,6 +26,10 @@ entities:
 - feel_happy
 - feel_unhappy
 - feel_useful
+- freq_never
+- freq_sometimes
+- freq_more_than_half
+- freq_always
 - interest
 - lose_confidence
 - lost_sleep
@@ -44,71 +48,53 @@ slots:
     influence_conversation: true
   interest:
     type: any
-    influence_conversation: false
   sadness:
     type: any
-    influence_conversation: false
   sleep:
     type: any
-    influence_conversation: false
   diet:
     type: any
-    influence_conversation: false
   energy:
     type: any
-    influence_conversation: false
   optimism:
     type: any
-    influence_conversation: false
   concentration:
     type: any
-    influence_conversation: false
   movement:
     type: any
-    influence_conversation: false
   suicide_thought:
     type: any
-    influence_conversation: false
   able_concentrate:
     type: bool
-    influence_conversation: true
   lost_sleep:
     type: bool
-    influence_conversation: true
   feel_useful:
     type: bool
-    influence_conversation: true
   capable_make_decision:
     type: bool
-    influence_conversation: true
   under_stress:
     type: bool
-    influence_conversation: true
   overcome_difficulties:
     type: bool
-    influence_conversation: true
   enjoy_activities:
     type: bool
-    influence_conversation: true
   face_up_problems:
     type: bool
-    influence_conversation: true
   feel_unhappy:
     type: bool
-    influence_conversation: true
   lose_confidence:
     type: bool
-    influence_conversation: true
   think_as_worthless:
     type: bool
-    influence_conversation: true
   feel_happy:
     type: bool
-    influence_conversation: true
   check_affiliation:
     type: bool
-    influence_conversation: true
 responses:
+  utter_default:
+  - text: Maaf aku tidak paham kalimatmu, bisa tolong ditulis ulang?
+  - text: Aku tidak bisa memahami kalimat kamu, bisa tolong diulangi?
+  - text: Bisa tolong ditulis ulang pertanyaannya? Aku kurang paham, Maaf ya.
   utter_iamabot:
   - text: Aku adalah MantapBot
   utter_introduction:
@@ -234,101 +220,101 @@ responses:
   - text: Apakah kamu merasa kurang berminat atau bergairah dalam melakukan sesuatu?
     buttons:
     - title: Tidak pernah
-      payload: '/inform{{"interest": 0}}'
+      payload: '/freq_never'
     - title: Beberapa hari
-      payload: '/inform{{"interest": 1}}'
+      payload: '/freq_more_than_half'
     - title: Lebih dari seminggu
-      payload: '/inform{{"interest": 2}}'
+      payload: '/freq_sometimes'
     - title: Hampir setiap hari
-      payload: '/inform{{"interest": 3}}'
+      payload: '/freq_always'
   utter_ask_sadness:
   - text: Apakah kamu merasa murung, sedih atau putus asa?
     buttons:
     - title: Tidak pernah
-      payload: '/inform{{"sadness": 0}}'
+      payload: '/freq_never'
     - title: Beberapa hari
-      payload: '/inform{{"sadness": 1}}'
+      payload: '/freq_more_than_half'
     - title: Lebih dari seminggu
-      payload: '/inform{{"sadness": 2}}'
+      payload: '/freq_sometimes'
     - title: Hampir setiap hari
-      payload: '/inform{{"sadness": 3}}'
+      payload: '/freq_always'
   utter_ask_sleep:
   - text: Apakah kondisi tidurmu tidak normal? seperti sangat sulit tidur atau justru terlalu banyak tidur?
     buttons:
     - title: Tidak pernah
-      payload: '/inform{{"sleep": 0}}'
+      payload: '/freq_never'
     - title: Beberapa hari
-      payload: '/inform{{"sleep": 1}}'
+      payload: '/freq_more_than_half'
     - title: Lebih dari seminggu
-      payload: '/inform{{"sleep": 2}}'
+      payload: '/freq_sometimes'
     - title: Hampir setiap hari
-      payload: '/inform{{"sleep": 3}}'
+      payload: '/freq_always'
   utter_ask_diet:
   - text: Apakah kondisi nafsu makanmu tidak normal? seperti kurang nafsu makan atau justru terlalu banyak makan?
     buttons:
     - title: Tidak pernah
-      payload: '/inform{{"diet": 0}}'
+      payload: '/freq_never'
     - title: Beberapa hari
-      payload: '/inform{{"diet": 1}}'
+      payload: '/freq_more_than_half'
     - title: Lebih dari seminggu
-      payload: '/inform{{"diet": 2}}'
+      payload: '/freq_sometimes'
     - title: Hampir setiap hari
-      payload: '/inform{{"diet": 3}}'
+      payload: '/freq_always'
   utter_ask_energy:
   - text: Apa kamu merasa lelah atau kurang bertenaga?
     buttons:
     - title: Tidak pernah
-      payload: '/inform{{"energy": 0}}'
+      payload: '/freq_never'
     - title: Beberapa hari
-      payload: '/inform{{"energy": 1}}'
+      payload: '/freq_more_than_half'
     - title: Lebih dari seminggu
-      payload: '/inform{{"energy": 2}}'
+      payload: '/freq_sometimes'
     - title: Hampir setiap hari
-      payload: '/inform{{"energy": 3}}'
+      payload: '/freq_always'
   utter_ask_optimism:
   - text: Apa kamu merasa kurang pede atau merasa gagal dengan mengecewakan keluarga?
     buttons:
     - title: Tidak pernah
-      payload: '/inform{{"optimism": 0}}'
+      payload: '/freq_never'
     - title: Beberapa hari
-      payload: '/inform{{"optimism": 1}}'
+      payload: '/freq_more_than_half'
     - title: Lebih dari seminggu
-      payload: '/inform{{"optimism": 2}}'
+      payload: '/freq_sometimes'
     - title: Hampir setiap hari
-      payload: '/inform{{"optimism": 3}}'
+      payload: '/freq_always'
   utter_ask_concentration:
   - text: Apa kamu merasa sulit berkonsentrasi dalam melalukan hal apapun?
     buttons:
     - title: Tidak pernah
-      payload: '/inform{{"concentration": 0}}'
+      payload: '/freq_never'
     - title: Beberapa hari
-      payload: '/inform{{"concentration": 1}}'
+      payload: '/freq_more_than_half'
     - title: Lebih dari seminggu
-      payload: '/inform{{"concentration": 2}}'
+      payload: '/freq_sometimes'
     - title: Hampir setiap hari
-      payload: '/inform{{"concentration": 3}}'
+      payload: '/freq_always'
   utter_ask_movement:
   - text: Apa kamu jadi jarang gerak atau makin lambat gerak dan ngomongnya tidak seperti biasa?
     buttons:
     - title: Tidak pernah
-      payload: '/inform{{"movement": 0}}'
+      payload: '/freq_never'
     - title: Beberapa hari
-      payload: '/inform{{"movement": 1}}'
+      payload: '/freq_more_than_half'
     - title: Lebih dari seminggu
-      payload: '/inform{{"movement": 2}}'
+      payload: '/freq_sometimes'
     - title: Hampir setiap hari
-      payload: '/inform{{"movement": 3}}'
+      payload: '/freq_always'
   utter_ask_suicide_thought:
   - text: Mohon maaf sebelumnya untuk pertanyaan terakhir ini. Sempatkah terpikir untuk mengakhiri hidup? atau bunuh diri?
     buttons:
     - title: Tidak pernah
-      payload: '/inform{{"suicide_thought": 0}}'
+      payload: '/freq_never'
     - title: Beberapa hari
-      payload: '/inform{{"suicide_thought": 1}}'
+      payload: '/freq_more_than_half'
     - title: Lebih dari seminggu
-      payload: '/inform{{"suicide_thought": 2}}'
+      payload: '/freq_sometimes'
     - title: Hampir setiap hari
-      payload: '/inform{{"suicide_thought": 3}}'
+      payload: '/freq_always'
   utter_ask_confirm_stop:
   - text: Apa kamu yakin ingin mengakhiri test?
   utter_confirm_stop_fill:
@@ -460,38 +446,119 @@ forms:
       intent: deny
   phq_form:
     interest:
-    - type: from_entity
-      intent: inform
-      entity: interest
+    - type: from_intent
+      intent: freq_never
+      value: 0
+    - type: from_intent
+      intent: freq_sometimes
+      value: 1
+    - type: from_intent
+      intent: freq_more_than_half
+      value: 2
+    - type: from_intent
+      intent: freq_always
+      value: 3
     sadness:
-    - type: from_entity
-      intent: inform
-      entity: sadness
+    - type: from_intent
+      intent: freq_never
+      value: 0
+    - type: from_intent
+      intent: freq_sometimes
+      value: 1
+    - type: from_intent
+      intent: freq_more_than_half
+      value: 2
+    - type: from_intent
+      intent: freq_always
+      value: 3
     sleep:
-    - type: from_entity
-      intent: inform
-      entity: sleep
+    - type: from_intent
+      intent: freq_never
+      value: 0
+    - type: from_intent
+      intent: freq_sometimes
+      value: 1
+    - type: from_intent
+      intent: freq_more_than_half
+      value: 2
+    - type: from_intent
+      intent: freq_always
+      value: 3
     diet:
-    - type: from_entity
-      intent: inform
-      entity: diet
+    - type: from_intent
+      intent: freq_never
+      value: 0
+    - type: from_intent
+      intent: freq_sometimes
+      value: 1
+    - type: from_intent
+      intent: freq_more_than_half
+      value: 2
+    - type: from_intent
+      intent: freq_always
+      value: 3
     energy:
-    - type: from_entity
-      intent: inform
-      entity: energy
+    - type: from_intent
+      intent: freq_never
+      value: 0
+    - type: from_intent
+      intent: freq_sometimes
+      value: 1
+    - type: from_intent
+      intent: freq_more_than_half
+      value: 2
+    - type: from_intent
+      intent: freq_always
+      value: 3
     optimism:
-    - type: from_entity
-      intent: inform
-      entity: optimism
+    - type: from_intent
+      intent: freq_never
+      value: 0
+    - type: from_intent
+      intent: freq_sometimes
+      value: 1
+    - type: from_intent
+      intent: freq_more_than_half
+      value: 2
+    - type: from_intent
+      intent: freq_always
+      value: 3
     concentration:
-    - type: from_entity
-      intent: inform
-      entity: concentration
+    - type: from_intent
+      intent: freq_never
+      value: 0
+    - type: from_intent
+      intent: freq_sometimes
+      value: 1
+    - type: from_intent
+      intent: freq_more_than_half
+      value: 2
+    - type: from_intent
+      intent: freq_always
+      value: 3
     movement:
-    - type: from_entity
-      intent: inform
-      entity: movement
+    - type: from_intent
+      intent: freq_never
+      value: 0
+    - type: from_intent
+      intent: freq_sometimes
+      value: 1
+    - type: from_intent
+      intent: freq_more_than_half
+      value: 2
+    - type: from_intent
+      intent: freq_always
+      value: 3
     suicide_thought:
-    - type: from_entity
-      intent: inform
-      entity: suicide_thought
+    - type: from_intent
+      intent: freq_never
+      value: 0
+    - type: from_intent
+      intent: freq_sometimes
+      value: 1
+    - type: from_intent
+      intent: freq_more_than_half
+      value: 2
+    - type: from_intent
+      intent: freq_always
+      value: 3
