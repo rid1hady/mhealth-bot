@@ -6,78 +6,66 @@ rules:
   - intent: goodbye
   - action: utter_goodbye
 
-- rule: Unhappy GHQ test form
-  condition:
-  - active_loop: ghq_form
+- rule: activate ghq form
   steps:
-  - intent: chitchat
+  - intent: take_test
+  - action: utter_test_policy
+  - action: utter_start_general_test
   - action: ghq_form
   - active_loop: ghq_form
 
-- rule: Unhappy PHQ test form
-  condition:
-  - active_loop: phq_form
-  steps:
-  - intent: chitchat
-  - action: phq_form
-  - active_loop: phq_form
-
-- rule: Submit Basic Info form
-  condition:
-  - active_loop: basic_info_form
-  steps:
-  - action: basic_info_form
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
-  - action: utter_nice_to_meet_you
-  - action: utter_how_you_feel
-
-- rule: Submit PHQ form
-  condition:
-  - active_loop: phq_form
-  steps:
-  - action: phq_form
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
-  - action: action_show_phq_result
-  - action: action_handle_test_result
-
-- rule: Submit GHQ form
+- rule: submit ghq form
   condition:
   - active_loop: ghq_form
   steps:
-  - action: ghq_form
-  - slot_was_set:
-    - requested_slot: null
   - active_loop: null
   - action: action_show_ghq_result
-  - action: utter_further_test
-  
-- rule: Handle affiliation false
-  condition:
-  - slot_was_set:
-    - check_affiliation: false
-  steps:
-  - action: utter_goodbye
+  - action: utter_anything_else
 
-- rule: Handle affiliation true - not itb
+- rule: submit location form
   condition:
-  - slot_was_set:
-    - check_affiliation: true
+  - active_loop: location_form
   steps:
+  - active_loop: null
+  - action: action_show_nearest_therapist
+  - action: utter_anything_else
+
+- rule: gave mental health tips when asked
+  steps:
+  - intent: self_care_practices
+  - action: utter_self_mental_health_practice
+  - action: utter_anything_else
+
+- rule: ask psychologist contact - itb
+  steps:
+  - intent: contact_psychiatrist
   - action: utter_ask_affiliation
-  - intent: deny
-  - action: utter_other_counselling
-  - action: utter_goodbye
 
-- rule: Handle affiliation true - itb
-  condition:
-  - slot_was_set:
-    - check_affiliation: true
+- rule: ask affiliation follow up - affirm
   steps:
   - action: utter_ask_affiliation
   - intent: affirm
   - action: utter_itb_counselling_contact
-  - action: utter_goodbye
+  - action: utter_ask_list_nearest
+
+- rule: ask affiliation follow up - deny
+  steps:
+  - action: utter_ask_affiliation
+  - intent: deny
+  - action: location_form
+  - active_loop: location_form
+
+- rule: ask list nearest - deny
+  steps:
+  - action: utter_ask_list_nearest
+  - intent: deny
+  - action: utter_no_worries
+  - action: utter_anything_else
+
+- rule: ask list nearest - affirm
+  steps:
+  - action: utter_ask_list_nearest
+  - intent: affirm
+  - action: location_form
+  - active_loop: location_form
+

@@ -1,0 +1,107 @@
+version: "2.0"
+stories:
+# With Intro
+- story: Nearest psychologist no itb
+  steps:
+  - intent: greet
+  - action: utter_introduction
+  - action: basic_info_form
+  - active_loop: basic_info_form
+  - slot_was_set:
+    - name: Ariel
+  - active_loop: null
+  - action: utter_nice_to_meet_you
+  - action: utter_features_list
+  - intent: contact_psychiatrist
+  - action: utter_ask_affiliation
+  - intent: deny
+  - action: location_form
+  - active_loop: location_form
+  - slot_was_set:
+    - location: "6.2088, 106.8456"
+  - active_loop: null
+  - action: action_show_nearest_therapist
+  - action: utter_anything_else
+- story: Nearest psychologist itb 1
+  steps:
+  - intent: greet
+  - action: utter_introduction
+  - action: basic_info_form
+  - active_loop: basic_info_form
+  - slot_was_set:
+    - name: Duta
+  - active_loop: null
+  - action: utter_nice_to_meet_you
+  - action: utter_features_list
+  - intent: contact_psychiatrist
+  - action: utter_ask_affiliation
+  - intent: affirm
+  - action: utter_itb_counselling_contact
+  - action: utter_ask_list_nearest
+  - intent: deny
+  - action: utter_no_worries
+  - action: utter_anything_else
+- story: Nearest psychologist itb 2
+  steps:
+  - intent: greet
+  - action: utter_introduction
+  - action: basic_info_form
+  - active_loop: basic_info_form
+  - slot_was_set:
+    - name: Iqbal
+  - active_loop: null
+  - action: utter_nice_to_meet_you
+  - action: utter_features_list
+  - intent: contact_psychiatrist
+  - action: utter_ask_affiliation
+  - intent: affirm
+  - action: utter_itb_counselling_contact
+  - action: utter_ask_list_nearest
+  - intent: affirm
+  - action: location_form
+  - active_loop: location_form
+  - slot_was_set:
+    - location: "6.9175, 107.6191"
+  - active_loop: null
+  - action: action_show_nearest_therapist
+  - action: utter_anything_else
+
+# Without greet
+- story: Nearest psychologist w/o intro no itb
+  steps:
+  - intent: contact_psychiatrist
+  - action: utter_ask_affiliation
+  - intent: deny
+  - action: location_form
+  - active_loop: location_form
+  - slot_was_set:
+    - location: "6.8899, 109.3807"
+  - active_loop: null
+  - action: action_show_nearest_therapist
+  - action: utter_anything_else
+- story: Nearest psychologist w/o intro itb 1
+  steps:
+  - intent: contact_psychiatrist
+  - action: utter_ask_affiliation
+  - intent: affirm
+  - action: utter_itb_counselling_contact
+  - action: utter_ask_list_nearest
+  - intent: deny
+  - action: utter_no_worries
+  - action: utter_anything_else
+- story: Nearest psychologist w/o intro itb 2
+  steps:
+  - action: utter_features_list
+  - intent: contact_psychiatrist
+  - action: utter_ask_affiliation
+  - intent: affirm
+  - action: utter_itb_counselling_contact
+  - action: utter_ask_list_nearest
+  - intent: affirm
+  - action: location_form
+  - active_loop: location_form
+  - slot_was_set:
+    - location: "7.0051, 110.4381"
+  - active_loop: null
+  - action: action_show_nearest_therapist
+  - action: utter_anything_else

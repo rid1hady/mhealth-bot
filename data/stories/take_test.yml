@@ -1,0 +1,114 @@
+version: "2.0"
+stories:
+# With Intro
+# Happy Path
+- story: Take test happy path
+  steps:
+  - intent: greet
+  - action: utter_introduction
+  - action: basic_info_form
+  - active_loop: basic_info_form
+  - slot_was_set:
+    - name: Michael
+  - active_loop: null
+  - action: utter_nice_to_meet_you
+  - action: utter_features_list
+  - intent: take_test
+  - action: utter_test_policy
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - active_loop: null
+  - action: action_show_ghq_result
+  - action: utter_anything_else
+# Interrupted Continue
+- story: Take test interrupted continue
+  steps:
+  - intent: greet
+  - action: utter_introduction
+  - action: basic_info_form
+  - active_loop: basic_info_form
+  - slot_was_set:
+    - name: Siti
+  - active_loop: null
+  - action: utter_nice_to_meet_you
+  - action: utter_features_list
+  - intent: take_test
+  - action: utter_test_policy
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: deny
+  - action: ghq_form
+  - active_loop: ghq_form
+  - active_loop: null
+  - action: action_show_ghq_result
+  - action: utter_anything_else
+# Happy Path - Interrupted Stop
+- story: Take test interrupted stop
+  steps:
+  - intent: greet
+  - action: utter_introduction
+  - action: basic_info_form
+  - active_loop: basic_info_form
+  - slot_was_set:
+    - name: Samsudin
+  - active_loop: null
+  - action: utter_nice_to_meet_you
+  - action: utter_features_list
+  - intent: take_test
+  - action: utter_test_policy
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - action: utter_no_worries
+  - action: utter_anything_else
+# Without greet
+- story: Take test happy path w/o intro - good condition
+  steps:
+  - intent: take_test
+  - action: utter_test_policy
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - active_loop: null
+  - action: action_show_ghq_result
+  - action: utter_anything_else
+# Interrupted Continue
+- story: Take test interrupted continue w/o intro - good condition
+  steps:
+  - intent: take_test
+  - action: utter_test_policy
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: deny
+  - action: ghq_form
+  - active_loop: ghq_form
+  - active_loop: null
+  - action: action_show_ghq_result
+  - action: utter_anything_else
+# Interrupted Stop
+- story: Take test interrupted stop w/o intro
+  steps:
+  - intent: take_test
+  - action: utter_test_policy
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - action: utter_no_worries
+  - action: utter_anything_else

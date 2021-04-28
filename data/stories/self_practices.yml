@@ -1,0 +1,20 @@
+version: "2.0"
+stories:
+# With Intro
+- story: Self Practices Mental Health
+  steps:
+  - intent: greet
+  - action: utter_introduction
+  - action: basic_info_form
+  - active_loop: basic_info_form
+  - active_loop: null
+  - action: utter_nice_to_meet_you
+  - action: utter_features_list
+  - intent: self_care_practices
+  - action: utter_self_mental_health_practice
+  - action: utter_anything_else
+- story: Self Practices Mental Health
+  steps:
+  - intent: self_care_practices
+  - action: utter_self_mental_health_practice
+  - action: utter_anything_else

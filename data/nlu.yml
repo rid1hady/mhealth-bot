@@ -3,6 +3,7 @@ nlu:
 - intent: greet
   examples: |
     - assalamu'alaikum
+    - assalamualaikum
     - p
     - hi
     - halo
@@ -15,16 +16,21 @@ nlu:
     - siang
     - sore
     - malam
-    - Halo
-    - Hi
-    - Hello
+    - halo
+    - hi
+    - hello
+    - hey
+    - hay
+    - wasup
 - intent: goodbye
   examples: |
     - sampai jumpa
     - dah
     - bye
+    - dada
     - goodbye
     - bye bye
+    - ciao
 - intent: affirm
   examples: |
     - iya
@@ -34,15 +40,18 @@ nlu:
     - benar
     - yes
     - y
-    - Ok
-    - Oke
-    - Baik
+    - ok
+    - oke
+    - baik
     - gas
     - caw
     - skuy
     - yuk
-    - Iya
-    - Boleh
+    - iya
+    - boleh
+    - silahkan
+    - silakan
+    - siap
 - intent: deny
   examples: |
     - tidak
@@ -56,34 +65,6 @@ nlu:
     - bukan
     - no
     - n
-    - Tidak
-- intent: mood_happy
-  examples: |
-    - senang
-    - bahagia
-    - luar biasa
-    - saya senang
-    - aku bahagia
-    - saya merasa senang
-    - sangat senang
-    - sempurna
-- intent: mood_sad
-  examples: |
-    - saya merasa sedih
-    - saya sedih
-    - aku sedih
-    - aku merasa sedih
-    - sangat sedih
-    - sedih
-    - tidak bahagia
-    - kurang baik
-    - sed
-    - sad
-    - saya ingin menangis
-    - saya sering menangis
-    - saya terus terusan menangis
-    - Saya merasa sedih
-    - Saya sedang sedih
 - intent: bot_challenge
   examples: |
     - kamu apa?
@@ -115,6 +96,39 @@ nlu:
     - cukup sampai disini saja
     - aku ingin keluar
     - Stop
+- intent: take_test
+  examples: |
+    - Aku ingin coba testnya
+    - Aku ingin test kesehatan mentalku
+    - Mau dong ngecek kesehatan mentalku
+    - Aku mau coba test
+    - Mulai test
+    - Ayo mulai testnya
+    - Test kesehatan mental
+    - Test kesehatan mentalku secara umum dong
+- intent: contact_psychiatrist
+  examples: |
+    - Kontak psikiater
+    - Kontak psikolog terdekat dong
+    - Lokasi psikolog terdekat dimana ya?
+    - Lokasi psikiater terdekat dimana ya?
+    - Kalau mau ke psikilog harus ke mana?
+- intent: self_care_practices
+  examples: |
+    - Tips and trick menjaga kesehatan mental
+    - Saran untuk menjaga kesehatan mental dong
+    - Ada gak hal yang bisa kulakuin untuk jaga kesehatan mentalku?
+    - Ada gak yang bisa kulukakan untuk memperbaiki kesehatan mentalku?
+    - Bagaimana caraku buat jaga kesehatan mental secara mandiri ya?
+    - Kalau aku mau memperbaiki kesehatan mental tanpa psikolog gimana ya?
+- intent: help
+  examples: |
+    - Tolong kasih tahu dong kontak psikiater
+    - Tolong bantu aku ngecek kesehatan mentalku dong
+    - Aku minta bantuannya
+    - Tolong
+    - Bantu
+    - Bantuan
 - intent: chitchat
   examples: |
     - bagaimana cuaca hari ini?

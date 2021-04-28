@@ -3,66 +3,39 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- affirm
 - greet
-- mood_sad
-- inform
-- deny
-- stop
 - goodbye
-- consult
-- mood_happy
+- affirm
+- deny
 - bot_challenge
+- inform
+- stop
+- take_test
+- contact_psychiatrist
+- self_care_practices
+- help
 - chitchat
 entities:
+- name
+- location
 - able_concentrate
+- lost_sleep
+- feel_useful
 - capable_make_decision
-- check_affiliation
-- concentration
-- diet
-- energy
+- under_stress
+- overcome_difficulties
 - enjoy_activities
 - face_up_problems
-- feel_happy
 - feel_unhappy
-- feel_useful
-- freq_never
-- freq_sometimes
-- freq_more_than_half
-- freq_always
-- interest
 - lose_confidence
-- lost_sleep
-- movement
-- name
-- optimism
-- overcome_difficulties
-- sadness
-- sleep
-- suicide_thought
 - think_as_worthless
-- under_stress
+- feel_happy
+- check_affiliation
 slots:
   name:
     type: text
     influence_conversation: true
-  interest:
-    type: any
-  sadness:
-    type: any
-  sleep:
-    type: any
-  diet:
-    type: any
-  energy:
-    type: any
-  optimism:
-    type: any
-  concentration:
-    type: any
-  movement:
-    type: any
-  suicide_thought:
+  location:
     type: any
   able_concentrate:
     type: bool
@@ -96,261 +69,192 @@ responses:
   - text: Aku tidak bisa memahami kalimat kamu, bisa tolong diulangi?
   - text: Bisa tolong ditulis ulang pertanyaannya? Aku kurang paham, Maaf ya.
   utter_iamabot:
-  - text: Aku adalah MantapBot
+  - text: Hi! Namaku MantapBot
   utter_introduction:
   - text: |
       Halo! perkenalkan aku adalah MantapBot.
       Fungsi utamaku adalah untuk memberikan asesmen dini terhadap kesehatan mental secara general.
 
-      Aku akan memberikan kepastian bahwa percakapan kita aman.
+      Aku akan memberikan kepastian bahwa percakapan kita tidak diketahui oleh siapapun.
+      Jika ada sesuatu, kamu bisa kirim pesan minta tolong.
+  utter_features_list:
+  - text: Sampai saat ini, setidaknya aku ini beberapa hal yang sudah bisa kulakukan
+    buttons:
+    - title: Assesmen Umum
+      payload: /take_test
+    - title: Psikolog Terdekat
+      payload: /contact_psychiatrist
+    - title: Tips mental health
+      payload: /self_care_practices
   utter_ask_name:
   - text: Nama kamu siapa?
-  utter_confirm_name:
-  - text: Benarkah nama kamu {name}?
+  - text: Siapa namanya kalau boleh tahu?
+  utter_ask_location:
+  - text: Boleh tolong shareloc?
+  - text: Bisa tolong bagikan lokasi kamu?
   utter_nice_to_meet_you:
   - text: Senang berkenalan denganmu {name}.
   - text: Salam kenal {name}.
   - text: Wow, {name} nama yang keren.
-  utter_how_you_feel:
-  - text: Btw, bagaimana perasaanmu sekarang?
-  utter_glad:
-  - text: Wow! Luar biasa. Aku ikut senang mendengarnya 👏
-  utter_test_permission:
-  - text: Sepertinya ada sesuatu yang menganggu pikiran kamu. Apakah kamu mau melakukan test kecil-kecilan untuk mengecek kondisi mental kamu secara umum?
+  utter_test_policy:
+  - text: |
+      Baiklah, sebelumnya akan ingin menginformasikan bahwa data yang kamu berikan dapat aku pastikan kerahasiaannya.
+      Bahkan pembuatku juga tidak akan mengetahui jawaban yang kamu berikan.
+      Hasil dari test ini tidak mutlak, untuk hasil yang lebih detail, silahkan hubungi Psikolog ke depannya.
   utter_start_general_test:
   - text: |
-      Hi! Aku punya beberapa pertanyaan buat {name}.
-      Pertanyaan ini akan membantu aku untuk membantu menentukan kondisi kesehatan mental kamu secara umum
-      Dan aku berharap info tersebut bisa membantu kamu lebih mengenali kondisi kamu.
-      Tolong jawab antara iya dan tidak.
+      Berikut adalah beberapa pertanyaan untuk {name}!.
+      Pertanyaan ini akan membantu aku untuk membantu menentukan kondisi kesehatan mental kamu secara Umum
+      Aku harap info tersebut bisa membantu kamu lebih mengenali kondisi kamu.
+
+      Tolong jawab antara "Iya" atau "Tidak".
       Dalam dua minggu terakhir...
   utter_ask_able_concentrate:
   - text: Apa kamu tetap dapat konsentrasi terhadap hal yang kamu perlu kerjakan?
     buttons:
-    - title: Tidak
-      payload: /deny
     - title: Iya
       payload: /affirm
+    - title: Tidak
+      payload: /deny
   utter_ask_lost_sleep:
   - text: Apa kamu jadi kurang tidur karena overthinking?
     buttons:
-    - title: Tidak
-      payload: /deny
     - title: Iya
       payload: /affirm
+    - title: Tidak
+      payload: /deny
   utter_ask_feel_useful:
   - text: Apa kamu merasa memainkan peran yang penting atau berguna untuk orang lain akhir-akhir ini?
     buttons:
-    - title: Tidak
-      payload: /deny
     - title: Iya
       payload: /affirm
+    - title: Tidak
+      payload: /deny
   utter_ask_capable_make_decision:
   - text: Apa kamu merasa telah membuat keputusan yang bagus akhir-akhir ini?
     buttons:
-    - title: Tidak
-      payload: /deny
     - title: Iya
       payload: /affirm
+    - title: Tidak
+      payload: /deny
   utter_ask_under_stress:
   - text: Apa kamu merasa tertekan atau stress?
     buttons:
-    - title: Tidak
-      payload: /deny
     - title: Iya
       payload: /affirm
+    - title: Tidak
+      payload: /deny
   utter_ask_overcome_difficulties:
   - text: Apa kamu merasa tidak bisa mengatasi kesulitan?
     buttons:
-    - title: Tidak
-      payload: /deny
     - title: Iya
       payload: /affirm
+    - title: Tidak
+      payload: /deny
   utter_ask_enjoy_activities:
   - text: Apa kamu menikmati keseharianmu?
     buttons:
-    - title: Tidak
-      payload: /deny
     - title: Iya
       payload: /affirm
+    - title: Tidak
+      payload: /deny
   utter_ask_face_up_problems:
   - text: Apa kamu dapat menghadapi masalah dengan baik?
     buttons:
-    - title: Tidak
-      payload: /deny
     - title: Iya
       payload: /affirm
+    - title: Tidak
+      payload: /deny
   utter_ask_feel_unhappy:
   - text: Apa kamu merasa depresi atau tidak bahagia?
     buttons:
-    - title: Tidak
-      payload: /deny
     - title: Iya
       payload: /affirm
+    - title: Tidak
+      payload: /deny
   utter_ask_lose_confidence:
   - text: Apa kamu merasa tidak pede sama diri sendiri?
     buttons:
-    - title: Tidak
-      payload: /deny
     - title: Iya
       payload: /affirm
+    - title: Tidak
+      payload: /denym
   utter_ask_think_as_worthless:
   - text: Apa kamu merasa tidak berguna?
     buttons:
-    - title: Tidak
-      payload: /deny
     - title: Iya
       payload: /affirm
+    - title: Tidak
+      payload: /deny
   utter_ask_feel_happy:
   - text: Apa kamu merasa cukup bahagia, dengan mempertimbangkan semua yang kamu miliki atau terjadi saat ini
     buttons:
-    - title: Tidak
-      payload: /deny
     - title: Iya
       payload: /affirm
-  utter_ask_duration:
-  - text: Sudah berapa lama?
-  utter_further_test:
-  - text: Supaya hasilnya lebih detail, apakah kamu mau menjalankan test lanjutan?
-  utter_start_phq_test:
-  - text: |
-      Baiklah, untuk yang kali ini, ada sekitar 9 pertanyaan.
-      Silahkan jawab dengan sesuai. Dalam dua minggu terakhir...
-  utter_ask_interest:
-  - text: Apakah kamu merasa kurang berminat atau bergairah dalam melakukan sesuatu?
-    buttons:
-    - title: Tidak pernah
-      payload: '/freq_never'
-    - title: Beberapa hari
-      payload: '/freq_more_than_half'
-    - title: Lebih dari seminggu
-      payload: '/freq_sometimes'
-    - title: Hampir setiap hari
-      payload: '/freq_always'
-  utter_ask_sadness:
-  - text: Apakah kamu merasa murung, sedih atau putus asa?
-    buttons:
-    - title: Tidak pernah
-      payload: '/freq_never'
-    - title: Beberapa hari
-      payload: '/freq_more_than_half'
-    - title: Lebih dari seminggu
-      payload: '/freq_sometimes'
-    - title: Hampir setiap hari
-      payload: '/freq_always'
-  utter_ask_sleep:
-  - text: Apakah kondisi tidurmu tidak normal? seperti sangat sulit tidur atau justru terlalu banyak tidur?
-    buttons:
-    - title: Tidak pernah
-      payload: '/freq_never'
-    - title: Beberapa hari
-      payload: '/freq_more_than_half'
-    - title: Lebih dari seminggu
-      payload: '/freq_sometimes'
-    - title: Hampir setiap hari
-      payload: '/freq_always'
-  utter_ask_diet:
-  - text: Apakah kondisi nafsu makanmu tidak normal? seperti kurang nafsu makan atau justru terlalu banyak makan?
-    buttons:
-    - title: Tidak pernah
-      payload: '/freq_never'
-    - title: Beberapa hari
-      payload: '/freq_more_than_half'
-    - title: Lebih dari seminggu
-      payload: '/freq_sometimes'
-    - title: Hampir setiap hari
-      payload: '/freq_always'
-  utter_ask_energy:
-  - text: Apa kamu merasa lelah atau kurang bertenaga?
-    buttons:
-    - title: Tidak pernah
-      payload: '/freq_never'
-    - title: Beberapa hari
-      payload: '/freq_more_than_half'
-    - title: Lebih dari seminggu
-      payload: '/freq_sometimes'
-    - title: Hampir setiap hari
-      payload: '/freq_always'
-  utter_ask_optimism:
-  - text: Apa kamu merasa kurang pede atau merasa gagal dengan mengecewakan keluarga?
-    buttons:
-    - title: Tidak pernah
-      payload: '/freq_never'
-    - title: Beberapa hari
-      payload: '/freq_more_than_half'
-    - title: Lebih dari seminggu
-      payload: '/freq_sometimes'
-    - title: Hampir setiap hari
-      payload: '/freq_always'
-  utter_ask_concentration:
-  - text: Apa kamu merasa sulit berkonsentrasi dalam melalukan hal apapun?
-    buttons:
-    - title: Tidak pernah
-      payload: '/freq_never'
-    - title: Beberapa hari
-      payload: '/freq_more_than_half'
-    - title: Lebih dari seminggu
-      payload: '/freq_sometimes'
-    - title: Hampir setiap hari
-      payload: '/freq_always'
-  utter_ask_movement:
-  - text: Apa kamu jadi jarang gerak atau makin lambat gerak dan ngomongnya tidak seperti biasa?
-    buttons:
-    - title: Tidak pernah
-      payload: '/freq_never'
-    - title: Beberapa hari
-      payload: '/freq_more_than_half'
-    - title: Lebih dari seminggu
-      payload: '/freq_sometimes'
-    - title: Hampir setiap hari
-      payload: '/freq_always'
-  utter_ask_suicide_thought:
-  - text: Mohon maaf sebelumnya untuk pertanyaan terakhir ini. Sempatkah terpikir untuk mengakhiri hidup? atau bunuh diri?
-    buttons:
-    - title: Tidak pernah
-      payload: '/freq_never'
-    - title: Beberapa hari
-      payload: '/freq_more_than_half'
-    - title: Lebih dari seminggu
-      payload: '/freq_sometimes'
-    - title: Hampir setiap hari
-      payload: '/freq_always'
+    - title: Tidak
+      payload: /deny
   utter_ask_confirm_stop:
   - text: Apa kamu yakin ingin mengakhiri test?
-  utter_confirm_stop_fill:
   - text: Apakah kamu yakin ingin berhenti?
   utter_ask_suggestion:
   - text: Terima kasih, boleh aku tanya kenapa ingin berhenti?
-  utter_bad_condition:
-  - text: Sepertinya kondisi mental kamu sedang kurang bagus.
   utter_ask_affiliation:
   - text: Apakah kamu mahasiswa ITB?
   utter_itb_counselling_contact:
-  - text: Berikut adalah kontak yang kamu bisa hubungi untuk konseling dengan BK ITB
-  utter_other_counselling:
-  - text: Maaf, untuk tempat lain, aku kurang tahu, tapi kamu bisa periksa kondisimu secara langsung ke psikiater terdekat dari tempatmu dengan Google Maps
-  utter_self_mental_health_practice:
+  - text: |
+      Bagi kamu, mahasiswa ITB, kamu bisa memesan sesi konsultasi bersama dengan psikolog ITB.
+
+      Caranya mudah sekali.
+      1. Masuk ke laman https://kemahasiswaan.itb.ac.id/bk/
+      2. Di bagian kanan atas, pilih "Membuat jadwal konsultasi"
+      3. Kamu akan diarahkan ke login SSO ITB. Login saja
+      4. Selanjutnya kamu akan diarahkan ke dashboard kemahasiswaan.
+      5. Kamu bisa memilih menu konseling pada panel kiri.
+      6. Pilih `Tambah Jadwal Konseling`
+      7. Isikan data diri kamu dan jawab pertanyaan-pertanyaan disana.
+  utter_ask_list_nearest:
+  - text: Tidak bisa dengan konseling ITB? mau kucarikan psikolog terdekat dari tempatmu?    
+  utter_good_condition_user:
+  - text: Kamu LUAR BIASA! Terus pertahankan kondisi mental kamu ya!
+  - text: Artinya kondisi kamu SEHAT, terus pertahankan ya 🎉💃.
+  - text: Skor tersebut menunjukan kalau kondisi mental kamu LUAR BIASA 👍.
+  utter_medium_condition_user:
+  - text: Artinya, mohon maaf, kondisi kamu kurang bagus tapi tidak parah juga 😟.
+  - text: Skor tersebut menunjukan kalau kondisi mental kamu tidak terlalu bagus.
+  utter_bad_condition:
+  - text: Sepertinya kondisi mental kamu sedang tidak bagus.
+  - text: Secara umum, kondisi kesehatan mental kamu sedang tidak baik-baik saja.
+  - text: Dengan skor tersebut, mohon maaf, aku ingin sampaikan kalau kondisi mental kamu sedang buruk 😢.
   - text: Kondisi mentalmu sudah cukup bagus, berikut ada beberapa bahan bacaan dan training yang bisa kamu lakukan untuk meningkatkan atau mempertahankannya!
-  utter_root_for_user:
-  - text: Kamu luar biasa! Terus pertahankan kondisi mental kamu ya!
+  utter_self_mental_health_practice:
+  - text: Dari halodoc, salah satu cara untuk mengatasi stress atau gangguan kecemasan adalah dengan mengatakan hal positif pada diri sendiri
+  - text: Dari halodoc, salah satu cara untuk mengatasi stress atau gangguan kecemasan adalah dengan mengatakan hal positif pada diri sendiri
+  - text: Dari halodoc, menuliskan hal-hal yang patut disyukuri bisa jadi salah satu cara untuk mengatasi stress atau gangguan kecemasan adalah dengan 
+  - text: Dilansir dari halodoc, jika kamu memiliki banyak hal yang harus dilakukan dan membuatmu stress atau cemas, fokuslah pada satu hal pada satu waktu
+  - text: Dalam artikelnya, halodoc menuliskan bahwa berolahraga dapat mengurangi stress atau gangguan kecemasan
+  - text: Kamu suka makan? makanlah makanan yang enak. Karena menurut halodoc, hal tersebut dapat meredakan stress atau kecemasan. Tapi jangan terlalu banyak ya, kurang sehat jadinya.
+  - text: Jika ada sesuatu yang menggangu pikiran kamu saat ini, cobalah untuk terbuka kepada orang lain, ceritakan dan bagikan masalahmu kepada orang kepercayaanmu tersebut. Hal tersebut sempat dimuat dalam artikel oleh halodoc
+  - text: Time pernah menuliskan artikel dengan judul The Secret to Happiness Is Helping Others. Cobalah lakukan sesuatu untuk orang lain, mungkin saja hal tersebut dapat membuatmu merasa lebih baik. Artikel lengkapnya https://time.com/collection/guide-to-happiness/4070299/secret-to-happiness/
+  - text: Beristirahatlah sejenak, gunakan waktumu untuk menengangkan diri kamu dan mengisi kembali tenaga kamu. Menurut halodoc, istirahat dapat mengatasi gangguan kecemasan atau stress 
+  - text: Cobalah untuk tidur tepat waktu dan cukup. Menurut halodoc, sejumlah penelitian menunjukan bahwa kurang tidur memiliki efek negatif yang signifikan pada suasana hati. Selain itu hindari kafein dan gadget setelah bangun. Lakukanlah hal lain, seperti olahraga.
   utter_no_worries:
   - text: Tidak masalah. Semoga harimu menyenangkan!
   utter_goodbye:
   - text: Sampai jumpa kembali
+  - text: Bye bye
+  utter_anything_else:
+  - text: Apakah ada hal lain yang bisa kubantu?
+  - text: Ada hal lain?
 actions:
-- action_handle_test_result
 - action_show_ghq_result
-- action_show_phq_result
+- action_show_nearest_therapist
 - utter_ask_confirm_stop
-- utter_further_test
 - utter_goodbye
-- utter_how_you_feel
 - utter_iamabot
 - utter_introduction
 - utter_nice_to_meet_you
 - utter_no_worries
 - utter_start_general_test
-- utter_start_phq_test
 - utter_test_permission
 forms:
   basic_info_form:
@@ -359,6 +263,11 @@ forms:
       intent: inform
       entity: name
     - type: from_text
+  location_form:
+    location:
+    - type: from_entity
+      entity: location
+      intent: intent
   ghq_form:
     able_concentrate:
     - type: from_intent
@@ -444,121 +353,3 @@ forms:
     - type: from_intent
       value: true
       intent: deny
-  phq_form:
-    interest:
-    - type: from_intent
-      intent: freq_never
-      value: 0
-    - type: from_intent
-      intent: freq_sometimes
-      value: 1
-    - type: from_intent
-      intent: freq_more_than_half
-      value: 2
-    - type: from_intent
-      intent: freq_always
-      value: 3
-    sadness:
-    - type: from_intent
-      intent: freq_never
-      value: 0
-    - type: from_intent
-      intent: freq_sometimes
-      value: 1
-    - type: from_intent
-      intent: freq_more_than_half
-      value: 2
-    - type: from_intent
-      intent: freq_always
-      value: 3
-    sleep:
-    - type: from_intent
-      intent: freq_never
-      value: 0
-    - type: from_intent
-      intent: freq_sometimes
-      value: 1
-    - type: from_intent
-      intent: freq_more_than_half
-      value: 2
-    - type: from_intent
-      intent: freq_always
-      value: 3
-    diet:
-    - type: from_intent
-      intent: freq_never
-      value: 0
-    - type: from_intent
-      intent: freq_sometimes
-      value: 1
-    - type: from_intent
-      intent: freq_more_than_half
-      value: 2
-    - type: from_intent
-      intent: freq_always
-      value: 3
-    energy:
-    - type: from_intent
-      intent: freq_never
-      value: 0
-    - type: from_intent
-      intent: freq_sometimes
-      value: 1
-    - type: from_intent
-      intent: freq_more_than_half
-      value: 2
-    - type: from_intent
-      intent: freq_always
-      value: 3
-    optimism:
-    - type: from_intent
-      intent: freq_never
-      value: 0
-    - type: from_intent
-      intent: freq_sometimes
-      value: 1
-    - type: from_intent
-      intent: freq_more_than_half
-      value: 2
-    - type: from_intent
-      intent: freq_always
-      value: 3
-    concentration:
-    - type: from_intent
-      intent: freq_never
-      value: 0
-    - type: from_intent
-      intent: freq_sometimes
-      value: 1
-    - type: from_intent
-      intent: freq_more_than_half
-      value: 2
-    - type: from_intent
-      intent: freq_always
-      value: 3
-    movement:
-    - type: from_intent
-      intent: freq_never
-      value: 0
-    - type: from_intent
-      intent: freq_sometimes
-      value: 1
-    - type: from_intent
-      intent: freq_more_than_half
-      value: 2
-    - type: from_intent
-      intent: freq_always
-      value: 3
-    suicide_thought:
-    - type: from_intent
-      intent: freq_never
-      value: 0
-    - type: from_intent
-      intent: freq_sometimes
-      value: 1
-    - type: from_intent
-      intent: freq_more_than_half
-      value: 2
-    - type: from_intent
-      intent: freq_always
-      value: 3

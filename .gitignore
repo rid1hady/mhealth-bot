@@ -169,3 +169,4 @@ docker-local
 # Mine
 .vscode
 .env
+test.json
