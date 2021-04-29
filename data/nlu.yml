@@ -106,6 +106,7 @@ nlu:
     - Ayo mulai testnya
     - Test kesehatan mental
     - Test kesehatan mentalku secara umum dong
+    - Assesmen Umum
 - intent: contact_psychiatrist
   examples: |
     - Kontak psikiater

@@ -37,7 +37,15 @@ class ActionShowGhqResult(Action):
 
     @staticmethod
     def get_next_action(dispatcher: CollectingDispatcher, severity_index: int) -> List[Dict[Text, Any]]:
-        check_affiliation = False
+        
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        score = self.get_score(tracker)
+        severity_index = self.get_severity_index(score)
+        score = f"Berdasarkan jawaban yang kamu berikan, skormu adalah {score} dari 12.\n"
+        dispatcher.utter_message(score)
         if severity_index == 0:
             dispatcher.utter_message(template='utter_good_condition_user')
             dispatcher.utter_message(template='utter_anything_else')
@@ -49,15 +57,6 @@ class ActionShowGhqResult(Action):
             dispatcher.utter_message(template='utter_bad_condition')
             dispatcher.utter_message(template='utter_ask_affiliation')
         return []
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        score = self.get_score(tracker)
-        severity_index = self.get_severity_index(score)
-        score = f"Berdasarkan jawaban yang kamu berikan, skormu adalah {score} dari 12.\n"
-        dispatcher.utter_message(score)
-        return self.get_next_action(dispatcher, severity_index)
 
 
 class ActionShowNearestTherapist(Action):

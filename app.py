@@ -18,7 +18,7 @@ from linebot.models import (
     TextMessage, LocationMessage, 
     TextSendMessage, FlexSendMessage,
     TemplateSendMessage,
-    ButtonsTemplate, PostbackAction, URIAction,
+    ButtonsTemplate, MessageAction, PostbackAction, URIAction,
     CarouselContainer, BubbleContainer,
     ImageComponent, BoxComponent,
     TextComponent, ButtonComponent,
@@ -101,27 +101,19 @@ def handle_response(event, api_responses):
     responses = []
     for r in api_responses:
         if 'custom' in r:
-            contents = get_carousel_message(r['custom']['locations'])
+            datas = r['custom']['locations']
+            bubbles = []
+            for data in datas:
+                bubbles.append(get_locations_content(data))
+            contents = CarouselContainer(contents=bubbles)
             responses.append(FlexSendMessage(alt_text="Daftar Lokasi Psikolog Terdekat", contents=contents))
         elif 'buttons' in r:
-            button_actions = []
-            for b in r['buttons']:
-                button_actions.append(
-                    PostbackAction(
-                            label=b['title'],
-                            data=b['payload']
-                        )
-                    )
-            responses.append(TemplateSendMessage(
-                alt_text=r['text'],
-                template=ButtonsTemplate(
-                    text=r['text'],
-                    actions=button_actions
-                )
-            ))
+            bubble = get_multiple_choice_content(r)
+            responses.append(FlexSendMessage(alt_text=r['text'], contents=bubble))
         elif 'text' in r:
             responses.append(TextSendMessage(text=r['text']))
     try:
+        print(responses)
         if (len(responses) > 0):
             line_bot_api.reply_message(
                 event.reply_token,
@@ -131,26 +123,65 @@ def handle_response(event, api_responses):
         app.logger.info("Error ->" + e)
 
 
-def get_open_now(open_now):
-    if (open_now == None):
-        return FillerComponent()
-    if (open_now):
-        return TextComponent(
-                text="Buka",
-                size='sm',
-                margin='xs',
-                color='#1DB446'
-            )
-    else:
-        return TextComponent(
-                text="Tutup",
-                size='sm',
-                margin='xs',
-                color='#ff334b'
-            )
+def get_multiple_choice_content(data):
+    actions = []
+    for b in data['buttons']:
+        actions.append(ButtonComponent(
+            style='primary',
+            height='sm',
+            margin='md',
+            action=MessageAction(label=b['title'], text=b['title'])
+        ))
+
+    print(data.get('text'))
+    bubble = BubbleContainer(
+        direction='ltr',
+        body=BoxComponent(
+                layout='vertical',
+                contents=[
+                    TextComponent(
+                        text="Pilih satu",
+                        size='xs',
+                        align='center',
+                        margin='xs',
+                        color='#1DB446'
+                    ),
+                    TextComponent(
+                        text=data.get('text'),
+                        size='md',
+                        margin='xs',
+                        wrap=True,
+                    )
+                ]
+        ),
+        footer=BoxComponent(
+            layout='vertical',
+            contents=actions
+        )
+    )
+
+    return bubble
 
 
-def get_bubble_content(data):
+def get_locations_content(data):
+    def get_open_now(open_now):
+        if (open_now == None):
+            return FillerComponent()
+        if (open_now):
+            return TextComponent(
+                    text="Buka",
+                    size='sm',
+                    margin='xs',
+                    color='#1DB446'
+                )
+        else:
+            return TextComponent(
+                    text="Tutup",
+                    size='sm',
+                    margin='xs',
+                    color='#ff334b'
+                )
+    
     bubble = BubbleContainer(
             direction='ltr',
             body=BoxComponent(
@@ -198,13 +229,6 @@ def get_bubble_content(data):
             ),
         )
     return bubble
-
-
-def get_carousel_message(datas):
-    contents = []
-    for data in datas:
-        contents.append(get_bubble_content(data))
-    return CarouselContainer(contents=contents)
 
 
 if __name__ == "__main__":
