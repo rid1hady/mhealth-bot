@@ -19,9 +19,9 @@ class GMapsService:
         gmaps = self.get_instance()
         places_nearby = gmaps.places_nearby(
             location=current_place,
+            radius=30*1000,
             language='id',
-            rank_by='distance',
-            keyword='psikolog',
+            keyword='psikolog, psikiater, terdekat',
             type='health'
         )
         return places_nearby['results']

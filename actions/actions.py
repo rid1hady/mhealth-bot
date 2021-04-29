@@ -35,10 +35,6 @@ class ActionShowGhqResult(Action):
     def get_severity_index(score: int) -> Text:
         return 4 if (score == 12) else score // 4
 
-    @staticmethod
-    def get_next_action(dispatcher: CollectingDispatcher, severity_index: int) -> List[Dict[Text, Any]]:
-        
-
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
@@ -47,16 +43,16 @@ class ActionShowGhqResult(Action):
         score = f"Berdasarkan jawaban yang kamu berikan, skormu adalah {score} dari 12.\n"
         dispatcher.utter_message(score)
         if severity_index == 0:
-            dispatcher.utter_message(template='utter_good_condition_user')
-            dispatcher.utter_message(template='utter_anything_else')
+            dispatcher.utter_message(response='utter_good_condition_user')
+            dispatcher.utter_message(response='utter_anything_else')
         elif severity_index == 1:
-            dispatcher.utter_message(template='utter_medium_condition_user')
-            dispatcher.utter_message(template='utter_self_mental_health_practice')
-            dispatcher.utter_message(template='utter_anything_else')
+            dispatcher.utter_message(response='utter_medium_condition_user')
+            dispatcher.utter_message(response='utter_self_mental_health_practice')
+            dispatcher.utter_message(response='utter_anything_else')
         else:
-            dispatcher.utter_message(template='utter_bad_condition')
-            dispatcher.utter_message(template='utter_ask_affiliation')
-        return []
+            dispatcher.utter_message(response='utter_bad_condition')
+            dispatcher.utter_message(response='utter_ask_affiliation')
+        return [SlotSet(slot_name, None) for slot_name in self.get_slots()]
 
 
 class ActionShowNearestTherapist(Action):
@@ -70,4 +66,4 @@ class ActionShowNearestTherapist(Action):
         gmaps = GMapsService()
         results = gmaps.get_places_nearby({'latitude': lat, 'longitude': long})
         dispatcher.utter_message(json_message = {'locations': results})
-        return []
+        return [SlotSet('location', None)]

@@ -30,7 +30,6 @@ entities:
 - lose_confidence
 - think_as_worthless
 - feel_happy
-- check_affiliation
 slots:
   name:
     type: text
@@ -61,8 +60,6 @@ slots:
     type: bool
   feel_happy:
     type: bool
-  check_affiliation:
-    type: bool
 responses:
   utter_default:
   - text: Maaf aku tidak paham kalimatmu, bisa tolong ditulis ulang?
@@ -77,14 +74,18 @@ responses:
 
       Aku akan memberikan kepastian bahwa percakapan kita tidak diketahui oleh siapapun.
       Jika ada sesuatu, kamu bisa kirim pesan minta tolong.
+  utter_hi:
+  - text: Hi {name}! 👋
+  - text: Haii {name}! 👋
+  - text: Halooo {name}! 👋
   utter_features_list:
-  - text: Sampai saat ini, setidaknya aku ini beberapa hal yang sudah bisa kulakukan
+  - text: Sampai saat ini, setidaknya aku bisa melakukan hal berikut.
     buttons:
     - title: Assesmen Umum
       payload: /take_test
     - title: Psikolog Terdekat
       payload: /contact_psychiatrist
-    - title: Tips mental health
+    - title: Tips Mental Health
       payload: /self_care_practices
   utter_ask_name:
   - text: Nama kamu siapa?
@@ -98,15 +99,14 @@ responses:
   - text: Wow, {name} nama yang keren.
   utter_test_policy:
   - text: |
-      Baiklah, sebelumnya akan ingin menginformasikan bahwa data yang kamu berikan dapat aku pastikan kerahasiaannya.
-      Bahkan pembuatku juga tidak akan mengetahui jawaban yang kamu berikan.
+      Baiklah, sebelumnya akan ingin menginformasikan bahwa data yang kamu berikan dapat aku pastikan kerahasiaannya. Bahkan pembuatku juga tidak akan mengetahui jawaban yang kamu berikan.
+      
       Hasil dari test ini tidak mutlak, untuk hasil yang lebih detail, silahkan hubungi Psikolog ke depannya.
   utter_start_general_test:
   - text: |
-      Berikut adalah beberapa pertanyaan untuk {name}!.
-      Pertanyaan ini akan membantu aku untuk membantu menentukan kondisi kesehatan mental kamu secara Umum
-      Aku harap info tersebut bisa membantu kamu lebih mengenali kondisi kamu.
-
+      Berikut adalah beberapa pertanyaan untuk kamu!.
+      Pertanyaan" ini akan membantu aku untuk membantu menentukan kondisi kesehatan mental kamu secara umum.
+      
       Tolong jawab antara "Iya" atau "Tidak".
       Dalam dua minggu terakhir...
   utter_ask_able_concentrate:
@@ -245,6 +245,8 @@ responses:
   utter_anything_else:
   - text: Apakah ada hal lain yang bisa kubantu?
   - text: Ada hal lain?
+  utter_what_help:
+  - text: Ada yang bisa kubantu?
 actions:
 - action_show_ghq_result
 - action_show_nearest_therapist
@@ -255,7 +257,6 @@ actions:
 - utter_nice_to_meet_you
 - utter_no_worries
 - utter_start_general_test
-- utter_test_permission
 forms:
   basic_info_form:
     name:
@@ -267,7 +268,7 @@ forms:
     location:
     - type: from_entity
       entity: location
-      intent: intent
+      intent: inform
   ghq_form:
     able_concentrate:
     - type: from_intent

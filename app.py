@@ -70,8 +70,16 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    special_cases = {
+        "Assesmen Umum": "/take_test",
+        "Psikolog Terdekat": "/contact_psychiatrist",
+        "Tips Mental Health": "/self_care_practices"
+    }
     rasa, sender = get_meta_data(event)
-    api_responses = rasa.post_action(event.message.text, sender)
+    text = event.message.text
+    if text in special_cases:
+        text = special_cases[text]
+    api_responses = rasa.post_action(text, sender)
     handle_response(event, api_responses)
 
 
@@ -99,6 +107,7 @@ def get_meta_data(event):
 
 def handle_response(event, api_responses):
     responses = []
+    print(api_responses)
     for r in api_responses:
         if 'custom' in r:
             datas = r['custom']['locations']
@@ -120,7 +129,10 @@ def handle_response(event, api_responses):
                 responses
             )
     except Exception as e:
-        app.logger.info("Error ->" + e)
+        print(e)
+        app.logger.info("Error ->" + e.message)
+        for d in e.error.details:
+            app.logger.info("    " + d.property + " : " + d.message)
 
 
 def get_multiple_choice_content(data):
@@ -133,16 +145,14 @@ def get_multiple_choice_content(data):
             action=MessageAction(label=b['title'], text=b['title'])
         ))
 
-    print(data.get('text'))
     bubble = BubbleContainer(
         direction='ltr',
         body=BoxComponent(
                 layout='vertical',
                 contents=[
                     TextComponent(
-                        text="Pilih satu",
+                        text="Pilih salah satu",
                         size='xs',
-                        align='center',
                         margin='xs',
                         color='#1DB446'
                     ),

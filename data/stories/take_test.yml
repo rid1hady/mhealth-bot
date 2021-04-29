@@ -20,7 +20,7 @@ stories:
   - active_loop: ghq_form
   - active_loop: null
   - action: action_show_ghq_result
-  - action: utter_anything_else
+
 # Interrupted Continue
 - story: Take test interrupted continue
   steps:
@@ -45,7 +45,7 @@ stories:
   - active_loop: ghq_form
   - active_loop: null
   - action: action_show_ghq_result
-  - action: utter_anything_else
+
 # Happy Path - Interrupted Stop
 - story: Take test interrupted stop
   steps:
@@ -80,7 +80,7 @@ stories:
   - active_loop: ghq_form
   - active_loop: null
   - action: action_show_ghq_result
-  - action: utter_anything_else
+
 # Interrupted Continue
 - story: Take test interrupted continue w/o intro - good condition
   steps:
@@ -96,7 +96,7 @@ stories:
   - active_loop: ghq_form
   - active_loop: null
   - action: action_show_ghq_result
-  - action: utter_anything_else
+
 # Interrupted Stop
 - story: Take test interrupted stop w/o intro
   steps:
@@ -105,6 +105,174 @@ stories:
   - action: utter_start_general_test
   - action: ghq_form
   - active_loop: ghq_form
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - action: utter_no_worries
+  - action: utter_anything_else
+# With Slot examples
+- story: Take test happy path - slot examples
+  steps:
+  - intent: greet
+  - action: utter_introduction
+  - action: basic_info_form
+  - active_loop: basic_info_form
+  - active_loop: null
+  - action: utter_nice_to_meet_you
+  - action: utter_features_list
+  - intent: take_test
+  - action: utter_test_policy
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - slot_was_set:
+    - able_concentrate: true
+    - lost_sleep: true
+    - feel_useful: true
+    - capable_make_decision: true
+    - under_stress: true
+    - overcome_difficulties: true
+    - enjoy_activities: true
+    - face_up_problems: true
+    - feel_unhappy: true
+    - lose_confidence: true
+    - think_as_worthless: true
+    - feel_happy: true
+  - active_loop: null
+  - action: action_show_ghq_result
+
+# Interrupted Continue
+- story: Take test interrupted continue - slot examples
+  steps:
+  - intent: greet
+  - action: utter_introduction
+  - action: basic_info_form
+  - active_loop: basic_info_form
+  - slot_was_set:
+    - name: Siti
+  - active_loop: null
+  - action: utter_nice_to_meet_you
+  - action: utter_features_list
+  - intent: take_test
+  - action: utter_test_policy
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - slot_was_set:
+    - able_concentrate: true
+    - lost_sleep: true
+    - feel_useful: true
+    - capable_make_decision: true
+    - under_stress: true
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: deny
+  - action: ghq_form
+  - active_loop: ghq_form
+  - slot_was_set:
+    - overcome_difficulties: false
+    - enjoy_activities: false
+    - face_up_problems: false
+    - feel_unhappy: false
+    - lose_confidence: false
+    - think_as_worthless: false
+    - feel_happy: false
+  - active_loop: null
+  - action: action_show_ghq_result
+
+- story: Take test interrupted stop - slot examples
+  steps:
+  - intent: greet
+  - action: utter_introduction
+  - action: basic_info_form
+  - active_loop: basic_info_form
+  - slot_was_set:
+    - name: Samsudin
+  - active_loop: null
+  - action: utter_nice_to_meet_you
+  - action: utter_features_list
+  - intent: take_test
+  - action: utter_test_policy
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - slot_was_set:
+    - able_concentrate: false
+    - lost_sleep: false
+    - feel_useful: false
+    - capable_make_decision: false
+    - under_stress: false
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - action: utter_no_worries
+  - action: utter_anything_else
+- story: Take test happy path w/o intro - slot examples
+  steps:
+  - intent: take_test
+  - action: utter_test_policy
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - slot_was_set:
+    - able_concentrate: false
+    - lost_sleep: false
+    - feel_useful: false
+    - capable_make_decision: false
+    - under_stress: false
+    - overcome_difficulties: false
+    - enjoy_activities: false
+    - face_up_problems: false
+    - feel_unhappy: false
+    - lose_confidence: false
+    - think_as_worthless: false
+    - feel_happy: false
+  - active_loop: null
+  - action: action_show_ghq_result
+
+- story: Take test interrupted continue w/o intro - slot examples
+  steps:
+  - intent: take_test
+  - action: utter_test_policy
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - slot_was_set:
+    - able_concentrate: true
+    - lost_sleep: true
+    - feel_useful: true
+    - capable_make_decision: true
+    - under_stress: true
+  - intent: stop
+  - action: utter_ask_confirm_stop
+  - intent: deny
+  - action: ghq_form
+  - active_loop: ghq_form
+  - slot_was_set:
+    - overcome_difficulties: false
+    - enjoy_activities: false
+    - face_up_problems: false
+    - feel_unhappy: false
+    - lose_confidence: false
+    - think_as_worthless: false
+    - feel_happy: false
+  - active_loop: null
+  - action: action_show_ghq_result
+
+- story: Take test interrupted stop w/o intro - slot examples
+  steps:
+  - intent: take_test
+  - action: utter_test_policy
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form
+  - slot_was_set:
+    - able_concentrate: true
+    - lost_sleep: true
   - intent: stop
   - action: utter_ask_confirm_stop
   - intent: affirm

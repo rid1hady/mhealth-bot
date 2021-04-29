@@ -7,8 +7,6 @@ pipeline:
     model_weights: indobenchmark/indobert-large-p1
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
-    OOV_token: oov
-    token_pattern: (?u)\b\w+\b
   - name: CountVectorsFeaturizer
     analyzer: "char_wb"
     min_ngram: 1
@@ -31,5 +29,8 @@ policies:
     batch_size:
     - 32
     - 64
+    model_confidence: linear_norm
+    constrain_similarities: true
+    loss_type: cross_entropy
   - name: MemoizationPolicy
   - name: RulePolicy

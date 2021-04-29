@@ -130,6 +130,7 @@ nlu:
     - Tolong
     - Bantu
     - Bantuan
+    - Bisa apa saja?
 - intent: chitchat
   examples: |
     - bagaimana cuaca hari ini?
