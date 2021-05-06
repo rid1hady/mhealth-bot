@@ -66,20 +66,18 @@ responses:
   - text: Aku tidak bisa memahami kalimat kamu, bisa tolong diulangi?
   - text: Bisa tolong ditulis ulang pertanyaannya? Aku kurang paham, Maaf ya.
   utter_iamabot:
-  - text: Hi! Namaku MantapBot
+  - text: Hi! Aku M-health Bot
   utter_introduction:
   - text: |
-      Halo! perkenalkan aku adalah MantapBot.
-      Fungsi utamaku adalah untuk memberikan asesmen dini terhadap kesehatan mental secara general.
-
-      Aku akan memberikan kepastian bahwa percakapan kita tidak diketahui oleh siapapun.
-      Jika ada sesuatu, kamu bisa kirim pesan minta tolong.
+      Halooo ! 👋
+      Aku adalah M-health Bot.
+      Fungsi utamaku untuk bantu kamu ngelakuin assesmen terhadap kesehatan mental secara umum.
   utter_hi:
-  - text: Hi {name}! 👋
-  - text: Haii {name}! 👋
-  - text: Halooo {name}! 👋
+  - text: Hi {name} ! 👋
+  - text: Haii {name} ! 👋
+  - text: Halooo {name} ! 👋
   utter_features_list:
-  - text: Sampai saat ini, setidaknya aku bisa melakukan hal berikut.
+  - text: Aku baru bisa ngelakuin hal berikut ini.
     buttons:
     - title: Assesmen Umum
       payload: /take_test
@@ -91,108 +89,140 @@ responses:
   - text: Nama kamu siapa?
   - text: Siapa namanya kalau boleh tahu?
   utter_ask_location:
-  - text: Boleh tolong shareloc?
-  - text: Bisa tolong bagikan lokasi kamu?
+  - text: Boleh tolong shareloc pin?
+  - text: Bisa tolong kirimkan shareloc pin kamu?
   utter_nice_to_meet_you:
   - text: Senang berkenalan denganmu {name}.
   - text: Salam kenal {name}.
   - text: Wow, {name} nama yang keren.
   utter_test_policy:
   - text: |
-      Baiklah, sebelumnya akan ingin menginformasikan bahwa data yang kamu berikan dapat aku pastikan kerahasiaannya. Bahkan pembuatku juga tidak akan mengetahui jawaban yang kamu berikan.
+      Baiklah, sebelumnya aku ingin menginformaskan bahwa aku dan pembuatku, menjamin privasi kamu.
       
-      Hasil dari test ini tidak mutlak, untuk hasil yang lebih detail, silahkan hubungi Psikolog ke depannya.
+      Hasil dari test ini tidak mutlak, untuk hasil yang lebih detail, silahkan hubungi Psikolog.
   utter_start_general_test:
   - text: |
-      Berikut adalah beberapa pertanyaan untuk kamu!.
-      Pertanyaan" ini akan membantu aku untuk membantu menentukan kondisi kesehatan mental kamu secara umum.
-      
-      Tolong jawab antara "Iya" atau "Tidak".
-      Dalam dua minggu terakhir...
+      Aku akan ngasih kamu 12 pernyataan, tolong dijawab sesuai dengan kondisi kamu dalam 2 (dua) minggu terakhir.
   utter_ask_able_concentrate:
-  - text: Apa kamu tetap dapat konsentrasi terhadap hal yang kamu perlu kerjakan?
-    buttons:
-    - title: Iya
-      payload: /affirm
-    - title: Tidak
-      payload: /deny
-  utter_ask_lost_sleep:
-  - text: Apa kamu jadi kurang tidur karena overthinking?
-    buttons:
-    - title: Iya
-      payload: /affirm
-    - title: Tidak
-      payload: /deny
+  - custom:
+      payload:
+        text: Saya dapat berkonsentrasi terhadap hal yang saya perlu kerjakan.
+        question_number: 1
+        buttons:
+        - title: Iya
+          payload: /affirm
+        - title: Tidak
+          payload: /deny
   utter_ask_feel_useful:
-  - text: Apa kamu merasa memainkan peran yang penting atau berguna untuk orang lain akhir-akhir ini?
-    buttons:
-    - title: Iya
-      payload: /affirm
-    - title: Tidak
-      payload: /deny
+  - custom:
+      payload:
+        text: Saya merasa memainkan peran penting atau merasa berguna untuk orang lain akhir-akhir ini.
+        question_number: 2
+        buttons:
+        - title: Iya
+          payload: /affirm
+        - title: Tidak
+          payload: /deny
   utter_ask_capable_make_decision:
-  - text: Apa kamu merasa telah membuat keputusan yang bagus akhir-akhir ini?
-    buttons:
-    - title: Iya
-      payload: /affirm
-    - title: Tidak
-      payload: /deny
-  utter_ask_under_stress:
-  - text: Apa kamu merasa tertekan atau stress?
-    buttons:
-    - title: Iya
-      payload: /affirm
-    - title: Tidak
-      payload: /deny
-  utter_ask_overcome_difficulties:
-  - text: Apa kamu merasa tidak bisa mengatasi kesulitan?
-    buttons:
-    - title: Iya
-      payload: /affirm
-    - title: Tidak
-      payload: /deny
+  - custom:
+      payload:
+        text: Akhir-akhir ini keputusan yang saya buat merupakan keputusan yang bagus.
+        question_number: 3
+        buttons:
+        - title: Iya
+          payload: /affirm
+        - title: Tidak
+          payload: /deny
   utter_ask_enjoy_activities:
-  - text: Apa kamu menikmati keseharianmu?
-    buttons:
-    - title: Iya
-      payload: /affirm
-    - title: Tidak
-      payload: /deny
+  - custom:
+      payload:
+        text: Saya menikmati keseharian saya.
+        question_number: 4
+        buttons:
+        - title: Iya
+          payload: /affirm
+        - title: Tidak
+          payload: /deny
   utter_ask_face_up_problems:
-  - text: Apa kamu dapat menghadapi masalah dengan baik?
-    buttons:
-    - title: Iya
-      payload: /affirm
-    - title: Tidak
-      payload: /deny
-  utter_ask_feel_unhappy:
-  - text: Apa kamu merasa depresi atau tidak bahagia?
-    buttons:
-    - title: Iya
-      payload: /affirm
-    - title: Tidak
-      payload: /deny
-  utter_ask_lose_confidence:
-  - text: Apa kamu merasa tidak pede sama diri sendiri?
-    buttons:
-    - title: Iya
-      payload: /affirm
-    - title: Tidak
-      payload: /denym
-  utter_ask_think_as_worthless:
-  - text: Apa kamu merasa tidak berguna?
-    buttons:
-    - title: Iya
-      payload: /affirm
-    - title: Tidak
-      payload: /deny
+  - custom:
+      payload:
+        text: Saya dapat menghadapi masalah dengan baik.
+        question_number: 5
+        buttons:
+        - title: Iya
+          payload: /affirm
+        - title: Tidak
+          payload: /deny
   utter_ask_feel_happy:
-  - text: Apa kamu merasa cukup bahagia, dengan mempertimbangkan semua yang kamu miliki atau terjadi saat ini
-    buttons:
-    - title: Iya
-      payload: /affirm
-    - title: Tidak
-      payload: /deny
+  - custom:
+      payload:
+        text: Dengan mempertimbangkan semua yang saya miliki hingga saat ini, saya merasa bahagia.
+        question_number: 6
+        buttons:
+        - title: Iya
+          payload: /affirm
+        - title: Tidak
+          payload: /deny
+  utter_ask_lost_sleep:
+  - custom:
+      payload:
+        text: Saya akhir-akhir ini kurang tidur karena overthinking (banyak pikiran).
+        question_number: 7
+        buttons:
+        - title: Iya
+          payload: /affirm
+        - title: Tidak
+          payload: /deny
+  utter_ask_under_stress:
+  - custom:
+      payload:
+        text: Saya merasa tertekan dan/atau stress.
+        question_number: 8
+        buttons:
+        - title: Iya
+          payload: /affirm
+        - title: Tidak
+          payload: /deny
+  utter_ask_overcome_difficulties:
+  - custom:
+      payload:
+        text: Saya tidak bisa menghadapi kesulitan saya. 
+        question_number: 9
+        buttons:
+        - title: Iya
+          payload: /affirm
+        - title: Tidak
+          payload: /deny
+  utter_ask_feel_unhappy:
+  - custom:
+      payload:
+        text: Saya merasa depresi dan tidak bahagia.
+        question_number: 10
+        buttons:
+        - title: Iya
+          payload: /affirm
+        - title: Tidak
+          payload: /deny
+  utter_ask_lose_confidence:
+  - custom:
+      payload:
+        text: Saya tidak pede dengan diri saya.
+        question_number: 11
+        buttons:
+        - title: Iya
+          payload: /affirm
+        - title: Tidak
+          payload: /deny
+  utter_ask_think_as_worthless:
+  - custom:
+      payload:
+        text: Terkadang, saya merasakan krisis eksistensi atau merasa tidak berguna.
+        question_number: 12
+        buttons:
+        - title: Iya
+          payload: /affirm
+        - title: Tidak
+          payload: /deny
   utter_ask_confirm_stop:
   - text: Apa kamu yakin ingin mengakhiri test?
   - text: Apakah kamu yakin ingin berhenti?
@@ -239,9 +269,12 @@ responses:
   - text: Cobalah untuk tidur tepat waktu dan cukup. Menurut halodoc, sejumlah penelitian menunjukan bahwa kurang tidur memiliki efek negatif yang signifikan pada suasana hati. Selain itu hindari kafein dan gadget setelah bangun. Lakukanlah hal lain, seperti olahraga.
   utter_no_worries:
   - text: Tidak masalah. Semoga harimu menyenangkan!
+  - text: Santai aja, have a nice day!
+  - text: No worries bro, have a good day!
   utter_goodbye:
   - text: Sampai jumpa kembali
   - text: Bye bye
+  - text: Ciao!
   utter_anything_else:
   - text: Apakah ada hal lain yang bisa kubantu?
   - text: Ada hal lain?
@@ -250,13 +283,6 @@ responses:
 actions:
 - action_show_ghq_result
 - action_show_nearest_therapist
-- utter_ask_confirm_stop
-- utter_goodbye
-- utter_iamabot
-- utter_introduction
-- utter_nice_to_meet_you
-- utter_no_worries
-- utter_start_general_test
 forms:
   basic_info_form:
     name:
@@ -269,7 +295,9 @@ forms:
     - type: from_entity
       entity: location
       intent: inform
+    - type: from_text
   ghq_form:
+    # Positive worded
     able_concentrate:
     - type: from_intent
       value: true
@@ -312,6 +340,7 @@ forms:
     - type: from_intent
       value: false
       intent: deny
+    # Negative worded
     lost_sleep:
     - type: from_intent
       value: false

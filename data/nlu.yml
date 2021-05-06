@@ -52,6 +52,9 @@ nlu:
     - silahkan
     - silakan
     - siap
+    - yoi
+    - iya dong
+    - Tentu
 - intent: deny
   examples: |
     - tidak
@@ -65,6 +68,14 @@ nlu:
     - bukan
     - no
     - n
+    - Nggak lah!
+    - Nggak dong
+    - Gak dong
+    - Kaga
+    - Kagak
+    - Nggak juga sih
+    - Gausah
+    - Gaperlu
 - intent: bot_challenge
   examples: |
     - kamu apa?
@@ -114,6 +125,9 @@ nlu:
     - Lokasi psikolog terdekat dimana ya?
     - Lokasi psikiater terdekat dimana ya?
     - Kalau mau ke psikilog harus ke mana?
+    - Mau konseling dong
+    - Psikiater terdekat
+    - Psikolog terdekat
 - intent: self_care_practices
   examples: |
     - Tips and trick menjaga kesehatan mental
@@ -122,6 +136,8 @@ nlu:
     - Ada gak yang bisa kulukakan untuk memperbaiki kesehatan mentalku?
     - Bagaimana caraku buat jaga kesehatan mental secara mandiri ya?
     - Kalau aku mau memperbaiki kesehatan mental tanpa psikolog gimana ya?
+    - Tips kesehatan mental
+    - Saran kesehatan mental
 - intent: help
   examples: |
     - Tolong kasih tahu dong kontak psikiater
@@ -131,6 +147,10 @@ nlu:
     - Bantu
     - Bantuan
     - Bisa apa saja?
+    - Bisa bantu apa aja?
+    - Bisa ngapain aja?
+    - Apa aja yang kamu bisa?
+    - Apa aja yang bisa kamu lakuin?
 - intent: chitchat
   examples: |
     - bagaimana cuaca hari ini?

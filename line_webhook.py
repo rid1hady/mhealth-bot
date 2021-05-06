@@ -110,12 +110,23 @@ def handle_response(event, api_responses):
     print(api_responses)
     for r in api_responses:
         if 'custom' in r:
-            datas = r['custom']['locations']
-            bubbles = []
-            for data in datas:
-                bubbles.append(get_locations_content(data))
-            contents = CarouselContainer(contents=bubbles)
-            responses.append(FlexSendMessage(alt_text="Daftar Lokasi Psikolog Terdekat", contents=contents))
+            custom_data = r['custom']
+            if 'location' in custom_data:
+                datas = custom_data['locations']
+                bubbles = []
+                for data in datas:
+                    bubbles.append(get_locations_content(data))
+                contents = CarouselContainer(contents=bubbles)
+                responses.append(
+                    FlexSendMessage(
+                        alt_text="Daftar Lokasi Psikolog Terdekat",
+                        contents=contents
+                    )
+                )
+            elif 'payload' in custom_data:
+                payload = custom_data['payload']
+                bubble = get_multiple_choice_content(payload)
+                responses.append(FlexSendMessage(alt_text=payload['text'], contents=bubble))
         elif 'buttons' in r:
             bubble = get_multiple_choice_content(r)
             responses.append(FlexSendMessage(alt_text=r['text'], contents=bubble))
@@ -135,6 +146,50 @@ def handle_response(event, api_responses):
             app.logger.info("    " + d.property + " : " + d.message)
 
 
+def get_header_text(data):
+    question_number = data.get("question_number", None)
+    print(question_number)
+    if question_number == None:
+        return [
+            TextComponent(
+                text="Pilih salah satu",
+                size='xs',
+                margin='xs',
+                color='#1DB446'
+            )
+        ]
+    else:
+        percentage = float(question_number / 12) * 100
+        return [
+            TextComponent(
+                text="Progess : {} %".format(int(round(percentage))),
+                size='xs',
+                margin='lg',
+                color='#27ACB2'
+            ),
+            BoxComponent(
+                layout='vertical',
+                margin='sm',
+                height='6px',
+                background_color='#9FD8E3',
+                corner_radius='2px',
+                contents=[
+                    BoxComponent(
+                        layout='vertical',
+                        height='6px',
+                        corner_radius='2px',
+                        width="{}%".format(int(round(percentage))),
+                        background_color='#0D8186',
+                        contents=[
+                            FillerComponent()
+                        ]
+                    )
+                ],
+            ),
+        ]
+
+        
+
 def get_multiple_choice_content(data):
     actions = []
     for b in data['buttons']:
@@ -149,17 +204,11 @@ def get_multiple_choice_content(data):
         direction='ltr',
         body=BoxComponent(
                 layout='vertical',
-                contents=[
-                    TextComponent(
-                        text="Pilih salah satu",
-                        size='xs',
-                        margin='xs',
-                        color='#1DB446'
-                    ),
+                contents=get_header_text(data) + [
                     TextComponent(
                         text=data.get('text'),
                         size='md',
-                        margin='xs',
+                        margin='lg',
                         wrap=True,
                     )
                 ]
