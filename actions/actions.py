@@ -31,15 +31,11 @@ class ActionShowGhqResult(Action):
         score = sum([tracker.get_slot(key) for key in self.get_slots()])
         return score
 
-    @staticmethod
-    def get_severity_index(score: int) -> Text:
-        return 4 if (score == 12) else score // 4
-
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         score = self.get_score(tracker)
-        severity_index = self.get_severity_index(score)
+        severity_index = score // 4
         score = f"Berdasarkan jawaban yang kamu berikan, skormu adalah {score} dari 12.\n"
         dispatcher.utter_message(score)
         if severity_index == 0:
@@ -51,6 +47,7 @@ class ActionShowGhqResult(Action):
             dispatcher.utter_message(response='utter_anything_else')
         else:
             dispatcher.utter_message(response='utter_bad_condition')
+            dispatcher.utter_message(response='utter_help_look_experts')
             dispatcher.utter_message(response='utter_ask_affiliation')
         return [SlotSet(slot_name, None) for slot_name in self.get_slots()]
 
@@ -69,8 +66,6 @@ class ActionShowNearestTherapist(Action):
             lat, long = list(map(float, slot_value.split(',')))
         except ValueError:
             lat, long = gmaps.get_geocode_result(slot_value)
-            print(lat, long)
-
         if lat == None or long == None:
             dispatcher.utter_message(response='utter_location_not_found')
             return [SlotSet('location', None), FollowupAction(name='location_form')]

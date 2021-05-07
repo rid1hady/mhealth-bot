@@ -32,7 +32,13 @@ class GMapsService:
         return place['result']
 
     def get_places_nearby(self, location):
-        search_results = self.search_nearby(location)
+        search_results = sorted(
+                            self.search_nearby(location),
+                            key = lambda res: (
+                                res.get('rating', 0.0),
+                                res.get('user_ratings_total', 0)
+                            ),
+                            reverse=True)
         formatted_result = []
         i = 0
         for result in search_results:
@@ -56,7 +62,6 @@ class GMapsService:
     def get_geocode_result(self, query):
         gmaps = self.get_instance()
         geocode_result = gmaps.geocode(address=query, language='id')
-        print(geocode_result)
         if len(geocode_result) == 0:
             return None, None
         else:

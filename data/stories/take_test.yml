@@ -280,3 +280,37 @@ stories:
   - active_loop: null
   - action: utter_no_worries
   - action: utter_anything_else
+- story: Bad condition aftermath - no itb
+  steps:
+  - action: utter_ask_affiliation
+  - intent: deny
+  - action: location_form
+  - active_loop: location_form
+  - slot_was_set:
+    - location: "Jakarta"
+  - active_loop: null
+  - action: action_show_nearest_therapist
+  - action: utter_anything_else
+- story: Bad condition aftermath - itb 1
+  steps:
+  - action: utter_ask_affiliation
+  - intent: affirm
+  - action: utter_itb_counselling_contact
+  - action: utter_ask_list_nearest
+  - intent: deny
+  - action: utter_no_worries
+  - action: utter_anything_else
+- story: Bad condition aftermath - itb 2
+  steps:
+  - action: utter_ask_affiliation
+  - intent: affirm
+  - action: utter_itb_counselling_contact
+  - action: utter_ask_list_nearest
+  - intent: affirm
+  - action: location_form
+  - active_loop: location_form
+  - slot_was_set:
+    - location: "7.0051, 110.4381"
+  - active_loop: null
+  - action: action_show_nearest_therapist
+  - action: utter_anything_else

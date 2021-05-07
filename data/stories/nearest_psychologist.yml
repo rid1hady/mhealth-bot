@@ -92,7 +92,6 @@ stories:
   - action: utter_anything_else
 - story: Nearest psychologist w/o intro itb 2
   steps:
-  - action: utter_features_list
   - intent: contact_psychiatrist
   - action: utter_ask_affiliation
   - intent: affirm

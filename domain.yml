@@ -229,7 +229,7 @@ responses:
   utter_ask_suggestion:
   - text: Terima kasih, boleh aku tanya kenapa ingin berhenti?
   utter_ask_affiliation:
-  - text: Apakah kamu mahasiswa ITB?
+  - text: Sebelumnya, Apakah kamu mahasiswa ITB?
   utter_itb_counselling_contact:
   - text: |
       Bagi kamu, mahasiswa ITB, kamu bisa memesan sesi konsultasi bersama dengan psikolog ITB.
@@ -251,11 +251,14 @@ responses:
   utter_medium_condition_user:
   - text: Artinya, mohon maaf, kondisi kamu kurang bagus tapi tidak parah juga 😟.
   - text: Skor tersebut menunjukan kalau kondisi mental kamu tidak terlalu bagus.
+  - text: Kondisi mentalmu sudah cukup bagus, berikut ada beberapa bahan bacaan dan training yang bisa kamu lakukan untuk meningkatkan atau mempertahankannya!
   utter_bad_condition:
   - text: Sepertinya kondisi mental kamu sedang tidak bagus.
   - text: Secara umum, kondisi kesehatan mental kamu sedang tidak baik-baik saja.
   - text: Dengan skor tersebut, mohon maaf, aku ingin sampaikan kalau kondisi mental kamu sedang buruk 😢.
-  - text: Kondisi mentalmu sudah cukup bagus, berikut ada beberapa bahan bacaan dan training yang bisa kamu lakukan untuk meningkatkan atau mempertahankannya!
+  utter_help_look_experts:
+  - text: Aku akan bantu carikan informasi psikolog untuk kamu.
+  - text: Akan kubantu kamu mencari informasi psikolog terdekat dari tempatmu.
   utter_self_mental_health_practice:
   - text: Dari halodoc, salah satu cara untuk mengatasi stress atau gangguan kecemasan adalah dengan mengatakan hal positif pada diri sendiri
   - text: Dari halodoc, salah satu cara untuk mengatasi stress atau gangguan kecemasan adalah dengan mengatakan hal positif pada diri sendiri
@@ -317,86 +320,86 @@ forms:
     # Positive worded
     able_concentrate:
     - type: from_intent
-      value: true
+      value: false
       intent: affirm
     - type: from_intent
-      value: false
+      value: true
       intent: deny
     feel_useful:
     - type: from_intent
-      value: true
+      value: false
       intent: affirm
     - type: from_intent
-      value: false
+      value: true
       intent: deny
     capable_make_decision:
     - type: from_intent
-      value: true
+      value: false
       intent: affirm
     - type: from_intent
-      value: false
+      value: true
       intent: deny
     enjoy_activities:
     - type: from_intent
-      value: true
+      value: false
       intent: affirm
     - type: from_intent
-      value: false
+      value: true
       intent: deny
     face_up_problems:
     - type: from_intent
-      value: true
+      value: false
       intent: affirm
     - type: from_intent
-      value: false
+      value: true
       intent: deny
     feel_happy:
     - type: from_intent
-      value: true
+      value: false
       intent: affirm
     - type: from_intent
-      value: false
+      value: true
       intent: deny
     # Negative worded
     lost_sleep:
     - type: from_intent
-      value: false
+      value: true
       intent: affirm
     - type: from_intent
-      value: true
+      value: false
       intent: deny
     under_stress:
     - type: from_intent
-      value: false
+      value: true
       intent: affirm
     - type: from_intent
-      value: true
+      value: false
       intent: deny
     overcome_difficulties:
     - type: from_intent
-      value: false
+      value: true
       intent: affirm
     - type: from_intent
-      value: true
+      value: false
       intent: deny
     feel_unhappy:
     - type: from_intent
-      value: false
+      value: true
       intent: affirm
     - type: from_intent
-      value: true
+      value: false
       intent: deny
     lose_confidence:
     - type: from_intent
-      value: false
+      value: true
       intent: affirm
     - type: from_intent
-      value: true
+      value: false
       intent: deny
     think_as_worthless:
     - type: from_intent
-      value: false
+      value: true
       intent: affirm
     - type: from_intent
-      value: true
+      value: false
       intent: deny
