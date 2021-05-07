@@ -277,9 +277,26 @@ responses:
   - text: Ciao!
   utter_anything_else:
   - text: Apakah ada hal lain yang bisa kubantu?
+    buttons:
+    - title: Assesmen Umum
+      payload: /take_test
+    - title: Psikolog Terdekat
+      payload: /contact_psychiatrist
+    - title: Tips Mental Health
+      payload: /self_care_practices
   - text: Ada hal lain?
+    buttons:
+    - title: Assesmen Umum
+      payload: /take_test
+    - title: Psikolog Terdekat
+      payload: /contact_psychiatrist
+    - title: Tips Mental Health
+      payload: /self_care_practices
   utter_what_help:
   - text: Ada yang bisa kubantu?
+  utter_location_not_found:
+  - text: Mohon maaf, lokasi tidak bisa aku temukan.
+  - text: Lokasi yang kamu kirim tidak dapat aku temukan.
 actions:
 - action_show_ghq_result
 - action_show_nearest_therapist

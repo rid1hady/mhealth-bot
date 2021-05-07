@@ -52,3 +52,19 @@ class GMapsService:
             }
             formatted_result.append(res)
         return formatted_result
+
+    def get_geocode_result(self, query):
+        gmaps = self.get_instance()
+        geocode_result = gmaps.geocode(address=query, language='id')
+        print(geocode_result)
+        if len(geocode_result) == 0:
+            return None, None
+        else:
+            result = geocode_result[0]
+            location = result.get('geometry', {}).get('location')
+            if location == None:
+                return None, None
+            else:
+                lat = location.get('lat')
+                long = location.get('lng')
+                return lat, long

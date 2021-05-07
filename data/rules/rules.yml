@@ -18,6 +18,8 @@ rules:
   condition:
   - active_loop: ghq_form
   steps:
+  - slot_was_set:
+    - requested_slot: null
   - active_loop: null
   - action: action_show_ghq_result
 
@@ -25,6 +27,8 @@ rules:
   condition:
   - active_loop: location_form
   steps:
+  - slot_was_set:
+    - requested_slot: null
   - active_loop: null
   - action: action_show_nearest_therapist
   - action: utter_anything_else

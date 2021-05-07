@@ -2,7 +2,7 @@ from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.events import SlotSet
+from rasa_sdk.events import SlotSet, FollowupAction
 
 from actions.api.gmaps_service import GMapsService
 
@@ -62,8 +62,19 @@ class ActionShowNearestTherapist(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        lat, long = list(map(float, tracker.get_slot('location').split(',')))
+        lat, long = [None, None]
         gmaps = GMapsService()
-        results = gmaps.get_places_nearby({'latitude': lat, 'longitude': long})
-        dispatcher.utter_message(json_message = {'locations': results})
-        return [SlotSet('location', None)]
+        slot_value = tracker.get_slot('location')
+        try:
+            lat, long = list(map(float, slot_value.split(',')))
+        except ValueError:
+            lat, long = gmaps.get_geocode_result(slot_value)
+            print(lat, long)
+
+        if lat == None or long == None:
+            dispatcher.utter_message(response='utter_location_not_found')
+            return [SlotSet('location', None), FollowupAction(name='location_form')]
+        else:
+            results = gmaps.get_places_nearby({'latitude': lat, 'longitude': long})
+            dispatcher.utter_message(json_message = {'locations': results})
+            return [SlotSet('location', None)]

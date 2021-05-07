@@ -22,6 +22,7 @@ stories:
   - active_loop: null
   - action: action_show_nearest_therapist
   - action: utter_anything_else
+
 - story: Nearest psychologist itb 1
   steps:
   - intent: greet
@@ -75,7 +76,7 @@ stories:
   - action: location_form
   - active_loop: location_form
   - slot_was_set:
-    - location: "6.8899, 109.3807"
+    - location: "Pemalang"
   - active_loop: null
   - action: action_show_nearest_therapist
   - action: utter_anything_else
@@ -102,6 +103,38 @@ stories:
   - active_loop: location_form
   - slot_was_set:
     - location: "7.0051, 110.4381"
+  - active_loop: null
+  - action: action_show_nearest_therapist
+  - action: utter_anything_else
+
+- story: Nearest psychologist ask twice
+  steps:
+  - intent: greet
+  - action: utter_introduction
+  - action: basic_info_form
+  - active_loop: basic_info_form
+  - slot_was_set:
+    - name: Ariel
+  - active_loop: null
+  - action: utter_nice_to_meet_you
+  - action: utter_features_list
+  - intent: contact_psychiatrist
+  - action: utter_ask_affiliation
+  - intent: deny
+  - action: location_form
+  - active_loop: location_form
+  - slot_was_set:
+    - location: "Jakarta"
+  - active_loop: null
+  - action: action_show_nearest_therapist
+  - action: utter_anything_else
+  - intent: contact_psychiatrist
+  - action: utter_ask_affiliation
+  - intent: deny
+  - action: location_form
+  - active_loop: location_form
+  - slot_was_set:
+    - location: "Bandung"
   - active_loop: null
   - action: action_show_nearest_therapist
   - action: utter_anything_else

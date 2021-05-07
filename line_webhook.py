@@ -111,7 +111,7 @@ def handle_response(event, api_responses):
     for r in api_responses:
         if 'custom' in r:
             custom_data = r['custom']
-            if 'location' in custom_data:
+            if 'locations' in custom_data:
                 datas = custom_data['locations']
                 bubbles = []
                 for data in datas:
