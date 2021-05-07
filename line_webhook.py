@@ -107,7 +107,6 @@ def get_meta_data(event):
 
 def handle_response(event, api_responses):
     responses = []
-    print(api_responses)
     for r in api_responses:
         if 'custom' in r:
             custom_data = r['custom']
@@ -133,7 +132,6 @@ def handle_response(event, api_responses):
         elif 'text' in r:
             responses.append(TextSendMessage(text=r['text']))
     try:
-        print(responses)
         if (len(responses) > 0):
             line_bot_api.reply_message(
                 event.reply_token,
@@ -148,7 +146,6 @@ def handle_response(event, api_responses):
 
 def get_header_text(data):
     question_number = data.get("question_number", None)
-    print(question_number)
     if question_number == None:
         return [
             TextComponent(
