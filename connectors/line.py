@@ -5,7 +5,11 @@ from sanic.request import Request
 from sanic.response import HTTPResponse
 from sanic.exceptions import abort
 
-from rasa.core.channels.channel import UserMessage, CollectingOutputChannel, InputChannel
+from rasa.core.channels.channel import (
+    UserMessage,
+    CollectingOutputChannel,
+    InputChannel,
+)
 from rasa.shared.constants import INTENT_MESSAGE_PREFIX
 
 from typing import Text, Dict, Any, Optional, Callable, Awaitable
@@ -13,13 +17,19 @@ from linebot import LineBotApi, WebhookParser
 from linebot.exceptions import InvalidSignatureError, LineBotApiError
 
 from linebot.models import (
-    MessageEvent, PostbackEvent,
-    TextMessage, LocationMessage,
-    TextSendMessage, FlexSendMessage,
-    CarouselContainer
+    MessageEvent,
+    PostbackEvent,
+    TextMessage,
+    LocationMessage,
+    TextSendMessage,
+    FlexSendMessage,
+    CarouselContainer,
 )
 
-from connectors.message_constructor import construct_location_message, construct_multiple_choice
+from connectors.message_constructor import (
+    construct_location_message,
+    construct_multiple_choice,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -30,10 +40,10 @@ class LineClient:
         return "line"
 
     def __init__(
-            self,
-            access_token: Text,
-            secret: Text,
-            on_new_message: Callable[[UserMessage], Awaitable[Any]]
+        self,
+        access_token: Text,
+        secret: Text,
+        on_new_message: Callable[[UserMessage], Awaitable[Any]],
     ) -> None:
         self.on_new_message = on_new_message
         self.client = LineBotApi(access_token)
@@ -53,26 +63,24 @@ class LineClient:
         special_cases = {
             "Assesmen Umum": "/take_test",
             "Psikolog Terdekat": "/contact_psychiatrist",
-            "Tips Mental Health": "/self_care_practices"
+            "Tips Mental Health": "/self_care_practices",
         }
         text = event.message.text
         if text in special_cases:
             text = special_cases[text]
         await self.send_to_rasa(
-            text=text,
-            out_channel=self.output_collector,
-            sender_id=event.source.user_id
+            text=text, out_channel=self.output_collector, sender_id=event.source.user_id
         )
 
     async def handle_location_message(self, event):
         lat = event.message.latitude
         long = event.message.longitude
-        location_string = "{{\"location\": \"{0}, {1}\"}}".format(lat, long)
+        location_string = '{{"location": "{0}, {1}"}}'.format(lat, long)
         message = "/inform" + location_string
         await self.send_to_rasa(
             text=message,
             out_channel=self.output_collector,
-            sender_id=event.source.user_id
+            sender_id=event.source.user_id,
         )
 
     async def handle_postback(self, event):
@@ -80,22 +88,18 @@ class LineClient:
             await self.send_to_rasa(
                 text=event.postback.data,
                 out_channel=self.output_collector,
-                sender_id=event.source.user_id
+                sender_id=event.source.user_id,
             )
 
     async def send_to_rasa(
-            self,
-            text: Text,
-            out_channel: Optional["CollectingOutputChannel"],
-            sender_id: Text,
-            metadata: Optional[Dict] = None
+        self,
+        text: Text,
+        out_channel: Optional["CollectingOutputChannel"],
+        sender_id: Text,
+        metadata: Optional[Dict] = None,
     ) -> None:
         usr_message = UserMessage(
-            text,
-            out_channel,
-            sender_id,
-            input_channel=self.name(),
-            metadata=metadata
+            text, out_channel, sender_id, input_channel=self.name(), metadata=metadata
         )
         await self.on_new_message(usr_message)
 
@@ -112,51 +116,43 @@ class LineOutput(CollectingOutputChannel):
     def send(self, reply_token: Text) -> None:
         responses = []
         for message in self.messages:
-            if message.get('custom'):
-                responses.append(self.get_custom_response(message.get('custom')))
-            elif message.get('buttons'):
+            if message.get("custom"):
+                responses.append(self.get_custom_response(message.get("custom")))
+            elif message.get("buttons"):
                 responses.append(self.get_button_response(message))
-            elif message.get('text'):
-                responses.append(self.get_text_response(message.get('text')))
-        
+            elif message.get("text"):
+                responses.append(self.get_text_response(message.get("text")))
+
         responses = list(filter(None, responses))
         if len(responses) > 0:
-            self.line_bot_api.reply_message(
-                reply_token,
-                responses
-            )
+            self.line_bot_api.reply_message(reply_token, responses)
 
-    def get_text_response(
-            self, text: Text
-    ) -> TextSendMessage:
+    @staticmethod
+    def get_text_response(text: Text) -> TextSendMessage:
         return TextSendMessage(text)
 
-    def get_button_response(
-            self,
-            message: Dict[Text, Any]
-    ) -> FlexSendMessage:
+    @staticmethod
+    def get_button_response(message: Dict[Text, Any]) -> FlexSendMessage:
         content = construct_multiple_choice(message)
-        return FlexSendMessage(alt_text=message.get('text'), contents=content)
+        return FlexSendMessage(alt_text=message.get("text"), contents=content)
 
-    def get_custom_response(
-            self, message: Dict[Text, Any]
-    ) -> FlexSendMessage:
+    @staticmethod
+    def get_custom_response(message: Dict[Text, Any]) -> FlexSendMessage:
         responses = None
-        if 'locations' in message:
-            locations = message.get('locations')
+        if "locations" in message:
+            locations = message.get("locations")
             bubbles = []
             for loc in locations:
                 bubbles.append(construct_location_message(loc))
             carousel = CarouselContainer(contents=bubbles)
             responses = FlexSendMessage(
-                alt_text="Daftar Lokasi Psikolog Terdekat",
-                contents=carousel
+                alt_text="Daftar Lokasi Psikolog Terdekat", contents=carousel
             )
 
-        elif 'payload' in message:
-            payload = message.get('payload')
+        elif "payload" in message:
+            payload = message.get("payload")
             bubble = construct_multiple_choice(payload)
-            responses = FlexSendMessage(alt_text=payload.get('text'), contents=bubble)
+            responses = FlexSendMessage(alt_text=payload.get("text"), contents=bubble)
 
         return responses
 
@@ -181,7 +177,7 @@ class LineInput(InputChannel):
         self.line_secret = line_secret
 
     def blueprint(
-            self, on_new_message: Callable[[UserMessage], Awaitable[None]]
+        self, on_new_message: Callable[[UserMessage], Awaitable[None]]
     ) -> Blueprint:
 
         line_webhook = Blueprint("line_webhook", __name__)
@@ -193,15 +189,11 @@ class LineInput(InputChannel):
 
         @line_webhook.route("/webhook", methods=["POST"])
         async def callback(request: Request) -> HTTPResponse:
-            signature = request.headers.get('X-Line-Signature')
-            
-            line = LineClient(
-                self.line_access_token,
-                self.line_secret,
-                on_new_message
-            )
+            signature = request.headers.get("X-Line-Signature")
 
-            body = request.body.decode('utf-8')
+            line = LineClient(self.line_access_token, self.line_secret, on_new_message)
+
+            body = request.body.decode("utf-8")
             logger.info("Request Body: " + body)
 
             try:
@@ -209,12 +201,10 @@ class LineInput(InputChannel):
                 reply_token = events[0].reply_token
                 for event in events:
                     await line.handle(event)
-                
+
                 line.output_collector.send(reply_token)
             except LineBotApiError as e:
-                logger.exception(
-                    "Exception occurred " + e.message
-                )
+                logger.exception("Exception occurred " + e.message)
                 for d in e.error.details:
                     logger.info("    " + d.property + " : " + d.message)
             except InvalidSignatureError as e:

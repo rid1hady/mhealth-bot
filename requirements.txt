@@ -1,11 +1,5 @@
 rasa~=2.4.0
-rasa-sdk==2.2.0
-regex==2019.11.1
-line-bot-sdk
-flask~=1.1.2
-googlemaps~=4.4.5
-dotenv
-
+line-bot-sdk==1.19.0
+sanic~=21.3.4
+-r actions/requirements-actions.txt
 python-dotenv~=0.17.0
-sanic~=20.9.0
-requests~=2.25.1
