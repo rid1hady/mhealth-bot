@@ -26,6 +26,8 @@ RUN rasa train
 
 COPY ./models /app/models
 
+VOLUME [/.cache, /.config]
+
 USER 1001
 
 CMD ["run"]

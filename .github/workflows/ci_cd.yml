@@ -15,9 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: My first step
+      - name: Train and Test
         uses: RasaHQ/rasa-train-test-gha@main
         with:
+          rasa_image: Dockerfile
           rasa_version: '2.4.0-full'
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Check output
