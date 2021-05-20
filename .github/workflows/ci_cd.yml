@@ -43,6 +43,5 @@ jobs:
         requirements_file: 'requirements-actions.txt'
         docker_image_name: 'senna-action-server'
         docker_registry_login: ${{ secrets.DOCKER_HUB_LOGIN }}
-        docker_registry_password: ${{ secrets.DOCKER_HUB_PASSWORD }
+        docker_registry_password: ${{ secrets.DOCKER_HUB_PASSWORD }}
         docker_image_tag: ${{ github.sha }}
-
