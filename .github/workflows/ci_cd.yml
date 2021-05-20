@@ -13,9 +13,9 @@ jobs:
     - name: Build Action Server image
       uses: RasaHQ/rasa-action-server-gha@v1.0.3
       with:
-        actions_directory: 'actions'
+        actions_directory: './actions'
         rasa_sdk_version: '2.4.0'
-        requirements_file: 'actions/requirements-actions.txt'
+        requirements_file: './actions/requirements-actions.txt'
         docker_image_name: 'senna-action-server'
         docker_registry_login: ${{ secrets.DOCKER_HUB_LOGIN }}
         docker_registry_password: ${{ secrets.DOCKER_HUB_PASSWORD }}
