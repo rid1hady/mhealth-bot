@@ -2,6 +2,8 @@ on:
   push:
     branches:
       - main
+    paths:
+    - 'actions/**'
 
 name: CI / CD
 
@@ -10,11 +12,13 @@ jobs:
     name: Build and Push Action Server to DockerHub
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
     - name: Build Action Server image
       uses: RasaHQ/rasa-action-server-gha@v1.0.3
       with:
         rasa_sdk_version: '2.4.0'
-        requirements_file: '/app/actions/requirements-actions.txt'
+        requirements_file: requirements-actions.txt
         docker_image_name: 'senna-action-server'
         docker_registry_login: ${{ secrets.DOCKER_HUB_LOGIN }}
         docker_registry_password: ${{ secrets.DOCKER_HUB_PASSWORD }}
