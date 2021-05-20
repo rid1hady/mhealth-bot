@@ -1,5 +1,3 @@
 rasa~=2.4.0
 line-bot-sdk==1.19.0
-sanic~=21.3.4
--r actions/requirements-actions.txt
 python-dotenv~=0.17.0

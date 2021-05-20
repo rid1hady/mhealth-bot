@@ -1,7 +1,6 @@
 action_endpoint:
-  url: "http://localhost:5055/webhook"
+  url: ${ACTION_ENDPOINT}
 
 tracker_store:
     type: mongod
-    url: mongodb://localhost:27017
-    db: rasa
+    url: ${MONGODB_URL}

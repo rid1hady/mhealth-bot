@@ -1,0 +1,48 @@
+on:
+  push:
+    branches:
+      - main
+
+name: CI / CD
+
+env:
+  REGISTRY: "registry.digitalocean.com/your_registry"
+  IMAGE_NAME: "image_name"
+
+jobs:
+  train_and_test_model:
+    name: Train and Test Model
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: My first step
+        uses: RasaHQ/rasa-train-test-gha@main
+        with:
+          rasa_version: '2.4.0-full'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check output
+        if: fromJSON(steps.action.outputs.report).default['config.yml'].intent_classification.accuracy >= 0.8
+        run: |
+          echo "I'm doing extra work..."
+          echo ${{ fromJSON(steps.action.outputs.report).default['config.yml'].intent_classification.accuracy }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: artifacts
+          path: |
+            results
+            reports
+
+  build_and_push_action_server:
+    needs: train_and_test_model
+    name: Build and Push Action Server to DockerHub
+    runs-on: ubuntu-latest
+    steps:
+    - name: Build Action Server image
+      uses: RasaHQ/rasa-action-server-gha@v1.0.3
+      with:
+        requirements_file: 'requirements-actions.txt'
+        docker_image_name: 'senna-action-server'
+        docker_registry_login: ${{ secrets.DOCKER_HUB_LOGIN }}
+        docker_registry_password: ${{ secrets.DOCKER_HUB_PASSWORD }
+        docker_image_tag: ${{ github.sha }}
+

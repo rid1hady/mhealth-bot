@@ -170,3 +170,5 @@ docker-local
 .vscode
 .env
 test.json
+
+.config

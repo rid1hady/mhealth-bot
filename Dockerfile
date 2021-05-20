@@ -1,8 +1,8 @@
-FROM rasa/rasa-sdk:2.4.0
+FROM rasa/rasa:2.4.0-full
 
 WORKDIR /app
 
-COPY actions/requirements-actions.txt ./
+COPY requirements.txt ./
 
 USER root
 
@@ -12,21 +12,20 @@ RUN apt-get update -qq && \
   python3-venv \
   python3-pip \
   python3-dev \
-  # required by psycopg2 at build and runtime
-  libpq-dev \
-  # required for health check
-  curl \
   && apt-get autoremove -y
 
 RUN apt-get update && apt-get dist-upgrade -y --no-install-recommends
 
-RUN pip install -r requirements-actions.txt
+RUN pip install -r requirements.txt
 
-COPY ./actions /app/actions
+COPY ./connectors /app/connectors
 
-RUN pip install . --no-cache-dir
+COPY ./config.yml ./
 
-# Don't use root user to run code
+RUN rasa train
+
+COPY ./models /app/models
+
 USER 1001
 
-CMD ["start", "--actions", "actions.actions"]
+CMD ["run"]
