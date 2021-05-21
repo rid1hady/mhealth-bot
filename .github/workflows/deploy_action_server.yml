@@ -14,14 +14,10 @@ jobs:
   build_and_push_action_server:
     name: Build and Push Action Server to DockerHub
     runs-on: ubuntu-latest
-    outputs:
-      docker_image_name: ${{ steps.build_push_action_server.outputs.docker_image_name }}
-      docker_image_full_name: ${{ steps.build_push_action_server.outputs.docker_image_full_name }}
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-    - id: build_push_action_server
-      name: Build Action Server image
+    - name: Build Action Server image
       uses: RasaHQ/rasa-action-server-gha@v1.0.3
       with:
         rasa_sdk_version: '2.4.0'
@@ -29,7 +25,7 @@ jobs:
         docker_image_name: ${{ env.IMAGE_NAME }}
         docker_registry_login: ${{ secrets.DOCKER_HUB_LOGIN }}
         docker_registry_password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-        docker_image_tag: ${{ github.sha }}
+        docker_image_tag: "latest"
         docker_registry: ${{ env.REGISTRY }}
         docker_build_args: "--build-arg GOOGLE_MAPS_API_KEY=${{ secrets.GOOGLE_MAPS_API_KEY}}"
   deploy:
@@ -43,7 +39,7 @@ jobs:
         HOST: ${{ secrets.HOST }}
         USERNAME: ${{ secrets.USERNAME }}
         KEY: ${{ secrets.SSHKEY }}
-        envs: IMAGE_NAME,REGISTRY,GITHUB_SHA,GOOGLE_MAPS_API_KEY,COMMAND
+        envs: IMAGE_NAME,REGISTRY,GOOGLE_MAPS_API_KEY,COMMAND
         script: |
           docker stop $(echo $IMAGE_NAME)
           docker rm $(echo $IMAGE_NAME)
@@ -51,5 +47,5 @@ jobs:
           docker run -d \
           --restart always \
           -p 5055:5055 \
-          --name $(echo ${{ needs.build_and_push_action_server.outputs.docker_image_name }}) \
-          $(echo ${{ needs.build_and_push_action_server.outputs.docker_image_full_name }}) $(echo $COMMAND)
+          --name $(echo $IMAGE_NAME) \
+          $(echo $REGISTRY | docker.io)/$(echo $IMAGE_NAME):$(echo "latest") $(echo $COMMAND)
