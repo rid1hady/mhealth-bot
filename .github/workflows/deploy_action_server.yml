@@ -14,10 +14,14 @@ jobs:
   build_and_push_action_server:
     name: Build and Push Action Server to DockerHub
     runs-on: ubuntu-latest
+    outputs:
+      docker_image_name: ${{ steps,build_push_action_server.outputs.docker_image_name }}
+      docker_image_full_name: ${{ steps,build_push_action_server.outputs.docker_image_full_name }}
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-    - name: Build Action Server image
+    - id: build_push_action_server
+      name: Build Action Server image
       uses: RasaHQ/rasa-action-server-gha@v1.0.3
       with:
         rasa_sdk_version: '2.4.0'
@@ -47,5 +51,5 @@ jobs:
           docker run -d \
           --restart always \
           -p 5055:5055 \
-          --name $(echo $IMAGE_NAME) \
-          $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo $GITHUB_SHA | head -c7) $(echo $COMMAND)
+          --name $(echo ${{ needs.build_and_push_action_server.outputs.docker_image_name }}) \
+          $(echo ${{ needs.build_and_push_action_server.outputs.docker_image_full_name }}) $(echo $COMMAND)
