@@ -4,7 +4,8 @@ on:
       - main
 
 env:
-  IMAGE_NAME: "senna-action-server"
+  IMAGE_NAME: "rid1hady/senna-action-server"
+  CONTAINER_NAME: "senna-action-server"
   REGISTRY: "docker.io"
   COMMAND: "python -m rasa_sdk --actions actions"
 
@@ -22,7 +23,7 @@ jobs:
       with:
         rasa_sdk_version: '2.4.0'
         requirements_file: actions/requirements-actions.txt
-        docker_image_name: "rid1hady/senna-action-server"
+        docker_image_name: ${{ env.IMAGE_NAME }}
         docker_registry_login: ${{ secrets.DOCKER_HUB_LOGIN }}
         docker_registry_password: ${{ secrets.DOCKER_HUB_PASSWORD }}
         docker_image_tag: "latest"
@@ -39,7 +40,7 @@ jobs:
         HOST: ${{ secrets.HOST }}
         USERNAME: ${{ secrets.USERNAME }}
         KEY: ${{ secrets.SSHKEY }}
-        envs: IMAGE_NAME,REGISTRY,GOOGLE_MAPS_API_KEY,COMMAND
+        envs: IMAGE_NAME,CONTAINER_NAME,REGISTRY,GOOGLE_MAPS_API_KEY,COMMAND
         script: |
           docker stop $(echo $IMAGE_NAME)
           docker rm $(echo $IMAGE_NAME)
@@ -47,5 +48,5 @@ jobs:
           docker run -d \
           --restart always \
           -p 5055:5055 \
-          --name $(echo $IMAGE_NAME) \
+          --name $(echo $CONTAINER_NAME) \
           $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo "latest") $(echo $COMMAND)
