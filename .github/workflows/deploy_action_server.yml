@@ -22,7 +22,7 @@ jobs:
       with:
         rasa_sdk_version: '2.4.0'
         requirements_file: actions/requirements-actions.txt
-        docker_image_name: ${{ env.IMAGE_NAME }}
+        docker_image_name: "rid1hady/senna-action-server"
         docker_registry_login: ${{ secrets.DOCKER_HUB_LOGIN }}
         docker_registry_password: ${{ secrets.DOCKER_HUB_PASSWORD }}
         docker_image_tag: "latest"
