@@ -4,7 +4,7 @@ on:
       - main
 
 env:
-  IMAGE_NAME: "rid1hady/senna-action-server"
+  IMAGE_NAME: "senna-action-server"
   REGISTRY: "docker.io"
   COMMAND: "python -m rasa_sdk --actions actions"
 
