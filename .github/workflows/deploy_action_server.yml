@@ -4,8 +4,8 @@ on:
       - main
 
 env:
-  IMAGE_NAME: rid1hady/senna-action-server
-  REGISTRY: docker.io
+  IMAGE_NAME: "rid1hady/senna-action-server"
+  REGISTRY: "docker.io"
   COMMAND: "python -m rasa_sdk --actions actions"
 
 name: Deploy Action Server
@@ -39,7 +39,6 @@ jobs:
         HOST: ${{ secrets.HOST }}
         USERNAME: ${{ secrets.USERNAME }}
         KEY: ${{ secrets.SSHKEY }}
-        GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY}}
         envs: IMAGE_NAME,REGISTRY,GITHUB_SHA,GOOGLE_MAPS_API_KEY,COMMAND
         script: |
           docker stop $(echo $IMAGE_NAME)
