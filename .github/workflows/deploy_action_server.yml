@@ -48,4 +48,4 @@ jobs:
           --restart always \
           -p 5055:5055 \
           --name $(echo $IMAGE_NAME) \
-          $(echo $REGISTRY | docker.io)/$(echo $IMAGE_NAME):$(echo "latest") $(echo $COMMAND)
+          $(echo $REGISTRY)/$(echo $IMAGE_NAME):$(echo "latest") $(echo $COMMAND)
