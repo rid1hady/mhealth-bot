@@ -15,8 +15,8 @@ jobs:
     name: Build and Push Action Server to DockerHub
     runs-on: ubuntu-latest
     outputs:
-      docker_image_name: ${{ steps,build_push_action_server.outputs.docker_image_name }}
-      docker_image_full_name: ${{ steps,build_push_action_server.outputs.docker_image_full_name }}
+      docker_image_name: ${{ steps.build_push_action_server.outputs.docker_image_name }}
+      docker_image_full_name: ${{ steps.build_push_action_server.outputs.docker_image_full_name }}
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
