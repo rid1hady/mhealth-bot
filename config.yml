@@ -2,35 +2,29 @@ language: id
 
 pipeline:
   - name: WhitespaceTokenizer
+  - name: RegexFeaturizer
   - name: LanguageModelFeaturizer
     model_name: bert
-    model_weights: indobenchmark/indobert-large-p1
+    model_weights: indobenchmark/indobert-base-p1
+    cache_dir: ./
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
   - name: CountVectorsFeaturizer
-    analyzer: "char_wb"
+    analyzer: char_wb
     min_ngram: 1
     max_ngram: 4
   - name: DIETClassifier
-    epochs: 200
-    ranking_length: 5
+    epochs: 100
   - name: EntitySynonymMapper
   - name: ResponseSelector
-    retrieval_intent: out_of_scope
-    scale_loss: false
     epochs: 100
   - name: FallbackClassifier
-    threshold: 0.7
+    threshold: 0.3
+    ambiguity_threshold: 0.1
 
 policies:
   - name: TEDPolicy
-    max_history: 10
-    epochs: 20
-    batch_size:
-    - 32
-    - 64
-    model_confidence: linear_norm
-    constrain_similarities: true
-    loss_type: cross_entropy
+    max_history: 5
+    epochs: 100
   - name: MemoizationPolicy
   - name: RulePolicy

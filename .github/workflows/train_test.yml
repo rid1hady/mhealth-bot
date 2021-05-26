@@ -1,0 +1,22 @@
+on:
+  push:
+    branches:
+      - main
+
+name: Train and Test Rasa Model
+
+jobs:
+  train_test:
+    name: Train and Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: RasaHQ/rasa-train-test-gha@main
+        with:
+          rasa_version: '2.4.0-full'
+      - name: Upload model
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@master
+        with:
+          name: model
+          path: models
