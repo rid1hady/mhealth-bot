@@ -1,6 +1,6 @@
 # Psymax
 
-<div style="text-align:center"><img align="center" src="psymax.png" alt="Psymax Logo" width="100px"/><p>Psymax</p></div>
+<img align="right" src="psymax.png" alt="Psymax Logo" width="150px"/>
 
 `Psymax`, took its name after Baymax from Big Hero 6, is a mental health bot written in Indonesian Language, aim specifically to assess student's mental health condition. `Psymax` was build with Rasa Framework and specially designed to work on Line.
 
