@@ -17,7 +17,7 @@ jobs:
           configuration: 'config-github.yml'
       - name: Upload model
         if: github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@@v2
+        uses: actions/upload-artifact@v2
         with:
           name: model
           path: models
