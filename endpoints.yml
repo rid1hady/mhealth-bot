@@ -1,5 +1,5 @@
 action_endpoint:
-  url: ${ACTION_ENDPOINT}
+  url: ${ACTION_URL}
 
 tracker_store:
     type: mongod

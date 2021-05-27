@@ -24,37 +24,47 @@ nlu:
     - wasup
 - intent: goodbye
   examples: |
-    - sampai jumpa
-    - dah
-    - bye
-    - dada
-    - goodbye
-    - bye bye
-    - ciao
+    - Sampai jumpa
+    - Dah
+    - Dadah
+    - Bye
+    - Dada
+    - Goodbye
+    - Bye bye
+    - Selamat tinggal
+    - Sampai jumpa kembali
+    - Sampai jumpa lagi
+    - Pamit dulu
+    - Pamit undur diri
+    - Selamat jalan
+    - Selamat bepisah
+    - Ini perpisahan kita
+    - Salam
 - intent: affirm
   examples: |
-    - iya
+    - Iya
     - ya
-    - tentu
-    - ada
-    - benar
-    - yes
+    - Tentu
+    - Ada
+    - Benar
+    - Yes
     - y
     - ok
     - oke
-    - baik
-    - gas
-    - caw
+    - Baik
+    - Gas
+    - Caw
     - skuy
     - yuk
     - iya
     - boleh
-    - silahkan
-    - silakan
-    - siap
+    - Silahkan
+    - Silakan
+    - Siap
     - yoi
-    - iya dong
+    - Iya dong
     - Tentu
+    - Yep
 - intent: deny
   examples: |
     - tidak
@@ -65,10 +75,11 @@ nlu:
     - ngga ada
     - nggak
     - enggak
+    - gak
     - bukan
     - no
     - n
-    - Nggak lah!
+    - Nggak lah
     - Nggak dong
     - Gak dong
     - Kaga
@@ -76,37 +87,64 @@ nlu:
     - Nggak juga sih
     - Gausah
     - Gaperlu
+    - Tidak usah
+    - Tidak perlu
+    - Jangan
 - intent: bot_challenge
   examples: |
     - kamu apa?
     - apakah kamu bot?
     - apakah kamu manusia?
     - aku lagi ngobrol sama siapa?
+    - apakah kamu?
+    - siapakah kamu?
+    - chatbot macam apa kamu?
+    - dengan siapa aku mengobrol sekarang?
+    - apa tujuan kamu?
+    - untuk apa kamu?
+    - bot jenis apakah kamu?
+    - apakah kamu bukan manusia?
 - intent: inform
   examples: |
-    - nama saya [Ridwan](name)
-    - saya [Hady](name)
-    - [Ridwan Hady](name)
-    - [Arifin](name)
-    - [Michael](name)
-    - [Jackson](name)
-    - [Soekarno](name)
-    - [Soeharto](name)
+    - Nama saya [Ridwan](name)
+    - Saya [Hady](name)
+    - Namaku [Ridwan Hady](name)
+    - Aku [Arifin](name)
+    - Urang [Michael](name)
+    - Nama gua [Jackson](name)
+    - Nama gue [Soekarno](name)
+    - Saya [Soeharto](name)
     - [Habibie](name)
-    - temenku manggilnya [Zed](name)
-    - [Ridwan](name)
-    - [Samsul](name)
-    - [Ridwan](name)
+    - Temenku manggilnya [Jokowi](name)
+    - Aku biasa dipanggil [Rohman](name)
+    - Teman sama keluarga biasanya manggil aku [Samsul](name)
+    - Lokasiku sekarang ada di [Bandung](location)
+    - Aku sekarang ada di [Jakarta](location)
+    - Aku tinggal di [Semarang](location)
+    - Aku berada di [Yogyakarta](location)
+    - Sekitar [Solo](location)
+    - Daerah [Surabaya](location)
+    - [Malang](location) dong kalau boleh
+    - [Banyuwangi](location) aja
 - intent: stop
   examples: |
-    - sudah cukup
-    - aku berhenti sampai sini saja
-    - sudah, tidak usah dilanjutkan
+    - Cukup
+    - Sudah
+    - Stop
     - stop
     - berhenti
-    - cukup sampai disini saja
-    - aku ingin keluar
-    - Stop
+    - Udahan dong
+    - Aku gamau lanjut
+    - Aku gak mau jawab
+    - Aku mau keluar dari test
+    - Aku mau menyudahi test
+    - Hentikan testnya
+    - Cukup sampai disini aja
+    - Sampai sini saja
+    - Aku berhenti sampai sini saja
+    - Sudah, tidak usah dilanjutkan
+    - Aku ingin keluar
+    - Ganti yang lain dong
 - intent: take_test
   examples: |
     - Aku ingin coba testnya
@@ -118,16 +156,45 @@ nlu:
     - Test kesehatan mental
     - Test kesehatan mentalku secara umum dong
     - Assesmen Umum
+    - Penilaian umum
+    - Aku ingin ambil penilaian umum
+    - Saya mau test
+    - Mulai penilaian
+    - Gas penilaian umum
+    - Aku mau uji testnya
+    - Penasaran seperti apa penialaiannya
+    - Bagaimana kondisi kesehatan mental saya?
+    - Apakah saya sehat secara mental?
+    - Apakah kesehatan mental saya bagus?
+    - Apakah saya perlu menemui psikolog secara langsung?
+    - Aku ingin mengetahui kondisi kesehatan mentalku secara umum terlebih dahulu
+    - Bisakah kamu bantu aku menilai kesehatan mentalku
+    - Penilaian kesehatan mentalku secara umum dong
+    - Aku penasaran dengan kondisiku
+    - Apakah kondisiku baik-baik saja?
 - intent: contact_psychiatrist
   examples: |
     - Kontak psikiater
     - Kontak psikolog terdekat dong
     - Lokasi psikolog terdekat dimana ya?
     - Lokasi psikiater terdekat dimana ya?
-    - Kalau mau ke psikilog harus ke mana?
+    - Kalau mau ke psikolog harus ke mana?
     - Mau konseling dong
     - Psikiater terdekat
     - Psikolog terdekat
+    - Sepertinya aku butuh konseling
+    - Aku ingin menemui psikolog terdekat dari sini
+    - Saya ingin book konseling dengan psikiater
+    - Saya ingin mencoba konseling dengan psikolog
+    - Apakah kamu bisa bantu memberikan rekomendasi psikolog?
+    - Rekomendasi psikolog yang bagus dimana ya?
+    - Kasih rekomendasi psikiater dong
+    - Kasih rekomendasi psikolog boleh ga
+    - Psikolog sekitar [Bandung](location)
+    - Psikiater sekitat [Surabaya](location)
+    - Psikolog sekitar saya
+    - Psikolog di ITB
+    - Kontak Bimbingan Konseling ITB.
 - intent: self_care_practices
   examples: |
     - Tips and trick menjaga kesehatan mental
@@ -138,6 +205,18 @@ nlu:
     - Kalau aku mau memperbaiki kesehatan mental tanpa psikolog gimana ya?
     - Tips kesehatan mental
     - Saran kesehatan mental
+    - Nasihat psikologi dong
+    - Nasehat psikologi
+    - Tips
+    - Trick
+    - Nasehat
+    - Aku ingin minta tips buat meningkatkan kesehatan mentalku.
+    - Apakah ada hal yang bisa kulakukan sendiri untuk naikin kesehatan mentalku?
+    - Apakah ada tips yang bagus terkait kesehatan mental?
+    - Apakah ada hal yang bisa membuatku bahagia?
+    - Bagaimana dengan nasehat kesehatan mental secara mandiri, apakah kamu punya?
+    - Rekomendasi tips and trick kesehatan mental
+    - Rekomendasi kegiatan yang bisa membantu menaikkan kesehatan mental
 - intent: help
   examples: |
     - Tolong kasih tahu dong kontak psikiater
@@ -151,19 +230,49 @@ nlu:
     - Bisa ngapain aja?
     - Apa aja yang kamu bisa?
     - Apa aja yang bisa kamu lakuin?
-- intent: chitchat
+    - Aku mau minta bantuan dong
+    - Tolong bantuannya boleh
+    - Boleh tolong dibantu saya?
+    - Saya minta pencerahan
+    - Saya butuh bantuan untuk mengoperasikan chatbot.
+    - Saya rasa saya butuh bantuan
+    - Aku butuh pertolongan
+    - Aku ingin minta tolong
+- synonym: psikolog
   examples: |
-    - bagaimana cuaca hari ini?
-    - disana hujan?
-    - apakah akan hujan?
-    - apakah hari ini mendung?
-    - cuaca hari ini cerah, bukan?
-    - sepertinya hari ini bakal panas deh
-    - siapa yang bikin kamu?
-    - kamu dibuat oleh siapa?
-    - kapan kamu lahir?
-    - apakah kamu selalu tersedia sepanjang hari
-    - apa yang ingin kamu makan?
-    - apakah kamu tidur?
-    - kenapa nama kamu MantapBot?
-    - apakah kamu mau jadi pacarku?
+    - Psikolog
+    - Psikiater
+    - psikiater
+    - PSI
+    - psi
+- synonym: aku
+  examples: |
+    - saya
+    - gua
+    - gue
+    - urang
+    - urg
+    - aing
+    - beta
+    - Aku
+    - Gua
+    - Gue
+    - Urang
+    - Urg
+    - Aing
+    - Beta
+    - Saya
+- synonym: Bimbingan Konseling
+  examples: |
+    - BK
+    - bk
+    - BK ITB
+    - Bimbingan konseling ITB
+    - Bimbingan konseling
+- synonym: Tips
+  examples: |
+    - tips and trick
+    - Nasehat
+    - nasehat
+    - nasihat
+    - petuah

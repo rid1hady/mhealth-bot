@@ -40,14 +40,38 @@ rules:
   - action: utter_anything_else
 
 - rule: ask psychologist contact - itb
+  condition:
+  - slot_was_set:
+    - is_itb_student: null
   steps:
   - intent: contact_psychiatrist
   - action: utter_ask_affiliation
+
+- rule: contact_psychiatrist - slot_was_set as no itb
+  condition:
+  - slot_was_set:
+    - is_itb_student: true
+  steps:
+  - intent: contact_psychiatrist
+  - action: utter_itb_counselling_contact
+  - action: utter_ask_list_nearest
+
+- rule: contact_psychiatrist - slot_was_set as no itb
+  condition:
+  - slot_was_set:
+    - is_itb_student: false
+  steps:
+  - intent: contact_psychiatrist
+  - action: location_form
+  - active_loop: location_form
 
 - rule: ask affiliation follow up - affirm
   steps:
   - action: utter_ask_affiliation
   - intent: affirm
+  - action: action_set_affiliation
+  - slot_was_set:
+    - is_itb_student: true
   - action: utter_itb_counselling_contact
   - action: utter_ask_list_nearest
 
@@ -55,6 +79,9 @@ rules:
   steps:
   - action: utter_ask_affiliation
   - intent: deny
+  - action: action_set_affiliation
+  - slot_was_set:
+    - is_itb_student: false
   - action: location_form
   - active_loop: location_form
 
@@ -71,4 +98,3 @@ rules:
   - intent: affirm
   - action: location_form
   - active_loop: location_form
-

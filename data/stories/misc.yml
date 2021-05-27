@@ -16,4 +16,9 @@ stories:
   - slot_was_set:
     - name: Ridwan
   - action: utter_hi
-  - action: utter_what_help
+  - action: utter_features_list
+
+- story: say good bye when user say good bye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye

@@ -82,7 +82,7 @@ def construct_mc_header(data):
         percentage = int(round(float(question_number) / 12 * 100))
         return [
             TextComponent(
-                text="Progess : {} %".format(percentage),
+                text="Progress : {} %".format(percentage),
                 size="xs",
                 margin="xs",
                 color="#27ACB2",

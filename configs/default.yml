@@ -3,9 +3,6 @@ language: id
 pipeline:
   - name: WhitespaceTokenizer
   - name: RegexFeaturizer
-  - name: LanguageModelFeaturizer
-    model_name: bert
-    model_weights: indobenchmark/indobert-base-p1
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
   - name: CountVectorsFeaturizer

@@ -1,7 +1,5 @@
 version: "2.0"
 stories:
-# With Intro
-# Happy Path
 - story: Take test happy path
   steps:
   - intent: greet
@@ -21,7 +19,6 @@ stories:
   - active_loop: null
   - action: action_show_ghq_result
 
-# Interrupted Continue
 - story: Take test interrupted continue
   steps:
   - intent: greet
@@ -46,7 +43,6 @@ stories:
   - active_loop: null
   - action: action_show_ghq_result
 
-# Happy Path - Interrupted Stop
 - story: Take test interrupted stop
   steps:
   - intent: greet
@@ -67,11 +63,12 @@ stories:
   - action: utter_ask_confirm_stop
   - intent: affirm
   - action: action_deactivate_loop
+  - action: action_reset_ghq_form_value
   - active_loop: null
   - action: utter_no_worries
   - action: utter_anything_else
-# Without greet
-- story: Take test happy path w/o intro - good condition
+
+- story: Take test happy path w/o intro
   steps:
   - intent: take_test
   - action: utter_test_policy
@@ -81,8 +78,7 @@ stories:
   - active_loop: null
   - action: action_show_ghq_result
 
-# Interrupted Continue
-- story: Take test interrupted continue w/o intro - good condition
+- story: Take test interrupted continue w/o intro
   steps:
   - intent: take_test
   - action: utter_test_policy
@@ -97,7 +93,6 @@ stories:
   - active_loop: null
   - action: action_show_ghq_result
 
-# Interrupted Stop
 - story: Take test interrupted stop w/o intro
   steps:
   - intent: take_test
@@ -109,16 +104,65 @@ stories:
   - action: utter_ask_confirm_stop
   - intent: affirm
   - action: action_deactivate_loop
+  - action: action_reset_ghq_form_value
   - active_loop: null
   - action: utter_no_worries
   - action: utter_anything_else
-# With Slot examples
-- story: Take test happy path - slot examples
+
+- story: Bad condition aftermath - no itb
+  steps:
+  - action: utter_ask_affiliation
+  - intent: deny
+  - action: action_set_affiliation
+  - slot_was_set:
+    - is_itb_student: false
+  - action: location_form
+  - active_loop: location_form
+  - slot_was_set:
+    - location: "Jakarta"
+  - active_loop: null
+  - action: action_show_nearest_therapist
+  - action: utter_anything_else
+
+- story: Bad condition aftermath - itb 1
+  steps:
+  - action: utter_ask_affiliation
+  - intent: affirm
+  - action: action_set_affiliation
+  - slot_was_set:
+    - is_itb_student: true
+  - action: utter_itb_counselling_contact
+  - action: utter_ask_list_nearest
+  - intent: deny
+  - action: utter_no_worries
+  - action: utter_anything_else
+
+- story: Bad condition aftermath - itb 2
+  steps:
+  - action: utter_ask_affiliation
+  - intent: affirm
+  - action: action_set_affiliation
+  - slot_was_set:
+    - is_itb_student: true
+  - action: utter_itb_counselling_contact
+  - action: utter_ask_list_nearest
+  - intent: affirm
+  - action: location_form
+  - active_loop: location_form
+  - slot_was_set:
+    - location: "7.0051, 110.4381"
+  - active_loop: null
+  - action: action_show_nearest_therapist
+  - action: utter_anything_else
+
+- story: Take test happy path - with slot examples
   steps:
   - intent: greet
   - action: utter_introduction
   - action: basic_info_form
   - active_loop: basic_info_form
+  - slot_was_set:
+    - name: Michael
   - active_loop: null
   - action: utter_nice_to_meet_you
   - action: utter_features_list
@@ -140,78 +184,11 @@ stories:
     - lose_confidence: true
     - think_as_worthless: true
     - feel_happy: true
+    - requested_slot: null
   - active_loop: null
   - action: action_show_ghq_result
 
-# Interrupted Continue
-- story: Take test interrupted continue - slot examples
-  steps:
-  - intent: greet
-  - action: utter_introduction
-  - action: basic_info_form
-  - active_loop: basic_info_form
-  - slot_was_set:
-    - name: Siti
-  - active_loop: null
-  - action: utter_nice_to_meet_you
-  - action: utter_features_list
-  - intent: take_test
-  - action: utter_test_policy
-  - action: utter_start_general_test
-  - action: ghq_form
-  - active_loop: ghq_form
-  - slot_was_set:
-    - able_concentrate: true
-    - lost_sleep: true
-    - feel_useful: true
-    - capable_make_decision: true
-    - under_stress: true
-  - intent: stop
-  - action: utter_ask_confirm_stop
-  - intent: deny
-  - action: ghq_form
-  - active_loop: ghq_form
-  - slot_was_set:
-    - overcome_difficulties: false
-    - enjoy_activities: false
-    - face_up_problems: false
-    - feel_unhappy: false
-    - lose_confidence: false
-    - think_as_worthless: false
-    - feel_happy: false
-  - active_loop: null
-  - action: action_show_ghq_result
-
-- story: Take test interrupted stop - slot examples
-  steps:
-  - intent: greet
-  - action: utter_introduction
-  - action: basic_info_form
-  - active_loop: basic_info_form
-  - slot_was_set:
-    - name: Samsudin
-  - active_loop: null
-  - action: utter_nice_to_meet_you
-  - action: utter_features_list
-  - intent: take_test
-  - action: utter_test_policy
-  - action: utter_start_general_test
-  - action: ghq_form
-  - active_loop: ghq_form
-  - slot_was_set:
-    - able_concentrate: false
-    - lost_sleep: false
-    - feel_useful: false
-    - capable_make_decision: false
-    - under_stress: false
-  - intent: stop
-  - action: utter_ask_confirm_stop
-  - intent: affirm
-  - action: action_deactivate_loop
-  - active_loop: null
-  - action: utter_no_worries
-  - action: utter_anything_else
-- story: Take test happy path w/o intro - slot examples
+- story: Take test happy path w/o intro - with slot examples
   steps:
   - intent: take_test
   - action: utter_test_policy
@@ -231,86 +208,6 @@ stories:
     - lose_confidence: false
     - think_as_worthless: false
     - feel_happy: false
+    - requested_slot: null
   - active_loop: null
   - action: action_show_ghq_result
-
-- story: Take test interrupted continue w/o intro - slot examples
-  steps:
-  - intent: take_test
-  - action: utter_test_policy
-  - action: utter_start_general_test
-  - action: ghq_form
-  - active_loop: ghq_form
-  - slot_was_set:
-    - able_concentrate: true
-    - lost_sleep: true
-    - feel_useful: true
-    - capable_make_decision: true
-    - under_stress: true
-  - intent: stop
-  - action: utter_ask_confirm_stop
-  - intent: deny
-  - action: ghq_form
-  - active_loop: ghq_form
-  - slot_was_set:
-    - overcome_difficulties: false
-    - enjoy_activities: false
-    - face_up_problems: false
-    - feel_unhappy: false
-    - lose_confidence: false
-    - think_as_worthless: false
-    - feel_happy: false
-  - active_loop: null
-  - action: action_show_ghq_result
-
-- story: Take test interrupted stop w/o intro - slot examples
-  steps:
-  - intent: take_test
-  - action: utter_test_policy
-  - action: utter_start_general_test
-  - action: ghq_form
-  - active_loop: ghq_form
-  - slot_was_set:
-    - able_concentrate: true
-    - lost_sleep: true
-  - intent: stop
-  - action: utter_ask_confirm_stop
-  - intent: affirm
-  - action: action_deactivate_loop
-  - active_loop: null
-  - action: utter_no_worries
-  - action: utter_anything_else
-- story: Bad condition aftermath - no itb
-  steps:
-  - action: utter_ask_affiliation
-  - intent: deny
-  - action: location_form
-  - active_loop: location_form
-  - slot_was_set:
-    - location: "Jakarta"
-  - active_loop: null
-  - action: action_show_nearest_therapist
-  - action: utter_anything_else
-- story: Bad condition aftermath - itb 1
-  steps:
-  - action: utter_ask_affiliation
-  - intent: affirm
-  - action: utter_itb_counselling_contact
-  - action: utter_ask_list_nearest
-  - intent: deny
-  - action: utter_no_worries
-  - action: utter_anything_else
-- story: Bad condition aftermath - itb 2
-  steps:
-  - action: utter_ask_affiliation
-  - intent: affirm
-  - action: utter_itb_counselling_contact
-  - action: utter_ask_list_nearest
-  - intent: affirm
-  - action: location_form
-  - active_loop: location_form
-  - slot_was_set:
-    - location: "7.0051, 110.4381"
-  - active_loop: null
-  - action: action_show_nearest_therapist
-  - action: utter_anything_else

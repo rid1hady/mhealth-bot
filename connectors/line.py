@@ -198,6 +198,8 @@ class LineInput(InputChannel):
 
             try:
                 events = line.parser.parse(body, signature)
+                if  (len(events) <= 0):
+                    return response.json({"status": "ok"})
                 reply_token = events[0].reply_token
                 for event in events:
                     await line.handle(event)

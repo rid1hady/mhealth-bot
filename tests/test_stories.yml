@@ -1,0 +1,27 @@
+stories:
+- story: Onboarding
+  steps:
+  - user: |
+      Halo
+    intent: greet
+  - action: utter_introduction
+  - action: basic_info_form
+  - active_loop: basic_info_form
+  - user: |
+      Mikey
+    intent: inform
+  - slot_was_set:
+    - name: Mikey
+  - action: basic_info_form
+  - active_loop: null
+  - action: utter_nice_to_meet_you
+  - action: utter_features_list
+- story: Taking test happy path
+  steps:
+  - user: |
+      Mau coba test
+    intent: take_test
+  - action: utter_test_policy
+  - action: utter_start_general_test
+  - action: ghq_form
+  - active_loop: ghq_form

@@ -1,6 +1,25 @@
 version: "3.9"
+
+volumes:
+  database:
+
 services:
-  rasa-server:
+  action-server:
+    restart: always
+    environment:
+    - GOOGLE_MAPS_API_KEY
+    build:
+      context: .
+      dockerfile: Dockerfile.action
+    ports: 
+      - 5055:5055
+
+  main:
+    restart: always
+    environment:
+    - MONGODB_URL
+    - LINE_CHANNEL_SECRET
+    - LINE_CHANNEL_ACCESS_TOKEN
     build:
       context: .
       dockerfile: Dockerfile
@@ -8,6 +27,13 @@ services:
       - 5005:5005
     volumes:
       - ./:/app
-      - ./connectors:/app/connectors
       - ./.config:/.config
       - ./.cache:/.cache
+  
+  mongo:
+    image: mongo:4.4
+    volumes:
+      - database:/data/db
+    ports:
+      - 27017:27017
+    restart: always

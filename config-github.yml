@@ -6,6 +6,7 @@ pipeline:
   - name: LanguageModelFeaturizer
     model_name: bert
     model_weights: indobenchmark/indobert-base-p1
+    cache_dir: ./
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
   - name: CountVectorsFeaturizer

@@ -151,7 +151,6 @@ failed_stories.txt
 failed_stories.md
 story_confmat.pdf
 demo/index.html
-credentials.yml
 .idea
 test_train_split
 results
@@ -170,3 +169,5 @@ docker-local
 test.json
 
 .config
+.cache
+*.pkl

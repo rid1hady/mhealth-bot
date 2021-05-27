@@ -15,6 +15,9 @@ stories:
   - intent: contact_psychiatrist
   - action: utter_ask_affiliation
   - intent: deny
+  - action: action_set_affiliation
+  - slot_was_set:
+    - is_itb_student: false
   - action: location_form
   - active_loop: location_form
   - slot_was_set:
@@ -37,6 +40,9 @@ stories:
   - intent: contact_psychiatrist
   - action: utter_ask_affiliation
   - intent: affirm
+  - action: action_set_affiliation
+  - slot_was_set:
+    - is_itb_student: true
   - action: utter_itb_counselling_contact
   - action: utter_ask_list_nearest
   - intent: deny
@@ -56,6 +62,9 @@ stories:
   - intent: contact_psychiatrist
   - action: utter_ask_affiliation
   - intent: affirm
+  - action: action_set_affiliation
+  - slot_was_set:
+    - is_itb_student: true
   - action: utter_itb_counselling_contact
   - action: utter_ask_list_nearest
   - intent: affirm
@@ -73,6 +82,9 @@ stories:
   - intent: contact_psychiatrist
   - action: utter_ask_affiliation
   - intent: deny
+  - action: action_set_affiliation
+  - slot_was_set:
+    - is_itb_student: false
   - action: location_form
   - active_loop: location_form
   - slot_was_set:
@@ -85,6 +97,9 @@ stories:
   - intent: contact_psychiatrist
   - action: utter_ask_affiliation
   - intent: affirm
+  - action: action_set_affiliation
+  - slot_was_set:
+    - is_itb_student: true
   - action: utter_itb_counselling_contact
   - action: utter_ask_list_nearest
   - intent: deny
@@ -95,6 +110,9 @@ stories:
   - intent: contact_psychiatrist
   - action: utter_ask_affiliation
   - intent: affirm
+  - action: action_set_affiliation
+  - slot_was_set:
+    - is_itb_student: true
   - action: utter_itb_counselling_contact
   - action: utter_ask_list_nearest
   - intent: affirm
@@ -120,6 +138,9 @@ stories:
   - intent: contact_psychiatrist
   - action: utter_ask_affiliation
   - intent: deny
+  - action: action_set_affiliation
+  - slot_was_set:
+    - is_itb_student: false
   - action: location_form
   - active_loop: location_form
   - slot_was_set:
@@ -128,12 +149,48 @@ stories:
   - action: action_show_nearest_therapist
   - action: utter_anything_else
   - intent: contact_psychiatrist
-  - action: utter_ask_affiliation
-  - intent: deny
   - action: location_form
   - active_loop: location_form
   - slot_was_set:
     - location: "Bandung"
+  - active_loop: null
+  - action: action_show_nearest_therapist
+  - action: utter_anything_else
+# Without greet
+- story: Nearest psychologist w/o intro no itb 2
+  steps:
+  - intent: contact_psychiatrist
+  - slot_was_set:
+    - is_itb_student: false
+  - action: location_form
+  - active_loop: location_form
+  - slot_was_set:
+    - location: "Pemalang"
+  - active_loop: null
+  - action: action_show_nearest_therapist
+  - action: utter_anything_else
+- story: Nearest psychologist w/o intro itb 3
+  steps:
+  - intent: contact_psychiatrist
+  - slot_was_set:
+    - is_itb_student: true
+  - action: utter_itb_counselling_contact
+  - action: utter_ask_list_nearest
+  - intent: deny
+  - action: utter_no_worries
+  - action: utter_anything_else
+- story: Nearest psychologist w/o intro itb 4
+  steps:
+  - intent: contact_psychiatrist
+  - slot_was_set:
+    - is_itb_student: true
+  - action: utter_itb_counselling_contact
+  - action: utter_ask_list_nearest
+  - intent: affirm
+  - action: location_form
+  - active_loop: location_form
+  - slot_was_set:
+    - location: "7.0051, 110.4381"
   - active_loop: null
   - action: action_show_nearest_therapist
   - action: utter_anything_else
