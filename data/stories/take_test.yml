@@ -62,8 +62,8 @@ stories:
   - intent: stop
   - action: utter_ask_confirm_stop
   - intent: affirm
-  - action: action_deactivate_loop
   - action: action_reset_ghq_form_value
+  - action: action_deactivate_loop
   - active_loop: null
   - action: utter_no_worries
   - action: utter_anything_else
@@ -103,8 +103,8 @@ stories:
   - intent: stop
   - action: utter_ask_confirm_stop
   - intent: affirm
-  - action: action_deactivate_loop
   - action: action_reset_ghq_form_value
+  - action: action_deactivate_loop
   - active_loop: null
   - action: utter_no_worries
   - action: utter_anything_else

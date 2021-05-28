@@ -18,6 +18,7 @@ services:
     restart: always
     environment:
     - MONGODB_URL
+    - ACTION_URL
     - LINE_CHANNEL_SECRET
     - LINE_CHANNEL_ACCESS_TOKEN
     build:

@@ -89,7 +89,7 @@ responses:
   - text: |
       Sebelumnya aku ingin menginformaskan bahwa, aku dan pembuatku, menjamin privasi kamu.
       Data-data kamu aman bersama kami.
-      Hasil dari test ini tidak bersifat mutlak. Jika ingin hasil yang lebih detail dan terpecaya 100%, mohon kunjungi Psikolog/Psikiater terdekat.
+      Hasil dari test ini tidak bersifat mutlak. Jika ingin hasil yang lebih detail dan terpercaya 100%, mohon kunjungi Psikolog/Psikiater terdekat.
   utter_start_general_test:
   - text: |
       Akan ada 12 butir hal yang aku tanyakan. Tolong jawab sesuai dengan kondisi kamu dalam 2 (dua) minggu terakhir.
@@ -108,7 +108,7 @@ responses:
   utter_ask_lost_sleep:
   - custom:
       payload:
-        text: Apakah kamu merasa kurang tidur atau anmnesia karena khawatir?
+        text: Apakah kamu merasa kurang tidur atau insomnia karena khawatir?
         question_number: 2
         buttons:
         - title: Iya
