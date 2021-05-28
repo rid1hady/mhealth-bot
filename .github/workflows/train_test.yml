@@ -27,11 +27,17 @@ jobs:
     steps:
     - name: Deploy to Digital Ocean Droplet
       uses: appleboy/ssh-action@v0.1.3
+      env:
+        ACTION_URL: ${{ secrets.ACTION_URL }}
+        MONGODB_URL: ${{ secrets.MONGODB_URL }}
+        GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+        LINE_CHANNEL_SECRET: ${{ secrets.LINE_CHANNEL_SECRET }}
+        LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSHKEY }}
-        envs: ACTION_URL,MONGODB_URL,GOOGLE_MAPS_API_KEY,COMMAND,LINE_CHANNEL_SECRET,LINE_CHANNEL_SECRET
+        envs: ACTION_URL,MONGODB_URL,GOOGLE_MAPS_API_KEY,LINE_CHANNEL_SECRET,LINE_CHANNEL_ACCESS_TOKEN
         script: |
           cd /www/psymax
           git pull origin main
