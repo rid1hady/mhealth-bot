@@ -24,8 +24,6 @@ COPY ./config.yml ./
 
 RUN rasa train
 
-COPY ./models /app/models
-
 USER 1001
 
 CMD ["run"]
