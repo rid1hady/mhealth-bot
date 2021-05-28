@@ -33,11 +33,16 @@ jobs:
         key: ${{ secrets.SSHKEY }}
         envs: ACTION_URL,MONGODB_URL,GOOGLE_MAPS_API_KEY,COMMAND,LINE_CHANNEL_SECRET,LINE_CHANNEL_SECRET
         script: |
+          cd /var/www
+          git clone https://github.com/rid1hady/psymax.git
+          cd psymax
+
           echo "GOOGLE_MAPS_API_KEY=$(echo $GOOGLE_MAPS_API_KEY)" > .env.docker
           echo "LINE_CHANNEL_SECRET=$(echo $LINE_CHANNEL_SECRET)" >> .env.docker
           echo "LINE_CHANNEL_ACCESS_TOKEN=$(echo $LINE_CHANNEL_ACCESS_TOKEN)" >> .env.docker
           echo "MONGODB_URL=$(echo $MONGODB_URL)" >> .env.docker
           echo "ACTION_URL=$(echo $ACTION_URL)" >> .env.docker
+
 
           docker-compose stop
           docker-compose rm -f
