@@ -50,4 +50,4 @@ jobs:
 
           docker-compose stop
           docker-compose rm -f
-          docker-compose --env-file env.docker up -d --build
+          docker-compose --env-file .env.docker up -d --build
