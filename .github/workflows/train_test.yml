@@ -33,7 +33,7 @@ jobs:
         key: ${{ secrets.SSHKEY }}
         envs: ACTION_URL,MONGODB_URL,GOOGLE_MAPS_API_KEY,COMMAND,LINE_CHANNEL_SECRET,LINE_CHANNEL_SECRET
         script: |
-          cd /var/www/psymax
+          cd /www/psymax
           git pull origin main
 
           echo "GOOGLE_MAPS_API_KEY=$(echo $GOOGLE_MAPS_API_KEY)" > .env.docker
