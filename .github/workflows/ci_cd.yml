@@ -20,7 +20,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: model
-          path: models
+          path: models.tar
   upload_to_s3:
     name: Upload trained model to S3
     needs: train_test
@@ -36,10 +36,10 @@ jobs:
           aws-region: us-east-1
       - uses: actions/download-artifact@v2
         with:
-          path: models
+          path: models.tar
       - name: Copy files to the buckets with the AWS CLI
         run: |
-          aws s3 cp models s3://psymax-models/model-latest.tar.gz
+          aws s3 sync models.tar s3://psymax-models
       
   # deploy:
   #   runs-on: ubuntu-latest
