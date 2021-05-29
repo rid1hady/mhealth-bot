@@ -14,7 +14,7 @@ jobs:
       - uses: RasaHQ/rasa-train-test-gha@main
         with:
           rasa_version: '2.4.0-full'
-          configuration: 'config-github.yml'
+          configuration: './config-github.yml'
       - name: Upload model
         if: github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v2
