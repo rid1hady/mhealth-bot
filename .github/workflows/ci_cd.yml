@@ -20,14 +20,14 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: model
-          path: models-latest.tar.gz
+          path: models
   upload_to_s3:
     name: Upload trained model to S3
     needs: train_test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Configure AWS credentials from Test account
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -38,7 +38,7 @@ jobs:
           path: models
       - name: Copy files to the buckets with the AWS CLI
         run: |
-          aws s3 cp models-latest.tar.gz s3://psymax-models
+          aws s3 cp models s3://psymax-models/model-latest.tar.gz
       
   # deploy:
   #   runs-on: ubuntu-latest
